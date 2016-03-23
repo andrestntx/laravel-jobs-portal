@@ -1,6 +1,8 @@
 <?php
 
+use App\Entities\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserTableSeeder::class);
+        Model::unguard();
+
+        factory(User::class)->create([
+            'username' => 'admin',
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => '123',
+            'role'  => 'admin'
+        ]);
+
+        $this->call(CategoriesSeeder::class);
+	    $this->call(UsersTableSeeder::class);
+
+	    Model::reguard();
     }
 }

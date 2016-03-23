@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Entities\Resume;
+use App\Entities\Company;
+use App\Entities\Job;
+use App\Policies\ResumePolicy;
+use App\Policies\CompanyPolicy;
+use App\Policies\JobPolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +19,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        Resume::class   => ResumePolicy::class,
+        Company::class  => CompanyPolicy::class,
+        Job::class      => JobPolicy::class
     ];
 
     /**

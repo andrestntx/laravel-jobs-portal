@@ -1,66 +1,47 @@
-@extends('layouts.app')
+@extends('layouts.portal')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
+    <div class="mj_lightgraytbg mj_bottompadder80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
+                    <div class="mj_mainheading mj_toppadder80 mj_bottompadder50">
+                        <h1><span>Iniciar</span> <span>Sesión</span></h1>
+                        <p>Ingrese correo electrónico y su contraseña para ingresar al Portal de Empleo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3 col-sm-12 col-xs-12">
+                    <div class="mj_pricingtable mj_greentable mj_login_form_wrapper">
+                        {!! Form::open(['url' => '/login', 'method' => 'POST']) !!}
+                            <div class="mj_login_form">
+                                {!! Field::email('email', ['ph' => 'Correo electrónico', 'tpl' => 'themes.bootstrap.forms.login']) !!}
+                                {!! Field::password('password', ['ph' => 'Su contraseña', 'tpl' => 'themes.bootstrap.forms.login']) !!}
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mj_toppadder20">
+                                        <div class="form-group  pull-left">
+                                            <div class="mj_checkbox">
+                                                <input type="checkbox" value="1" id="check2" name="checkbox">
+                                                <label for="check2"></label>
+                                            </div>
+                                            <span> Recordarme</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mj_toppadder20">
+                                        <div class="form-group pull-right">
+                                            <span><a href="{{ url('/password/reset') }}">Olvidó su contraseña ?</a></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                            <div class="mj_pricing_footer">
+                                <button type="submit">Iniciar ahora</button>
                             </div>
-                        </div>
-                    </form>
+                        {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

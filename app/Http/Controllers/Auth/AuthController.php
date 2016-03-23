@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Entities\User;
+use App\Services\UserService;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -31,12 +32,29 @@ class AuthController extends Controller
     protected $redirectTo = '/';
 
     /**
+     * Get the maximum number of login attempts for delaying further attempts.
+     *
+     * @var int
+     */
+    protected $maxLoginAttempts = 4;
+
+    /**
+     * The number of seconds to delay further login attempts.
+     *
+     * @var int
+     */
+    protected $lockoutTime = 30;
+
+    private $userService;
+
+    /**
      * Create a new authentication controller instance.
      *
-     * @return void
+     * @param UserService $userService
      */
-    public function __construct()
+    public function __construct(UserService $userService)
     {
+        $this->userService = $userService;
         $this->middleware('guest', ['except' => 'logout']);
     }
 
@@ -49,24 +67,45 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'username'  => 'required|max:255|unique:users',
+            'name'      => 'required|max:255',
+            'email'     => 'required|email|max:255|unique:users',
+            'role'      => 'required|in:jobseeker,employer',
+            'password'  => 'required|confirmed|min:6',
+            'company'   => 'required_if:role,employer'
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        return $this->userService->register($data);
+    }
+
+    /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        if(auth()->user()->isJobseeker()){
+            return '/my-resume';
+        }
+        else if(auth()->user()->isEmployer()){
+            return '/my-company';
+        }
+
+        if (property_exists($this, 'redirectPath')) {
+            return $this->redirectPath;
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+
     }
 }

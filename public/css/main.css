@@ -1,0 +1,24 @@
+/*
+Copyright (c) 2015 
+------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:	MeshJobs Multipurpose Responsive HTML Template
+Version:	1.1
+Author: 	DigiSamaritan
+Website: 	digisamaritan.com
+Purchase: 	http://themeforest.net/user/DigiSamaritan
+-------------------------------------------------------------------
+*/
+@import url("bootstrap.css");
+@import url("font-awesome.css");
+@import url("fonts.css");
+@import url("animate.css");
+@import url("../js/plugins/fancybox/jquery.fancybox.css");
+@import url("../js/plugins/rsslider/settings.css");
+@import url("../js/plugins/rsslider/layers.css");
+@import url("../js/plugins/rsslider/navigation.css");
+@import url("../js/plugins/jquery-ui/jquery-ui.css");
+@import url("../js/plugins/bootstrap-slider/bootstrap-slider.css");
+@import url("../js/plugins/owl/owl.carousel.css");
+@import url("style.css");

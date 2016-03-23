@@ -1,82 +1,95 @@
-@extends('layouts.app')
+@extends('layouts.portal')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {!! csrf_field() !!}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+    <div class="mj_transprentbg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="mj_signup_section mj_yellow_bg">
+                            <div class="mj_mainheading mj_toppadder80 mj_bottompadder30">
+                                <h1>Q<span>uiero</span> <span>personas en mi equipo de trabajo</span></h1>
+                            </div>
+                            <div class="mj_blog_btn">
+                                <a href="#" class="mj_mainbtn mj_btnblack" data-text="contratar" data-toggle="modal" data-target="#myModal"><span>contratar</span></a>
+                            </div>
+                            <div class="mj_signup_section_img">
+                                <img src="images/signup_bg1.png" class="img-responsive" alt="contratar">
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="mj_signup_section mj_blue_bg">
+                            <div class="mj_mainheading mj_toppadder80 mj_bottompadder30">
+                                <h1>E<span>stoy</span> <span>buscando un nuevo empleo</span></h1>
+                            </div>
+                            <div class="mj_blog_btn">
+                                <a href="#" class="mj_mainbtn mj_btnblack" data-text="postularme" data-toggle="modal" data-target="#myModal1"><span>postularme</span></a>
+                            </div>
+                            <div class="mj_signup_section_img">
+                                <img src="images/signup_bg2.png" class="img-responsive" alt="job">
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i>Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- Modal -->
+    @include('auth.forms.register-employer')
+    @include('auth.forms.register-jobseeker')
+    <div class="modal fade mj_popupdesign" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel2"> l<span>ogin to my </span> A<span>ccount</span></h4>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+                        <div class="row">
+                            <div class="mj_pricingtable mj_greentable mj_login_form_wrapper">
+                                <form>
+                                    <div class="mj_login_form">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Username or Email" id="usr_name" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" placeholder="Your Password" id="usr_password" class="form-control">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mj_toppadder20">
+                                                <div class="form-group  pull-left">
+                                                    <div class="mj_checkbox">
+                                                        <input type="checkbox" value="1" id="check4" name="checkbox">
+                                                        <label for="check4"></label>
+                                                    </div>
+                                                    <span> remember me</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mj_toppadder20">
+                                                <div class="form-group pull-right">
+                                                    <span><a href="#">forget password ?</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mj_pricing_footer">
+                                        <a href="#">login Now</a>
+                                    </div>
+                                </form>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="images/close.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Model End-->
+
 @endsection
