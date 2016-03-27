@@ -18,7 +18,7 @@ class CompanyCategory extends Model
      */
     public function companies()
     {
-        return $this->belongsToMany('App\Entities\Company');
+        return $this->hasMany('App\Entities\Company');
     }
 
     /**

@@ -57,14 +57,19 @@ abstract class ResourceController extends BaseController
     /**
      * Show the form for creating a new resource.
      *
+     * @param array $args
+     * @param null|string|array $formDataArgs
+     * @param bool $files
      * @return \Illuminate\Http\Response
      */
-    public function defaultCreate()
+    public function defaultCreate(array $args = array(), $formDataArgs = null, $files = false)
     {
-        return $this->view('form', [
-            $this->modelName => $this->service->newModel(),
-            'formData' => $this->getFormDataStore()
-        ]);
+        $defaultArgs = [
+            $this->modelName    => $this->service->newModel(),
+            'formData'          => $this->getFormDataStore($files, $formDataArgs)
+        ];
+
+        return $this->view('form', array_merge($defaultArgs, $args));
     }
 
     /**
@@ -135,11 +140,12 @@ abstract class ResourceController extends BaseController
 
     /**
      * @param bool $files
+     * @param null $id
      * @return array
      */
-    protected function getFormDataStore($files = false)
+    protected function getFormDataStore($files = false, $id = null)
     {
-        return $this->getFormData($this->getFormDataRoute('store'), 'POST', $files);
+        return $this->getFormData($this->getFormDataRoute('store', $id), 'POST', $files);
     }
 
     /**

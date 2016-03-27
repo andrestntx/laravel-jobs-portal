@@ -3,19 +3,28 @@
 namespace App\Http\ViewComposers\Job;
 
 use App\Repositories\ContractTypeRepository;
+use App\Repositories\OccupationRepository;
+use App\Repositories\SkillRepository;
 use Illuminate\Contracts\View\View;
 
 use App\Http\ViewComposers\BaseComposer;
 
 class FormComposer extends BaseComposer
 {
+    protected  $occupationRepository;
+    protected  $skillRepository;
+
     /**
      * FormComposer constructor.
      * @param ContractTypeRepository $repository
+     * @param OccupationRepository $occupationRepository
+     * @param SkillRepository $skillRepository
      */
-    function __construct(ContractTypeRepository $repository)
+    function __construct(ContractTypeRepository $repository, OccupationRepository $occupationRepository, SkillRepository $skillRepository)
     {
         $this->repository = $repository;
+        $this->occupationRepository = $occupationRepository;
+        $this->skillRepository = $skillRepository;
     }
 
     /**
@@ -25,10 +34,14 @@ class FormComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $contractTypes = $this->repository->listsSelect();
+        $occupations = $this->repository->listsSelect();
+        $contractTypes = $this->occupationRepository->listsSelect();
+        $skills = $this->skillRepository->listsSelect();
 
         $view->with([
-            'contractTypes' => $contractTypes
+            'contractTypes' => $contractTypes,
+            'occupations'   => $occupations,
+            'skills'        => $skills
         ]);
     }
 }

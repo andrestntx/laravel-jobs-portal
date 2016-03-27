@@ -46,7 +46,8 @@ $factory->define(CompanyCategory::class, function (Faker\Generator $faker) {
 
 $factory->define(Company::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->company
+        'name' => $faker->unique()->company,
+        'email' => $faker->unique()->email
     ];
 });
 
@@ -59,7 +60,10 @@ $factory->define(JobCategory::class, function (Faker\Generator $faker) {
 
 $factory->define(Job::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->name
+        'name'              => $faker->unique()->name,
+        'contract_type_id'  => $faker->randomElement([1,2,3,4]),
+        'experience'        => $faker->randomDigit(),
+        'salary'            => $faker->randomNumber(8),
     ];
 });
 
@@ -67,6 +71,18 @@ $factory->define(App\Entities\ContractType::class, function (Faker\Generator $fa
     return [
         'name' => $faker->name,
         'description' => $faker->text(50)
+    ];
+});
+
+$factory->define(App\Entities\Skill::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName
+    ];
+});
+
+$factory->define(App\Entities\Occupation::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name
     ];
 });
 
@@ -83,6 +99,29 @@ $factory->define(App\Entities\Jobseeker::class, function (Faker\Generator $faker
 $factory->define(App\Entities\Resume::class, function (Faker\Generator $faker) {
     return [
         'profile' => $faker->realText(),
-        'wage_aspiration' => $faker->randomNumber(5)
+        'wage_aspiration' => $faker->randomNumber(5),
+        'study_title'       => $faker->name
+    ];
+});
+
+
+$factory->define(App\Entities\Study::class, function (Faker\Generator $faker) {
+    return [
+        'institution'   => $faker->company,
+        'title'         => $faker->firstName,
+        'notes'         => $faker->realText(),
+        'init'          => $faker->date(),
+        'finish'          => $faker->date()
+    ];
+});
+
+
+$factory->define(App\Entities\Experience::class, function (Faker\Generator $faker) {
+    return [
+        'company'   => $faker->company,
+        'name'         => $faker->firstName,
+        'notes'         => $faker->realText(),
+        'init'          => $faker->date(),
+        'finish'          => $faker->date()
     ];
 });

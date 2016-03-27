@@ -26,7 +26,13 @@ class BaseFileRepostory
         return null;
     }
 
+    public function getFileOrDefault($urlFile, $urlDefault)
+    {
+        if(! \Storage::exists($urlFile)) {
+            $urlFile = $urlDefault;
+        }
 
-
+        return '/' . $urlFile;
+    }
 
 }

@@ -40,7 +40,7 @@ class GeoLocationService extends ResourceService
      * @param array $data
      * @return array
      */
-    public function validAndMerge(array &$data)
+    public function validAndMerge(array $data)
     {
         if($this->validData($data)) {
             $data['geo_location_id'] = $this->findOrCreandGetId($data["geo"]);

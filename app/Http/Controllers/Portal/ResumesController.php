@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Entities\Resume;
+use App\Facades\JobseekerFacade;
 use App\Http\Controllers\ResourceController;
 use App\Http\Requests\Resume\CreateRequest;
 use App\Http\Requests\Resume\StoreRequest;
@@ -19,7 +20,6 @@ class ResumesController extends ResourceController
      */
     protected $routePrefix = 'resumes';
 
-
     /**
      * [$viewPath folder views Controller]
      * @var string
@@ -33,12 +33,20 @@ class ResumesController extends ResourceController
     protected $modelName = "resume";
 
     /**
+     * [$facade service manager]
+     * @var JobseekerFacade
+     */
+    protected  $facade;
+
+    /**
      * CompaniesController constructor.
      * @param ResumeService $service
+     * @param JobseekerFacade $facade
      */
-    function __construct(ResumeService $service)
+    function __construct(ResumeService $service, JobseekerFacade $facade)
     {
         $this->service = $service;
+        $this->facade = $facade;
     }
 
     /**
@@ -67,6 +75,7 @@ class ResumesController extends ResourceController
     /**
      * Show the form for creating a new resource.
      *
+     * @param CreateRequest $request
      * @return \Illuminate\Http\Response
      */
     public function create(CreateRequest $request)
@@ -74,6 +83,7 @@ class ResumesController extends ResourceController
         return $this->view('form', [
             'resume'                => $this->service->newModel(),
             'jobseekerResume'       => $this->service->getModelsForm(new Resume()),
+            'resumeSkills'          => null,
             'formData'              => $this->getFormDataStore(true)
         ]);
     }
@@ -84,7 +94,10 @@ class ResumesController extends ResourceController
      */
     public function store(StoreRequest $request)
     {
-        $resume = $this->service->createResume($request->all());
+        $resume = $this->facade->createResume($request->all(), $request->get('skills'), $request->get('new_studies'),
+            $request->get('new_experiences')
+        );
+
         return $this->redirect('show', $resume);
     }
 
@@ -96,7 +109,7 @@ class ResumesController extends ResourceController
      */
     public function show(Resume $resume)
     {
-        $photoUrl = $this->service->getPhoto($resume);
+        $photoUrl = $this->facade->getPhoto($resume->jobseeker);
         $resumeFileUrl = $this->service->getResumeFile($resume);
 
         return $this->view('show', [
@@ -118,6 +131,7 @@ class ResumesController extends ResourceController
         return $this->view('form', [
             'resume'            => $resume,
             'jobseekerResume'   => $this->service->getModelsForm($resume),
+            'resumeSkills'       => $this->service->getResumeSkillsSelect($resume),
             'formData'          => $this->getFormDataUpdate($resume->jobseeker_id, true)
         ]);
     }
@@ -131,7 +145,10 @@ class ResumesController extends ResourceController
      */
     public function update(UpdateRequest $request, Resume $resume)
     {
-        $this->service->updateResume($request->all(), $resume);
+        $this->facade->updateResume($resume, $request->all(), $request->get('skills'), $request->get('new_studies'),
+            $request->get('studies'), $request->get('new_experiences'), $request->get('experiences')
+        );
+
         return $this->redirect('show', $resume);
     }
 

@@ -6,10 +6,30 @@
 
 @section('content')
     <div class="col-md-5">
-        <div class="mj_postdiv mj_shadow_yellow mj_postpage mj_toppadder50 mj_bottompadder10">
-            <div class="mj_mainheading mj_bottompadder50">
+        <div class="mj_postdiv mj_shadow_yellow mj_postpage mj_toppadder20 mj_bottompadder10">
+            <div class="mj_mainheading mj_bottompadder20">
                 <h3><span> {{ $company->name }}</span></h3>
-                <p> {{ $company->description }}</p>
+                <div class="col-sm-offset-4 col-sm-4 col-xs-10 col-xs-offset-1">
+                    <div class="mj_joblogo company-datail">
+                        <img src="{{ $logoUrl }}" class="img-responsive" alt="">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <p> {{ $company->description }}</p>
+                    <a href="#" class="mj_btn mj_greenbtn">{{ $company->category->name }}</a>
+                </div>
+                <div class="col-xs-12 mj_toppadder10">
+                    <a href="{{ $company->website_link }}" target="_blank" class="text-warning"><i class="fa fa-2x fa-external-link-square"></i></a>
+                    <a href="{{ $company->twitter_link }}" target="_blank" class="text-info"><i class="fa fa-2x fa-twitter-square"></i></a>
+                    <a href="{{ $company->facebook_link }}" target="_blank" class="text-primary"><i class="fa fa-2x fa-facebook-square"></i></a>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                @if($company->geoLocation)
+                    @include('includes.google-maps.init', ['geo_location' => $company->geoLocation])
+                @endif
+
+                @include('includes.google-maps.map')
             </div>
         </div>
         @can('edit', $company)
@@ -21,40 +41,46 @@
         @endcan
     </div>
     <div class="col-md-7">
+
         <div class="mj_jobinfo">
             <div class="col-xs-12">
                 <div class="row">
                     <div class="mj_showjob">
-                        <p><strong>{{ $company->jobs()->count() }}</strong> Ofertas de empleo</p>
+                        <p><strong>{{ $jobs->total() }}</strong> Ofertas de empleo</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mj_tabcontent mj_bottompadder80">
+        @can('edit', $company)
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4">
+            <div class="mj_updatecart mj_toppadder10 mj_bottompadder10" style="text-align: center; float:none;">
+                <a href="{{ route('companies.jobs.create', $company) }}" class="mj_mainbtn mj_btnyellow" data-text="Nueva Oferta"><span>Nueva Oferta</span></a>
+            </div>
+        </div>
+        @endcan
+        <div class="mj_jobdetail mj_tabcontent mj_bottompadder10">
             <table class="table table-striped">
-                @foreach($company->jobs as $job)
+                @foreach($jobs as $job)
                     <tr>
                         <td>
-                            <div class="mj_liks"><a href="#"><i class="fa fa-heart"></i></a><span>Save this Job</span>
-                            </div>
+                            <h4><a href="{{ route('companies.jobs.show', [$company, $job]) }}">{{ $job->name }}</a></h4>
+                            <p style="width: 100%;"><a href="#">{{ $job->occupation->name }}</a></p>
                         </td>
-                        <td>
-                            <a href="#"><img src="http://placehold.it/70X70" class="img-responsive" alt="">
-                            </a>
+                        <td><i class="fa fa-map-marker"> {{ $job->address }} </i>
                         </td>
-                        <td>
-                            <h4><a href="{{ route('companies.jobs.edit', [$company, $job]) }}">{{ $job->name }}</a></h4>
-                        </td>
-                        <td><i class="fa fa-map-marker"></i>
-                            <P>New York City</P>
-                        </td>
-                        <td><a href="#" class="mj_btn mj_greenbtn">{{ $job->contractType->name }}</a>
-                        </td>
-                        <td><span>$45,000</span>
+                        <td><a href="#" class="mj_btn mj_btnblue">{{ $job->contractType->name }}</a>
                         </td>
                     </tr>
                 @endforeach
             </table>
         </div>
+        <div class="mj_paginations">
+            {!! $jobs->render() !!}
+        </div>
     </div>
+@endsection
+
+@section('extra-js')
+    <script src="/js/services/searchLocation.js"></script>
+    <script> searchLocation.initShowLocation(); </script>
 @endsection

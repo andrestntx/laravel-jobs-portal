@@ -9,7 +9,7 @@
 @endsection
 
 @section('description')
-	<h2>Ocupación</h2>
+	<h2>Habilidad</h2>
 @endsection
 
 @section('article')

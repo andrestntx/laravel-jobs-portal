@@ -65,7 +65,7 @@ Breadcrumbs::register('contract-types.type', function ($breadcrumbs, $type) {
 // Home > admin > skills
 Breadcrumbs::register('skills', function ($breadcrumbs) {
     $breadcrumbs->parent('admin');
-    $breadcrumbs->push('Ocupaciones', route('admin.skills.index'));
+    $breadcrumbs->push('Habilidades', route('admin.skills.index'));
 });
 
 // Home > admin > skills > {{ $skill }}
@@ -76,6 +76,23 @@ Breadcrumbs::register('skills.skill', function ($breadcrumbs, $skill) {
         $breadcrumbs->push($skill->name, route('admin.skills.show', $skill));
     } else {
         $breadcrumbs->push('Nueva', route('admin.skills.create'));
+    }
+});
+
+// Home > admin > occupations
+Breadcrumbs::register('occupations', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Ocupaciones', route('admin.occupations.index'));
+});
+
+// Home > admin > occupations > {{ $occupation }}
+Breadcrumbs::register('occupations.occupation', function ($breadcrumbs, $occupation) {
+    $breadcrumbs->parent('occupations');
+
+    if ($occupation->exists) {
+        $breadcrumbs->push($occupation->name, route('admin.occupations.show', $occupation));
+    } else {
+        $breadcrumbs->push('Nueva', route('admin.occupations.create'));
     }
 });
 
@@ -110,7 +127,7 @@ Breadcrumbs::register('companies.company.jobs', function ($breadcrumbs, $company
 Breadcrumbs::register('companies.company.jobs.job', function ($breadcrumbs, $company, $job) {
     $breadcrumbs->parent('companies.company.jobs', $company);
 
-    if ($company->exists) {
+    if ($job->exists) {
         $breadcrumbs->push($job->name, route('companies.jobs.show', [$company, $job]));
     } else {
         $breadcrumbs->push('Nueva', route('companies.jobs.create', $company));

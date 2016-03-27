@@ -5,11 +5,11 @@
 @endsection
 
 @section('title')
-	<span>Ocupaciones</span>
+	<span>Habilidades</span>
 @endsection
 
 @section('pre-article')
-	<a href="{{ route('admin.skills.create') }}" class="btn btn-lg mj_btnblue" data-text="Nueva Ocupación"><span>Nueva Ocupación</span></a>
+	<a href="{{ route('admin.skills.create') }}" class="btn btn-lg mj_btnblue" data-text="Nueva Habilidad"><span>Nueva Habilidad</span></a>
 @endsection
 
 @section('article')

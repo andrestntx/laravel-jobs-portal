@@ -11,7 +11,7 @@ class Experience extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'created_by'];
+    protected $fillable = ['name', 'notes', 'company', 'init', 'finish'];
     
     /**
      * Get the resume that owns the experience.

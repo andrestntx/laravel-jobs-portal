@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="MobileOptimized" content="320">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>Portal de empleo</title>
 	<!--srart theme style -->
 	<link href="/css/main.css" rel="stylesheet" type="text/css" />
@@ -106,32 +107,6 @@
 						</a>
 						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat wisi enim ad minim veniam. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.</p>
 					</div>
-					<div class="mj_weight mj_bottompadder20">
-						<span>Subscribe to our newsletter!</span>
-						<form class="form-inline mj_newsletter">
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Email Address">
-								<button class="mj_newsletterbtn"><img src="/images/icon-mail.png" alt="">
-								</button>
-							</div>
-						</form>
-					</div>
-					<div class="mj_weight mj_bottompadder20">
-						<div class="mj_sociallink">
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a>
-								</li>
-								<li><a href="#"><i class="fa fa-behance"></i></a>
-								</li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
 					<div class="mj_copyright">
 						<p>&copy; 2015 <a href="#">mesh<span class="mj_yellow_text">jobs</span></a> Inc.
 							<br> Designerd by <a href="#">themefire</a> &nbsp; / &nbsp; Only on <a href="#">Envato Market</a>
@@ -162,6 +137,7 @@
 	<script type="text/javascript" src="/js/plugins/rsslider/revolution.extension.navigation.min.js"></script>
 	<script type="text/javascript" src="/js/plugins/rsslider/revolution.extension.parallax.min.js"></script>
 	<script type="text/javascript" src="/js/plugins/rsslider/revolution.extension.slideanims.min.js"></script>
+	<script src="/js/plugins/select2/select2.min.js" type="text/javascript"></script>
 	<script src="/js/plugins/countto/jquery.countTo.js" type="text/javascript"></script>
 	<script src="/js/plugins/owl/owl.carousel.js" type="text/javascript"></script>
 	<script src="/js/plugins/bootstrap-slider/bootstrap-slider.js" type="text/javascript"></script>

@@ -25,7 +25,7 @@ class UpdateRequest extends EditRequest
     public function __construct(Route $route)
     {
         $this->job = $route->getParameter('jobs');
-        $this->storeRequest = new StoreRequest;
+        $this->storeRequest = new StoreRequest($route);
     }
 
     /**

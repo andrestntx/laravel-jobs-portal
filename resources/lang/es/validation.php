@@ -140,8 +140,7 @@ return array(
     'date_of_birth'	=> 'fecha de cumpleaños',
     'communities'	=> 'comunidades',
     'description'	=> 'descripción',
-    'doc'           => 'cedula',
-    'roles'         => 'cargos',
+    'doc'           => 'cédula',
     'type_id'       => 'tipo',
     'type'          => 'tipo',
     'image'         => 'imagen',
@@ -168,7 +167,20 @@ return array(
     'url_photo'     => 'foto de perfil',
     'applied'       => 'Aplicado',
     'observation'   => 'Observaciones',
-    'title'         => 'titulo'
+    'title'         => 'titulo',
+	'who_apply'     => 'quíen debería aplicar',
+	'offer'			=> 'beneficios del empelo',
+	'salary'        => 'salario',
+	'wage_aspiration' => 'aspiración salarial',
+	'closing_date'  => 'fecha de finalziación',
+	'contract_type_id' => 'tipo de contrato',
+	'occupation_id' => 'ocupación',
+	'first_name'	=> 'nombres',
+	'last_name'		=> 'apellidos',
+	'phone'			=> 'teléfono',
+	'profile'		=> 'perfil',
+	'photo'			=> 'foto',
+	'study_title'	=> 'título'
 ),
 
 'translate' => array(

@@ -14,7 +14,7 @@ use Illuminate\Http\UploadedFile;
 
 class ResumeFileRepository extends BaseFileRepostory
 {
-    protected $path = "jobseekers";
+    protected $path = "storage/jobseekers";
 
     /**
      * @param Resume $resume

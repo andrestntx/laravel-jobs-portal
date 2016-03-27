@@ -8,29 +8,33 @@
 
 namespace App\Http\Requests\Job;
 
-use App\Entities\Job;
-use App\Http\Requests\Request;
+use Illuminate\Routing\Route;
 
-class StoreRequest extends Request
+class StoreRequest extends CreateRequest
 {
-
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
+     * UpdateRequest constructor.
+     * @param Route $route
      */
-    public function authorize()
+    public function __construct(Route $route)
     {
-        return \Gate::allows('create', new Job());
+        $this->company = $route->getParameter('companies');
     }
 
     /**
-     * Get validation rules to create a Jobseeker and a Resume
+     * Get validation rules to create a Job of Company
      * @return array
      */
     public function rules() {
         return [
-
+            'name'              => 'required',
+            'description'       => 'required',
+            'closing_date'      => 'date',
+            'salary'            => 'numeric',
+            'experience'        => 'numeric|max:15',
+            'occupation_id'     => 'required|exists:occupations,id',
+            'contract_type_id'  => 'required|exists:contract_types,id',
+            'skills'            => 'exists:skills,id'
         ];
     }
 }

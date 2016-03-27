@@ -11,7 +11,7 @@ class Study extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'created_by'];
+    protected $fillable = ['title', 'institution', 'notes', 'init', 'finish'];
     
     /**
      * Get the resume that owns the education.

@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\Entities\Company;
+use App\Entities\Job;
 use App\Repositories\CompanyRepository;
 use App\Repositories\Files\CompanyFileRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -18,18 +19,17 @@ class CompanyService extends ResourceService {
 
     protected $geoLocationService;
     protected $fileRepository;
+    protected $jobService;
 
     /**
      * CompanyService constructor.
      * @param CompanyRepository $repository
      * @param CompanyFileRepository $fileRepository
-     * @param GeoLocationService $geoLocationService
      */
-    function __construct(CompanyRepository $repository, CompanyFileRepository $fileRepository, GeoLocationService $geoLocationService)
+    function __construct(CompanyRepository $repository, CompanyFileRepository $fileRepository)
     {
         $this->repository = $repository;
         $this->fileRepository = $fileRepository;
-        $this->geoLocationService = $geoLocationService;
     }
 
     /**
@@ -44,23 +44,11 @@ class CompanyService extends ResourceService {
      * @param array $data
      * @param $company
      */
-    protected function validAndSavePhoto(array $data, $company)
+    public function validAndSaveLogo(array $data, $company)
     {
         if(array_key_exists('logo', $data)) {
             $this->fileRepository->saveLogo($data['logo'], $company);
         }
-    }
-
-    /**
-     * @param array $data
-     * @param Model $company
-     * @return mixed
-     */
-    public function updateModel(array $data, Model $company)
-    {
-        $this->validAndSavePhoto($data, $company);
-        $this->geoLocationService->validAndMerge($data);
-        return parent::updateModel($data, $company);
     }
 
     /**
@@ -70,6 +58,25 @@ class CompanyService extends ResourceService {
     public function getLogo(Company $company)
     {
         return $this->fileRepository->getLogoUrl($company);
+    }
+
+    /**
+     * @param Company $company
+     * @return mixed
+     */
+    public function getCompanyJobs(Company $company)
+    {
+        return $this->repository->getCompanyJobs($company);
+    }
+
+    /**
+     * @param Company $company
+     * @param Job $job
+     * @return Model
+     */
+    public function addNewJob(Company $company, Job $job)
+    {
+        return $this->repository->saveCompanyJob($company, $job);
     }
 
 }

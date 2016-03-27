@@ -29,4 +29,13 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
             'role'  => $role
         ]);
     }
+
+    public function createCategories()
+    {
+        factory(\App\Entities\JobCategory::class, 5)->create();
+        factory(\App\Entities\CompanyCategory::class, 5)->create();
+        factory(\App\Entities\ContractType::class, 5)->create();
+        factory(\App\Entities\Occupation::class, 15)->create();
+        factory(\App\Entities\Skill::class, 15)->create();
+    }
 }

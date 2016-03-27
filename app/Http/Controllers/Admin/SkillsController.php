@@ -79,7 +79,7 @@ class SkillsController extends ResourceController
      */
     public function show(Skill $skill)
     {
-        return $this->view('show', ['category' => $skill]);
+        return $this->view('show', ['skill' => $skill]);
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Entities\Company;
+use App\Entities\Job;
+use App\Facades\EmployerFacade;
 use App\Http\Controllers\ResourceController;
 use App\Services\CompanyService;
 use Illuminate\Http\Request;
@@ -23,12 +25,19 @@ class CompaniesController extends ResourceController
     protected $viewPath = 'portal.companies';
 
     /**
+     * [$facade service manager]
+     * @var EmployerFacade
+     */
+    protected  $facade;
+
+    /**
      * CompaniesController constructor.
      * @param CompanyService $service
      */
-    function __construct(CompanyService $service)
+    function __construct(CompanyService $service, EmployerFacade $facade)
     {
         $this->service = $service;
+        $this->facade = $facade;
     }
 
     /**
@@ -48,8 +57,13 @@ class CompaniesController extends ResourceController
      */
     public function show(Company $company)
     {
-        $company->load('jobs.contractType');
-        return $this->view('show', ['company' => $company]);
+        $logoUrl = $this->service->getLogo($company);
+
+        return $this->view('show', [
+            'company' => $company,
+            'jobs'    => $this->service->getCompanyJobs($company),
+            'logoUrl' => $logoUrl
+        ]);
     }
 
     /**
@@ -62,7 +76,7 @@ class CompaniesController extends ResourceController
     {
         return $this->view('form', [
             'company'   => $company,
-            'formData'  => $this->getFormDataUpdate($company->id)
+            'formData'  => $this->getFormDataUpdate($company->id, true)
         ]);
     }
 
@@ -75,7 +89,7 @@ class CompaniesController extends ResourceController
      */
     public function update(Request $request, Company $company)
     {
-        $this->service->updateModel($request->all(), $company);
+        $this->facade->updateCompany($request->all(), $company);
         return $this->redirect('show', $company);
     }
 

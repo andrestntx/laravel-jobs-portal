@@ -87,8 +87,8 @@ class AdminCrudTest extends TestCase
 
 		$this->actingAs($user)
 			->visit('/admin/skills')
-			->see('Ocupaciones')
-			->click('Nueva Ocupación')
+			->see('Habilidades')
+			->click('Nueva Habilidad')
 			->seePageIs('/admin/skills/create')
 			->see('Ocupación')
 			->type('skillTest', 'name')
@@ -102,6 +102,28 @@ class AdminCrudTest extends TestCase
 			->seePageIs('/admin/skills')
 			->seeInDatabase('skills', ['name' => 'skillTestEdit'])
 			->see('skillTestEdit');
+	}
+
+	public function testOccupation(){
+		$user = $this->createTestUser();
+
+		$this->actingAs($user)
+			->visit('/admin/occupations')
+			->see('Ocupaciones')
+			->click('Nueva Ocupación')
+			->seePageIs('/admin/occupations/create')
+			->see('Ocupación')
+			->type('occupationTest', 'name')
+			->press('Guardar')
+			->seePageIs('/admin/occupations')
+			->seeInDatabase('occupations', ['name' => 'occupationTest'])
+			->see('occupationTest')
+			->click('occupationTest')
+			->type('occupationTestEdit', 'name')
+			->press('Guardar')
+			->seePageIs('/admin/occupations')
+			->seeInDatabase('occupations', ['name' => 'occupationTestEdit'])
+			->see('occupationTestEdit');
 	}
 }
 

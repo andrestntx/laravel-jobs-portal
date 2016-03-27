@@ -4,15 +4,25 @@ namespace App\Http\Controllers\Portal;
 
 use App\Entities\Company;
 use App\Entities\Job;
+use App\Facades\EmployerFacade;
 use App\Http\Controllers\ResourceController;
+use App\Http\Requests\Job\CreateRequest;
 use App\Http\Requests\Job\EditRequest;
+use App\Http\Requests\Job\StoreRequest;
 use App\Http\Requests\Job\UpdateRequest;
+use App\Services\JobService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class CompaniesJobsController extends ResourceController
 {
+    /**
+     * [$modelName used in views]
+     * @var string
+     */
+    protected $modelName = "job";
+
     /**
      * [$routePrefix prefix route in more one response view]
      * @var string
@@ -26,6 +36,23 @@ class CompaniesJobsController extends ResourceController
     protected $viewPath = "portal.jobs";
 
     /**
+     * [$facade service manager]
+     * @var EmployerFacade
+     */
+    protected  $facade;
+
+    /**
+     * CompaniesController constructor.
+     * @param JobService $service
+     * @param EmployerFacade $facade
+     */
+    function __construct(JobService $service, EmployerFacade $facade)
+    {
+        $this->service = $service;
+        $this->facade = $facade;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param Company $company
@@ -36,39 +63,49 @@ class CompaniesJobsController extends ResourceController
         return redirect()->route('companies.show', $company);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param Company $company
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Company $company)
-    {
-        //
-    }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
+     * @param CreateRequest $request
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Company $company)
+    public function create(CreateRequest $request, Company $company)
     {
-        //
+        return $this->defaultCreate([
+            'company'   => $company,
+            'jobSkills' => null
+            ], $company->id
+        );
+    }
+
+
+    /**
+     * @param StoreRequest $request
+     * @param Company $company
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(StoreRequest $request, Company $company)
+    {
+        $job = $this->facade->createCompanyJob($company, $request->all());
+        return $this->redirect('show', [$company, $job]);
     }
 
     /**
      * Display the specified resource.
      *
      * @param Company $company
-     * @param  int $id
+     * @param Job $job
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function show(Company $company, $id)
+    public function show(Company $company, Job $job)
     {
-        //
+        $logoUrl = $this->facade->getCompanyLogo($company);
+
+        return $this->view('show', [
+            'job' => $job,
+            'logoUrl' => $logoUrl
+        ]);
     }
 
     /**
@@ -82,7 +119,9 @@ class CompaniesJobsController extends ResourceController
     public function edit(EditRequest $request, Company $company, Job $job)
     {
         return $this->view('form', [
-            'job'    => $job,
+            'company'   => $company,
+            'job'       => $job,
+            'jobSkills' => $this->service->getJobSkillsSelect($job),
             'formData'  => $this->getFormDataUpdate([$company, $job])
         ]);
     }
@@ -111,5 +150,14 @@ class CompaniesJobsController extends ResourceController
     public function destroy(Company $company, Job $job)
     {
         $this->service->deleteModel($job);
+    }
+
+    /**
+     * @param Company $company
+     * @param Job $job
+     */
+    public function apply(Company $company, Job $job)
+    {
+
     }
 }

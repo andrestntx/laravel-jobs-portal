@@ -82,6 +82,11 @@ body {
 .mj_mainheading .mj_joblogo {
     height: 250px;
 }
+
+.mj_mainheading .mj_joblogo.company-datail {
+    height: auto;
+}
+
 .mj_pagetitle2 .mj_mainheading .mj_joblogo img {
     position: absolute;
     bottom: 0;
@@ -752,6 +757,7 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 .mj_tabcontent .table tr td a img {
 	display: initial;
 	border-radius: 100%;
+    max-width: 75px;
 }
 .mj_tabcontent .table tr td:nth-child(4) i {
 	padding-top: 25px;
@@ -3911,7 +3917,7 @@ a.mj_removefile {
     border-radius: 5px;
 	text-transform:capitalize;
 }
-.mj_education {
+.mj_education, .mj_experience {
     float: left;
     width: 100%;
     padding: 30px;
@@ -3919,8 +3925,9 @@ a.mj_removefile {
     border: 1px solid #ebebeb;
     border-radius: 13px;
     position: relative;
+    margin-bottom: 1em;
 }
-.mj_education:before {
+.mj_education:before, .mj_experience:before {
     position: absolute;
     content: '';
     border-left: 10px solid transparent;
@@ -3928,7 +3935,7 @@ a.mj_removefile {
     border-bottom: 10px solid #ebebeb;
     top: -10px;
 }
-.mj_education .form-control{
+.mj_education .form-control, .mj_experience .form-control{
 	margin-bottom:15px;
 }
 /*------- post resume page end -------*/
@@ -6078,7 +6085,7 @@ ul.mj_selected_content li, .mj_detaildiv ul.mj_selected_content li{
     width: 100%;
     padding: 5px 0px;
 }
-.mj_education{
+.mj_education, .mj_experience{
     padding: 10px;
 }
 .mj_overlay_inner{

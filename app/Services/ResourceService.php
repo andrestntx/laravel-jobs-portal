@@ -39,6 +39,12 @@ class ResourceService {
 
     public function deleteModel($entity)
     {
-        return $this->repository->delete($entity);
+        try {
+            $this->repository->delete($entity);
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 }

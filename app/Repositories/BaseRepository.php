@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Exceptions\RepositoryException;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -54,6 +55,21 @@ abstract class  BaseRepository {
         $model->fill($data);
 
         return $model;
+    }
+
+    /**
+     * @param array $dataModels
+     * @return Collection
+     */
+    public function newModels(array $dataModels)
+    {
+        $newModels = new Collection();
+
+        foreach($dataModels as $newModel) {
+            $newModels->add($this->newModel($newModel));
+        }
+
+        return $newModels;
     }
 
     /**
@@ -124,7 +140,8 @@ abstract class  BaseRepository {
      * @param Model $entity
      * @return mixed
      */
-    public function update(array $data, $entity) {
+    public function update(array $data, $entity)
+    {
         $entity->fill($data);
 
         if($entity->save()) {
@@ -132,6 +149,32 @@ abstract class  BaseRepository {
         }
 
         return false;
+    }
+
+    /**
+     * @param $id
+     * @param array $data
+     * @return mixed
+     */
+    public function findAndUpdate($id, array $data)
+    {
+        $entity = $this->findOrFail($id);
+        return $this->update($data, $entity);
+    }
+
+    /**
+     * @param array $dataModels
+     * @return Collection
+     */
+    public function updateModels(array $dataModels)
+    {
+        $studies = new Collection();
+
+        foreach($dataModels as $id => $data){
+            $studies->add($this->findAndUpdate($id, $data));
+        }
+
+        return $studies;
     }
 
     /**

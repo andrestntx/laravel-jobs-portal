@@ -14,9 +14,10 @@ class CreateStudiesTable extends Migration
     {
         Schema::create('studies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('institution');
-            $table->date('init');
+            $table->text('notes')->nullable();
+            $table->date('init')->nullable();
             $table->date('finish')->nullable();
 
             $table->integer('resume_id')->unsigned();

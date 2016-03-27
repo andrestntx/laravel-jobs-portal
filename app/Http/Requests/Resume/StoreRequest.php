@@ -24,10 +24,38 @@ class StoreRequest extends CreateRequest
         ];
     }
 
+    protected function newStudyRules() {
+        return [
+            'new_studies.*.title'       => 'required|string',
+            'new_studies.*.institution' => 'required|string'
+        ];
+    }
+
+    protected function studyRules() {
+        return [
+            'studies.*.title'       => 'required|string',
+            'studies.*.institution' => 'required|string'
+        ];
+    }
+
+    protected function newExperienceRules() {
+        return [
+            'new_experiences.*.name'        => 'required|string',
+            'new_experiences.*.company'     => 'required|string'
+        ];
+    }
+
+    protected function experienceRules() {
+        return [
+            'experiences.*.name'        => 'required|string',
+            'experiences.*.company'     => 'required|string'
+        ];
+    }
+
     protected function resumeRules() {
         return [
-            'profile'     => 'required',
-            'wage_aspiration' => 'numeric'
+            'profile'           => 'required',
+            'wage_aspiration'   => 'numeric'
         ];
     }
 
@@ -36,6 +64,10 @@ class StoreRequest extends CreateRequest
      * @return array
      */
     public function rules() {
-        return $this->jobseekerRules() + $this->resumeRules();
+        return $this->jobseekerRules() + $this->resumeRules() +
+            $this->newStudyRules() + $this->studyRules() +
+            $this->newExperienceRules() + $this->experienceRules()
+        ;
+
     }
 }

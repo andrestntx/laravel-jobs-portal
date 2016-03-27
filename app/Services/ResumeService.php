@@ -12,23 +12,21 @@ namespace App\Services;
 use App\Entities\Resume;
 use App\Repositories\Files\ResumeFileRepository;
 use App\Repositories\ResumeRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class ResumeService extends ResourceService
 {
-    protected $jobseekerService;
     protected $fileRepository;
 
     /**
      * ResumeService constructor.
      * @param ResumeRepository $repository
      * @param ResumeFileRepository $fileRepository
-     * @param JobseekerService $jobseekerService
      */
-    function __construct(ResumeRepository $repository, ResumeFileRepository $fileRepository, JobseekerService $jobseekerService)
+    function __construct(ResumeRepository $repository, ResumeFileRepository $fileRepository)
     {
         $this->repository = $repository;
         $this->fileRepository = $fileRepository;
-        $this->jobseekerService = $jobseekerService;
     }
 
     /**
@@ -56,48 +54,11 @@ class ResumeService extends ResourceService
      * @param array $data
      * @param Resume $resume
      */
-    protected function validAndSaveResumeFile(array $data, Resume $resume)
+    public function validAndSaveResumeFile(array $data, Resume $resume)
     {
         if(array_key_exists('resume_file', $data)) {
             $this->fileRepository->saveResume($data['resume_file'], $resume);
         }
-    }
-
-    /**
-     * @param array $data
-     * @return mixed
-     */
-    public function createResume(array $data)
-    {
-        $jobseeker  = $this->jobseekerService->createModel($data);
-        $newResume  = $this->newModel($data);
-        $resume     = $this->jobseekerService->addNewResume($jobseeker, $newResume);
-        $this->validAndSaveResumeFile($data, $resume);
-
-        return $resume;
-    }
-
-    /**
-     * @param array $data
-     * @param Resume $resume
-     * @return mixed
-     */
-    public function updateResume(array $data, Resume $resume)
-    {
-        $this->jobseekerService->updateModel($data, $resume->jobseeker);
-        $resume = $this->updateModel($data, $resume);
-        $this->validAndSaveResumeFile($data, $resume);
-
-        return $resume;
-    }
-
-    /**
-     * @param Resume $resume
-     * @return string
-     */
-    public function getPhoto(Resume $resume)
-    {
-        return $this->jobseekerService->getPhotoUrl($resume->jobseeker);
     }
 
     /**
@@ -107,6 +68,47 @@ class ResumeService extends ResourceService
     public function getResumeFile(Resume $resume)
     {
         return $this->fileRepository->getResumeFileUrl($resume);
+    }
+
+    /**
+     * @param Resume $resume
+     * @return mixed
+     */
+    public function getResumeSkillsSelect(Resume $resume)
+    {
+        return $this->repository->getJobSkillsSelect($resume);
+    }
+
+    /**
+     * @param Model $resume
+     * @param array|null $skills
+     * @return mixed
+     */
+    public function syncSkills(Model $resume, $skills = array())
+    {
+        /*if(is_null($skills)) {
+            $skills = array();
+        }*/
+
+        return $this->repository->syncSkills($resume, $skills);
+    }
+
+    /**
+     * @param Model $resume
+     * @param  \Illuminate\Support\Collection|array  $models
+     */
+    public function addNewStudies(Model $resume, $models)
+    {
+        $this->repository->saveStudies($resume, $models);
+    }
+
+    /**
+     * @param Model $resume
+     * @param \Illuminate\Support\Collection|array  $models
+     */
+    public function addNewExperiences(Model $resume, $models)
+    {
+        $this->repository->saveExperiences($resume, $models);
     }
 
 }

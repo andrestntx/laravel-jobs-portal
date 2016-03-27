@@ -13,7 +13,8 @@ use Illuminate\Http\UploadedFile;
 
 class CompanyFileRepository extends BaseFileRepostory
 {
-    protected $path = "companies";
+    protected $path = "storage/companies";
+    protected $defaultLogo = "images/default.jpg";
 
     public function getPathCompany(Company $company)
     {
@@ -27,6 +28,6 @@ class CompanyFileRepository extends BaseFileRepostory
 
     public function getLogoUrl(Company $company)
     {
-        return '/' . $this->getPathCompany($company). "/logo.jpg";
+        return $this->getFileOrDefault($this->getPathCompany($company). "/logo.jpg", $this->defaultLogo);
     }
 }

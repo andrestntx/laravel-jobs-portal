@@ -13,7 +13,8 @@ use Illuminate\Http\UploadedFile;
 
 class JobseekerFileRepository extends BaseFileRepostory
 {
-    protected $path = "jobseekers";
+    protected $path = "storage/jobseekers";
+    protected $defaultPhoto = "images/default.jpg";
 
     public function getPathJobseeker(Jobseeker $jobseeker)
     {
@@ -27,6 +28,6 @@ class JobseekerFileRepository extends BaseFileRepostory
 
     public function getPhotoUrl(Jobseeker $jobseeker)
     {
-        return '/' . $this->getPathJobseeker($jobseeker). "/photo.jpg";
+        return $this->getFileOrDefault($this->getPathJobseeker($jobseeker). "/photo.jpg", $this->defaultPhoto);
     }
 }

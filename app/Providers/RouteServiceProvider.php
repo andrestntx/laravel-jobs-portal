@@ -30,9 +30,12 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('job_categories', 'App\Entities\JobCategory');
         $router->model('contract_types', 'App\Entities\ContractType');
         $router->model('skills', 'App\Entities\Skill');
+        $router->model('occupations', 'App\Entities\Occupation');
         $router->model('resumes', 'App\Entities\Resume');
         $router->model('companies', 'App\Entities\Company');
         $router->model('jobs', 'App\Entities\Job');
+        $router->model('experiences', 'App\Entities\Experience');
+        $router->model('studies', 'App\Entities\Study');
     }
 
     /**

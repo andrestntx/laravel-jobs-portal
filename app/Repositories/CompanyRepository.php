@@ -5,6 +5,9 @@ namespace App\Repositories;
 
 
 
+use App\Entities\Company;
+use App\Entities\Job;
+
 class CompanyRepository extends BaseRepository
 {
     /**
@@ -24,5 +27,24 @@ class CompanyRepository extends BaseRepository
     public function findOrFailByUserId($id)
     {
         return $this->findOrFailBy('user_id', $id);
+    }
+
+    /**
+     * @param Company $company
+     * @return mixed
+     */
+    public function getCompanyJobs(Company $company)
+    {
+        return $company->jobs()->with(['contractType', 'occupation', 'geoLocation'])->paginate();
+    }
+
+    /**
+     * @param Company $company
+     * @param Job $job
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function saveCompanyJob(Company $company, Job $job)
+    {
+        return $company->jobs()->save($job);
     }
 }

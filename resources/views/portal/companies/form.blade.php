@@ -27,6 +27,10 @@
 				{!! Field::text('twitter', ['ph' => 'Usuario en twitter']) !!}
 				{!! Field::text('facebook', ['ph' => 'Link de Facebook']) !!}
 				@include('includes.google-maps.inputs')
+
+				@if($company->exists && $company->geoLocation)
+					@include('includes.google-maps.init', ['geo_location' => $company->geoLocation])
+				@endif
 	        </div>
 	    </div>
 	    <div class="mj_showmore">

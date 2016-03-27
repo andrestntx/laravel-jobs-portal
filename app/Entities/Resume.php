@@ -11,7 +11,7 @@ class Resume extends Model
      *
      * @var array
      */
-    protected $fillable = ['profile', 'wage_aspiration'];
+    protected $fillable = ['profile', 'wage_aspiration', 'study_title'];
 
     /**
      * Get the route key for the model.
@@ -56,7 +56,7 @@ class Resume extends Model
     }
 
     /**
-     * Get the skills for the resume jobseeker.
+     * Get the skills for the resume.
      */
     public function skills()
     {

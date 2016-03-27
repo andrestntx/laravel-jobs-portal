@@ -3,6 +3,13 @@
 	
 	// on ready function
 	jQuery(document).ready(function($) {
+
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+
    		var $this = $(window);
 		
 		// on load function
@@ -302,7 +309,13 @@
 		
 	//datepicker
 	
-	$( "#datepicker" ).datepicker();
+	$( "#datepicker" ).datepicker({
+		dateFormat: "yy-mm-dd"
+	});
+
+	$( ".datepicker" ).datepicker({
+		dateFormat: "yy-mm-dd"
+	});
 	
 	// custom add and remove field
 	
@@ -315,18 +328,83 @@
 		$('#div'+id).show(400);
 		});
 	
-	    $(".mj_add").on("click", function(e) {
-        var intId = $(".mj_addurldiv").length + 1;
-        var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
-        var fName = $("<input type=\"text\" class=\"form-control mj_small_input\" />");
-        var removeButton = $("<input type=\"button\" class=\"mj_remove\" value=\"x\" />");
-        removeButton.on("click", function() {
-            $(this).parent().remove();
-        });
-        fieldWrapper.append(fName);
-        fieldWrapper.append(removeButton);
-        $(".mj_addurldiv").append(fieldWrapper);
-    });
+	    $(".mj_add_education").on("click", function(e) {
+			var intId = $(".mj_education").length + 1;
+			var fieldWrapper = $("<div class=\"mj_education\" id=\"new_education[" + intId + "]\"/>");
+			var fInstitution = $("<input name=\"new_studies[" + intId + "][institution]\" type=\"text\" class=\"form-control\" placeholder=\"Institución\" />");
+			var fTitle = $("<input name=\"new_studies[" + intId + "][title]\"  type=\"text\" class=\"form-control\" placeholder=\"Título\" />");
+			var fNotes = $("<textarea name=\"new_studies[" + intId + "][notes]\"  class=\"form-control\" rows=\"4\" placeholder=\"Notas\" />");
+
+			var datesWrapper = $("<div class=\"row\"/>");
+
+			var fInit = $("<div class=\"col-sm-6\"><div class=\"mj_datepicker\"><input name=\"new_studies[" + intId + "][init]\"  type=\"text\" class=\"form-control datepicker\" placeholder=\"Fecha de Inicio\" /></div></div>");
+			var fFinish = $("<div class=\"col-sm-6\"><div class=\"mj_datepicker\"><input name=\"new_studies[" + intId + "][finish]\" type=\"text\" class=\"form-control datepicker\" placeholder=\"Fecha de Finalización\" /></div></div>");
+			var removeButton = $("<a href=\"javascript::void(0)\" class=\"mj_removefile\"><i class=\"fa fa-remove\"></i> Eliminar</a>");
+
+			removeButton.on("click", function() {
+				$(this).parent().remove();
+			});
+
+			fieldWrapper.append(fInstitution);
+			fieldWrapper.append(fTitle);
+			datesWrapper.append(fInit);
+			datesWrapper.append(fFinish);
+			fieldWrapper.append(datesWrapper);
+			fieldWrapper.append(fNotes);
+			fieldWrapper.append(removeButton);
+			$(".mj_educations").append(fieldWrapper);
+			$( ".datepicker" ).datepicker({
+				dateFormat: "yy-mm-dd",
+				setDate: new Date()
+			}).datepicker("setDate", new Date());
+    	});
+
+		$(".mj_add_experience").on("click", function(e) {
+			var intId = $(".mj_experience").length + 1;
+			var fieldWrapper = $("<div class=\"mj_experience\" id=\"new_experience[" + intId + "]\"/>");
+			var fInstitution = $("<input name=\"new_experiences[" + intId + "][company]\" type=\"text\" class=\"form-control\" placeholder=\"Empresa\" />");
+			var fTitle = $("<input name=\"new_experiences[" + intId + "][name]\"  type=\"text\" class=\"form-control\" placeholder=\"Cargo\" />");
+			var fNotes = $("<textarea name=\"new_experiences[" + intId + "][notes]\"  class=\"form-control\" rows=\"4\" placeholder=\"Notas\" />");
+
+			var datesWrapper = $("<div class=\"row\"/>");
+
+			var fInit = $("<div class=\"col-sm-6\"><div class=\"mj_datepicker\"><input name=\"new_experiences[" + intId + "][init]\"  type=\"text\" class=\"form-control datepicker\" placeholder=\"Fecha de Inicio\" /></div></div>");
+			var fFinish = $("<div class=\"col-sm-6\"><div class=\"mj_datepicker\"><input name=\"new_experiences[" + intId + "][finish]\" type=\"text\" class=\"form-control datepicker\" placeholder=\"Fecha de Finalización\" /></div></div>");
+			var removeButton = $("<a href=\"javascript::void(0)\" class=\"mj_removefile\"><i class=\"fa fa-remove\"></i> Eliminar</a>");
+
+			removeButton.on("click", function() {
+				$(this).parent().remove();
+			});
+
+			fieldWrapper.append(fInstitution);
+			fieldWrapper.append(fTitle);
+			datesWrapper.append(fInit);
+			datesWrapper.append(fFinish);
+			fieldWrapper.append(datesWrapper);
+			fieldWrapper.append(fNotes);
+			fieldWrapper.append(removeButton);
+			$(".mj_experiences").append(fieldWrapper);
+			$( ".datepicker" ).datepicker({
+				dateFormat: "yy-mm-dd",
+				setDate: new Date()
+			}).datepicker("setDate", new Date());
+		});
+
+	// Custom add new Educations
+
+	$(".mj_add").on("click", function(){
+
+		var intId = $(".mj_education").length + 1;
+		var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
+		var fName = $("<input type=\"text\" class=\"form-control mj_small_input\" />");
+		var removeButton = $("<input type=\"button\" class=\"mj_remove\" value=\"x\" />");
+		removeButton.on("click", function() {
+			$(this).parent().remove();
+		});
+		fieldWrapper.append(fName);
+		fieldWrapper.append(removeButton);
+		$(".mj_addurldiv").append(fieldWrapper);
+	});
 	
 	// grid -mesonary 
 	  $('.grid').isotope({
@@ -384,6 +462,7 @@
 			$(".mj_responsivetable").addClass("table-responsive");
 		}
 		//ck editor
+		$( 'textarea.editor-html' ).ckeditor();
 		$( 'textarea#editor1' ).ckeditor();
 		$( 'textarea#editor2' ).ckeditor();
 		

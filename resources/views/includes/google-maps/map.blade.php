@@ -1,1 +1,1 @@
-<div class="map_canvas"></div>
+<div class="map_canvas" id="map_canvas"></div>

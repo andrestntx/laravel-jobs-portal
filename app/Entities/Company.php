@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Repositories\Files\CompanyFileRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
@@ -40,20 +41,41 @@ class Company extends Model
     }
 
     /**
-     * The categories that belong to the company.
+     * The category for the company.
      */
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany('App\Entities\CompanyCategory');
+        return $this->belongsTo('App\Entities\CompanyCategory', 'company_category_id', 'id');
     }
 
     /**
      * @return mixed
      */
-    /*public function getAddressAttribute()
+    public function getAddressAttribute()
     {
         if($geoLocation = $this->geoLocation) {
             return $geoLocation->address;
         }
-    }*/
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTwitterLinkAttribute()
+    {
+        return 'https://twitter.com/' . $this->twitter;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookLinkAttribute()
+    {
+        return 'https://facebook.com/' . $this->facebook;
+    }
+
+    public function getWebsiteLinkAttribute(){
+        return 'http://' . $this->website;
+    }
+
 }

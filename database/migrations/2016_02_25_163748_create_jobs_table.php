@@ -15,8 +15,11 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
+            $table->text('description')->nullable();
+            $table->text('who_apply')->nullable();
+            $table->text('offer')->nullable();
             $table->integer('salary')->nullable();
+            $table->integer('experience')->default(0);
             $table->date('closing_date')->nullable();
             $table->string('email')->nullable();
 
@@ -24,6 +27,9 @@ class CreateJobsTable extends Migration
 
             $table->string('geo_location_id')->nullable();
             $table->foreign('geo_location_id')->references('id')->on('geo_locations');
+
+            $table->integer('occupation_id')->unsigned()->default(1);
+            $table->foreign('occupation_id')->references('id')->on('occupations');
 
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies');
