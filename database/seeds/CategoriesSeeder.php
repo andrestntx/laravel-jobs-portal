@@ -15,5 +15,8 @@ class CategoriesSeeder extends Seeder
         factory(\App\Entities\CompanyCategory::class, 5)->create();
         factory(\App\Entities\Occupation::class, 15)->create();
         factory(\App\Entities\Skill::class, 25)->create();
+        factory(\App\Entities\GeoLocation::class, 5)->create([
+            'is_search' => true
+        ]);
     }
 }

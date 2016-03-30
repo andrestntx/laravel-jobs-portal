@@ -2,7 +2,9 @@
 
 namespace App\Http\ViewComposers\Job;
 
+use App\Repositories\ContractTypeRepository;
 use App\Repositories\Files\CompanyFileRepository;
+use App\Repositories\GeoLocationRepository;
 use App\Repositories\JobRepository;
 use App\Repositories\OccupationRepository;
 use Illuminate\Contracts\View\View;
@@ -13,12 +15,26 @@ class ListComposer extends BaseComposer
 {
     protected $occupationRepository;
     protected $companyFileRepository;
+    protected $geoLocationRepository;
+    protected $contractTypeRepository;
 
-    function __construct(JobRepository $repository, OccupationRepository $occupationRepository, CompanyFileRepository $companyFileRepository)
+    /**
+     * ListComposer constructor.
+     * @param JobRepository $repository
+     * @param OccupationRepository $occupationRepository
+     * @param CompanyFileRepository $companyFileRepository
+     * @param GeoLocationRepository $geoLocationRepository
+     * @param ContractTypeRepository $contractTypeRepository
+     */
+    function __construct(JobRepository $repository, OccupationRepository $occupationRepository,
+                         CompanyFileRepository $companyFileRepository, GeoLocationRepository $geoLocationRepository,
+                         ContractTypeRepository $contractTypeRepository)
     {
         $this->repository = $repository;
         $this->occupationRepository = $occupationRepository;
         $this->companyFileRepository = $companyFileRepository;
+        $this->geoLocationRepository = $geoLocationRepository;
+        $this->contractTypeRepository = $contractTypeRepository;
     }
 
     /**
@@ -28,16 +44,18 @@ class ListComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $jobs               = $this->repository->getAllJobs();
         $occupations        = $this->occupationRepository->listsSelect();
         $salaryRange        = $this->repository->getSalaryRange();
         $experienceRange    = $this->repository->getExperienceRange();
         $logos              = $this->companyFileRepository;
+        $locations          = $this->geoLocationRepository->getSearchSelect();
+        $types              = $this->contractTypeRepository->listsSelect();
 
         $args = array_merge([
-            'jobs'          => $jobs,
             'occupations'   => $occupations,
-            'logos'         => $logos
+            'logos'         => $logos,
+            'locations'     => $locations,
+            'types'         => $types
         ], $salaryRange, $experienceRange);
 
         $view->with($args);

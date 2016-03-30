@@ -2265,7 +2265,7 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 .mj_filter_slider {
 	float: left;
 	width: 100%;
-	padding: 40px;
+    padding: 30px 40px 10px 40px;
 	background-color: #00bff3;
 }
 .mj_filter_slider label {

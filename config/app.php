@@ -2,6 +2,9 @@
 
 return [
 
+    'maxResults' => env('MAX_RESULTS', 400),
+    'miles' => env('MILES', 25),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

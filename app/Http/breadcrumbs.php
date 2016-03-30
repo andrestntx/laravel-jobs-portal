@@ -11,6 +11,12 @@ Breadcrumbs::register('admin', function ($breadcrumbs) {
     $breadcrumbs->push('Admin', url('admin'));
 });
 
+// Home > admin > geoLocations
+Breadcrumbs::register('geo-locations', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Ubicaciones', route('admin.geo-locations.index'));
+});
+
 // Home > admin > company categories
 Breadcrumbs::register('company-categories', function ($breadcrumbs) {
     $breadcrumbs->parent('admin');

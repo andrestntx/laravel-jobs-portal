@@ -24,6 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('portal.jobs.lists');
+        return redirect()->to('jobs');
     }
 }

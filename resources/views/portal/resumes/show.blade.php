@@ -54,8 +54,9 @@
                                     </a>
                                 </li>
                             @else
-                                <li><a href="contact.html" class="mj_mainbtn mj_btnblue" data-text="Contactar"><span>Contactar</span></a>
+                               {{--  <li><a href="contact.html" class="mj_mainbtn mj_btnblue" data-text="Contactar"><span>Contactar</span></a>
                                 </li>
+                                --}}
                             @endcan
                         </ul>
                         <p><a target="_blank" href="{{ $resumeFileUrl }}"><i class="fa fa-2x fa-download"></i></a>

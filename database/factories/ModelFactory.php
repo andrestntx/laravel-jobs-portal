@@ -62,6 +62,7 @@ $factory->define(Job::class, function (Faker\Generator $faker) {
     return [
         'name'              => $faker->unique()->name,
         'contract_type_id'  => $faker->randomElement([1,2,3,4]),
+        'occupation_id'     => $faker->randomElement([1,2,3,4]),
         'experience'        => $faker->randomDigit(),
         'salary'            => $faker->randomNumber(8),
     ];
@@ -123,5 +124,14 @@ $factory->define(App\Entities\Experience::class, function (Faker\Generator $fake
         'notes'         => $faker->realText(),
         'init'          => $faker->date(),
         'finish'          => $faker->date()
+    ];
+});
+
+$factory->define(App\Entities\GeoLocation::class, function (Faker\Generator $faker) {
+    return [
+        'lat'           => $faker->randomFloat(5,1,7),
+        'lng'           => $faker->randomFloat(5,-76,-69),
+        'formatted_address' => $faker->streetAddress,
+        'id'            => $faker->unique()->uuid
     ];
 });

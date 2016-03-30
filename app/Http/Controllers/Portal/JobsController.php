@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Entities\Job;
+use App\Facades\EmployerFacade;
 use App\Http\Controllers\ResourceController;
-use App\Services\JobService;
 
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class JobsController extends ResourceController
 {
@@ -22,13 +23,39 @@ class JobsController extends ResourceController
      */
     protected $viewPath = 'portal.jobs';
 
+    protected $facade;
+
     /**
      * CompaniesController constructor.
-     * @param JobService $service
+     * @param EmployerFacade $facade
      */
-    function __construct(JobService $service)
+    function __construct(EmployerFacade $facade)
     {
-        $this->service = $service;
+        $this->facade = $facade;
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $result = $this->facade->searchJobs($request->get('occupation'), $request->get('company'),
+            $request->get('contract-types'), $request->get('location'), $request->get('search'),
+            $request->get('experience', 0));
+
+        $defaultVars = [
+            'occupation' => $request->get('occupation'),
+            'location' => $request->get('location'),
+            'search' => $request->get('search'),
+            'experience' => $request->get('experience'),
+            'contractTypesSelect' => $request->get('contract-types'),
+            'salaryRange' => $request->get('salary')
+        ];
+
+        return view('portal.jobs.lists')->with(array_merge($result, $defaultVars));
     }
 
     /**

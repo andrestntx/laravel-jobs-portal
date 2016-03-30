@@ -9,11 +9,15 @@
 namespace App\Facades;
 
 
+use App\Entities\Job;
 use App\Entities\Jobseeker;
 use App\Entities\Resume;
+use App\Entities\User;
+use App\Services\ApplicationService;
 use App\Services\ExperienceService;
 use App\Services\GeoLocationService;
 use App\Services\JobseekerService;
+use App\Services\JobService;
 use App\Services\ResumeService;
 use App\Services\StudyService;
 use Illuminate\Database\Eloquent\Model;
@@ -46,22 +50,29 @@ class JobseekerFacade
     protected $experienceService;
 
     /**
+     * @var ApplicationService
+     */
+    protected $applicationService;
+
+    /**
      * JobseekerFacade constructor.
      * @param ResumeService $resumeService
      * @param JobseekerService $jobseekerService
      * @param GeoLocationService $geoLocationService
      * @param StudyService $studyService
      * @param ExperienceService $experienceService
+     * @param ApplicationService $applicationService
      */
     public function __construct(ResumeService $resumeService, JobseekerService $jobseekerService,
                                 GeoLocationService $geoLocationService, StudyService $studyService,
-                                ExperienceService $experienceService)
+                                ExperienceService $experienceService, ApplicationService $applicationService)
     {
         $this->resumeService = $resumeService;
         $this->geoLocationService = $geoLocationService;
         $this->jobseekerService = $jobseekerService;
         $this->studyService = $studyService;
         $this->experienceService = $experienceService;
+        $this->applicationService = $applicationService;
     }
 
     /**
@@ -191,5 +202,36 @@ class JobseekerFacade
         return $resume;
     }
 
+    public function searchResumes($skillId = null, $locationId = null, $search = null)
+    {
+        $geoLocation = $this->geoLocationService->getModel($locationId);
+        return $this->resumeService->getSearchResumes($skillId, $geoLocation, $search);
+    }
 
+    public function applyJob(Job $job, array $data)
+    {
+        $resume = $this->resumeService->getAuthResume();
+        return $this->applicationService->applyJob($resume, $job, $data);
+    }
+
+    /**
+     * @param User $user
+     * @param Job $job
+     * @return int
+     */
+    public function countApplications(User $user, Job $job)
+    {
+        $resume = $this->resumeService->getResume($user);
+
+        if($resume) {
+            return $this->applicationService->count($resume, $job);
+        }
+
+        return 0;
+    }
+
+    public function getApplications(Resume $resume)
+    {
+        return $this->applicationService->getOfResume($resume);
+    }
 }

@@ -120,11 +120,12 @@ abstract class ResourceController extends BaseController
     /**
      * @param $actionRoute
      * @param array|string|null $params
+     * @param array $with
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function redirect($actionRoute, $params = null)
+    protected function redirect($actionRoute, $params = null, array $with = array())
     {
-        return redirect()->route($this->getRoute($actionRoute), $params);
+        return redirect()->route($this->getRoute($actionRoute), $params)->with($with);
     }
 
     /**

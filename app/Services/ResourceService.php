@@ -22,6 +22,10 @@ class ResourceService {
         return $this->repository->newModel($data);
     }
 
+    public function getModel($id = null) {
+        return $this->repository->find($id);
+    }
+
     public function createModel(array $data)
     {
     	return $this->repository->create($data);

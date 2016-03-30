@@ -3,6 +3,8 @@
 namespace App\Facades;
 
 use App\Entities\Company;
+use App\Entities\Job;
+use App\Services\ApplicationService;
 use App\Services\CompanyService;
 use App\Services\GeoLocationService;
 use App\Services\JobService;
@@ -69,5 +71,20 @@ class EmployerFacade
         $data = $this->geoLocationService->validAndMerge($data);
         $this->jobService->syncSkills($job, $data);
         return $this->jobService->updateModel($data, $job);
+    }
+
+    /**
+     * @param null $occupationId
+     * @param null $companyId
+     * @param null $contractTypeId
+     * @param null $locationId
+     * @param null $search
+     * @param int $experience
+     * @return mixed
+     */
+    public function searchJobs($occupationId = null, $companyId = null, $contractTypeId = null, $locationId = null, $search = null, $experience = 0, $salaryRange = null)
+    {
+        $geoLocation = $this->geoLocationService->getModel($locationId);
+        return $this->jobService->getSearchJobs($occupationId, $companyId, $contractTypeId, $geoLocation, $search, $experience, $salaryRange);
     }
 }

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -115,7 +117,7 @@ abstract class  BaseRepository {
      * @param array $columns
      * @return mixed
      */
-    public function paginate($perPage = 15, $columns = array('*')) {
+    public function paginate($perPage = null, $columns = array('*')) {
         return $this->model->paginate($perPage, $columns);
     }
 
@@ -273,4 +275,54 @@ abstract class  BaseRepository {
 
         return $this->builder = $this->model->newQuery();
     }
+
+
+    /**
+     * @param $query
+     * @param array $columns
+     * @param null $perPage
+     * @param string $pageName
+     * @param int $take
+     * @return LengthAwarePaginator
+     */
+    public function customPaginate($query, $columns = array('*'), $perPage = null, $pageName = "page", $take = 100) {
+
+        $collection = $query->take($take)->get($columns);
+
+        $paginate = $collection->forPage(
+            $page = Paginator::resolveCurrentPage($pageName),
+            $perPage = $perPage ?: $this->model->getPerPage()
+        );
+
+        $total = $collection->count();
+
+        return new LengthAwarePaginator($paginate, $total, $this->model->getPerPage(), null, [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => $pageName,
+        ]);
+    }
+
+    /**
+     * @param Collection $collection
+     * @param null $perPage
+     * @param string $pageName
+     * @param int $take
+     * @return LengthAwarePaginator
+     */
+    public function customPaginateCollection($collection, $perPage = null, $pageName = "page", $take = 100) {
+
+        $paginate = $collection->forPage(
+            $page = Paginator::resolveCurrentPage($pageName),
+            $perPage = $perPage ?: $this->model->getPerPage()
+        );
+
+        $total = $collection->count();
+
+        return new LengthAwarePaginator($paginate, $total, $this->model->getPerPage(), null, [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => $pageName,
+        ]);
+    }
+
+
 }

@@ -153,7 +153,7 @@ class Job extends Model
     public function getClosingDateHummansAttribute()
     {
         if($this->closing_date->isToday()) {
-            return 'Hoy';
+            return \Lang::get('today');
         }
 
         Carbon::setLocale('es');
@@ -166,5 +166,89 @@ class Job extends Model
     public function getClosingDateDetailAttribute()
     {
         return $this->closing_date_hummans . ',  ' . $this->closing_date_form;
+    }
+
+    public function scopeFrequentJoins($query, $occupationId = null, $companyId = null, $contractTypeIds = null, $experience = 0, $salaryMin = 0)
+    {
+        return $query->selectDefaultJoins()
+            ->joinOccupations($occupationId)
+            ->joinCompanies($companyId)
+            ->joinContractTypes($contractTypeIds)
+            ->joinGeoLocations()
+            ->where('experience', '>=', $experience)
+            ->where('salary', '>=', $salaryMin);
+    }
+
+    public function scopeSelectDefaultJoins($query)
+    {
+        return $query->select(['jobs.name as name', 'jobs.id', 'geo_locations.lat', 'geo_locations.lng', 'companies.name as company',
+            'companies.id as company_id', 'contract_types.name as contractType', 'geo_locations.formatted_address as formatted_address',
+            'occupations.name as occupation'
+        ]);
+    }
+
+    public function getRawDistance($lat, $lng)
+    {
+        return "( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) as distance";
+    }
+
+    public function scopeSelectRawDistance($query, $lat, $lng)
+    {
+        return $query->selectRaw($this->getRawDistance($lat, $lng));
+    }
+
+    public function scopeJoinCompanies($query, $id = null)
+    {
+        if(is_null($id) || empty($id)) {
+            return $query->join('companies', 'companies.id', '=', 'jobs.contract_type_id');
+        }
+
+        return $query->join('companies', function($join) use ($id){
+            $join->on('companies.id', '=', 'jobs.company_id')
+                ->on('companies.id', '=', \DB::raw($id));
+        });
+
+    }
+
+    public function scopeJoinContractTypes($query, $id = null)
+    {
+        if(is_null($id) || empty($id)) {
+            return $query->join('contract_types', 'contract_types.id', '=', 'jobs.contract_type_id');
+        }
+        else if(is_array($id)) {
+            return $query->join('contract_types', function($join) use ($id){
+                $join->on('contract_types.id', '=', 'jobs.contract_type_id')
+                    ->whereIn('contract_types.id', $id);
+            });
+        }
+
+        return $query->join('contract_types', function($join) use ($id){
+            $join->on('contract_types.id', '=', 'jobs.contract_type_id')
+                ->on('contract_types.id', '=', \DB::raw($id));
+        });
+    }
+
+    public function scopeJoinOccupations($query, $id = null)
+    {
+        if(is_null($id) || empty($id)) {
+            return $query->join('occupations', 'occupations.id', '=', 'jobs.occupation_id');
+        }
+
+        return $query->join('occupations', function($join) use ($id){
+            $join->on('occupations.id', '=', 'jobs.occupation_id')
+                ->on('occupations.id', '=', \DB::raw($id));
+        });
+    }
+
+    public function scopeJoinGeoLocations($query, $id = null)
+    {
+        if(is_null($id) || empty($id)) {
+            return $query->join('geo_locations', 'geo_locations.id', '=', 'jobs.geo_location_id');
+        }
+
+        return $query->join('geo_locations', function($join) use ($id){
+            $join->on('geo_locations.id', '=', 'jobs.geo_location_id')
+                ->on('geo_locations.id', '=', \DB::raw($id));
+        });
     }
 }

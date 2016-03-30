@@ -36,6 +36,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('jobs', 'App\Entities\Job');
         $router->model('experiences', 'App\Entities\Experience');
         $router->model('studies', 'App\Entities\Study');
+        $router->model('geo-locations', 'App\Entities\GeoLocation');
     }
 
     /**

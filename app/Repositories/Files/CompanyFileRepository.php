@@ -16,18 +16,23 @@ class CompanyFileRepository extends BaseFileRepostory
     protected $path = "storage/companies";
     protected $defaultLogo = "images/default.jpg";
 
-    public function getPathCompany(Company $company)
+    public function getPathCompany($id)
     {
-        return $this->getPath() . "/" . $company->id;
+        return $this->getPath() . "/" . $id;
     }
 
     public function saveLogo(UploadedFile $photoFile, Company $company)
     {
-        $this->saveFile($photoFile, $this->getPathCompany($company), 'logo.jpg');
+        $this->saveFile($photoFile, $this->getPathCompany($company->id), 'logo.jpg');
     }
 
     public function getLogoUrl(Company $company)
     {
-        return $this->getFileOrDefault($this->getPathCompany($company). "/logo.jpg", $this->defaultLogo);
+        return $this->getLogoUrlId($company->id);
+    }
+
+    public function getLogoUrlId($id)
+    {
+        return $this->getFileOrDefault($this->getPathCompany($id). "/logo.jpg", $this->defaultLogo);
     }
 }

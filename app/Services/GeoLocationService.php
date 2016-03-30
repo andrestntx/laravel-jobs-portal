@@ -9,6 +9,7 @@
 namespace App\Services;
 
 
+use App\Entities\GeoLocation;
 use App\Repositories\GeoLocationRepository;
 
 class GeoLocationService extends ResourceService
@@ -26,6 +27,23 @@ class GeoLocationService extends ResourceService
     public function findOrCreate(array $data)
     {
         return $this->repository->findOrCreate($data["id"], $data);
+    }
+
+    public function setSearch(array $data)
+    {
+        $geoLocation = $this->findOrCreate($data);
+        $geoLocation->is_search = true;
+        $geoLocation->save();
+
+        return $geoLocation;
+    }
+
+    public function setNotSearch(GeoLocation $geoLocation)
+    {
+        $geoLocation->is_search = false;
+        $geoLocation->save();
+
+        return $geoLocation;
     }
 
     public function findOrCreandGetId(array $data){
@@ -47,6 +65,11 @@ class GeoLocationService extends ResourceService
         }
 
         return $data;
+    }
+
+    public function getAllSearch()
+    {
+        return $this->repository->getAllSearch();
     }
 
 

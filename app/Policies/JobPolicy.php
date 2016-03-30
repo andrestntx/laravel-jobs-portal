@@ -4,11 +4,24 @@ namespace App\Policies;
 
 use App\Entities\Job;
 use App\Entities\User;
+use App\Facades\JobseekerFacade;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class JobPolicy
 {
     use HandlesAuthorization;
+
+    protected $jobseekerFacade;
+
+    /**
+     * JobPolicy constructor.
+     * @param JobseekerFacade $jobseekerFacade
+     */
+    public function __construct(JobseekerFacade $jobseekerFacade)
+    {
+        $this->jobseekerFacade = $jobseekerFacade;
+    }
+
 
     /**
      * @param User $user
@@ -30,6 +43,18 @@ class JobPolicy
     public function edit(User $user, Job $job)
     {
         if($user->id == $job->company->user_id) {
+            return true;
+        }
+    }
+
+    /**
+     * @param User $user
+     * @param Job $job
+     * @return bool
+     */
+    public function apply(User $user, Job $job)
+    {
+        if($user->isJobseeker() && $this->jobseekerFacade->countApplications($user, $job) == 0 && $user->resumes()->count() > 0) {
             return true;
         }
     }

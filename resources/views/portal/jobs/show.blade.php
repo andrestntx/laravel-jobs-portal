@@ -51,16 +51,16 @@
                     <div class="mj_social_media_section mj_candidatepage_media mj_toppadder40 mj_bottompadder40">
                         <ul>
                             @can('edit', $job)
-                            <li><a href="{{ route('companies.jobs.edit', [$job->company, $job]) }}" class="mj_mainbtn mj_btnyellow" data-text="Editar Oferta de empleo">
-                                    <span>Editar Oferta de empleo</span>
-                                </a>
-                            </li>
-                            <li><a href="{{ route('companies.show', $job->company) }}" class="mj_mainbtn mj_btnblue" data-text="Mi empresa">
-                                    <span>Mi empresa</span>
-                                </a>
-                            </li>
+                                <li><a href="{{ route('companies.jobs.edit', [$job->company, $job]) }}" class="mj_mainbtn mj_btnyellow" data-text="Editar Oferta de empleo">
+                                        <span>Editar Oferta de empleo</span>
+                                    </a>
+                                </li>
+                                <li><a href="{{ route('companies.show', $job->company) }}" class="mj_mainbtn mj_btnblue" data-text="Mi empresa">
+                                        <span>Mi empresa</span>
+                                    </a>
+                                </li>
                             @else
-
+                                <li><a href="{{ route('companies.jobs.apply', [$job->company, $job]) }}" class="mj_mainbtn mj_btnyellow" data-text="Aplicar"><span>Aplicar</span></a></li>
                             @endcan
                         </ul>
                     </div>

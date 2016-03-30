@@ -22,5 +22,15 @@ class GeoLocationRepository extends BaseRepository
         return 'App\Entities\GeoLocation';
     }
 
+    public function getAllSearch()
+    {
+        return $this->model->whereIsSearch(1)->paginate();
+    }
+
+    public function getSearchSelect()
+    {
+        return $this->model->whereIsSearch(1)->lists('formatted_address', 'id')->all();
+    }
+
 
 }

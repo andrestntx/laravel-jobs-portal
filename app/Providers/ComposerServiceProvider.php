@@ -15,7 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composers([
             'App\Http\ViewComposers\CompanyCategory\ListComposer' => 'admin.company-categories.lists',
             'App\Http\ViewComposers\JobCategory\ListComposer' => 'admin.job-categories.lists',
-            'App\Http\ViewComposers\ContractType\ListComposer' => ['admin.contract-types.lists', 'portal.jobs.lists', 'home'],
+            'App\Http\ViewComposers\ContractType\ListComposer' => ['admin.contract-types.lists'],
             'App\Http\ViewComposers\Skill\ListComposer' => 'admin.skills.lists',
             'App\Http\ViewComposers\Occupation\ListComposer' => 'admin.occupations.lists',
             'App\Http\ViewComposers\Job\ListComposer' => ['portal.jobs.lists', 'home'],

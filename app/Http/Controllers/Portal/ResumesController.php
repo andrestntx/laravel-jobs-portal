@@ -9,7 +9,9 @@ use App\Http\Requests\Resume\CreateRequest;
 use App\Http\Requests\Resume\StoreRequest;
 use App\Http\Requests\Resume\EditRequest;
 use App\Http\Requests\Resume\UpdateRequest;
+use App\Repositories\Files\CompanyFileRepository;
 use App\Services\ResumeService;
+use Illuminate\Http\Request;
 
 
 class ResumesController extends ResourceController
@@ -63,13 +65,31 @@ class ResumesController extends ResourceController
     }
 
     /**
-     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function myApplications()
     {
-        return $this->view('lists');
+        return $this->redirect('applications', $this->service->getAuthResume()->jobseeker_id);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $result = $this->facade->searchResumes($request->get('skills'), $request->get('location'), $request->get('search'));
+
+        $defaultVars = [
+            'selectSkills' => $request->get('skills'),
+            'location' => $request->get('location'),
+            'search' => $request->get('search')
+        ];
+
+        return $this->view('lists')->with(array_merge($result, $defaultVars));
     }
 
     /**
@@ -161,5 +181,24 @@ class ResumesController extends ResourceController
     public function destroy(Resume $resume)
     {
         $this->service->deleteModel($resume);
+    }
+
+    public function applications(Resume $resume)
+    {
+        if(\Gate::allows('edit', $resume)) {
+            $photoUrl   = $this->facade->getPhoto($resume->jobseeker);
+            $logos      = new CompanyFileRepository();
+
+            $jobs = $resume->jobs()->with(['company', 'occupation', 'contractType', 'geoLocation'])->paginate();
+
+            return $this->view('applications', [
+                'resume'    => $resume,
+                'jobs'      => $jobs,
+                'photoUrl'  => $photoUrl,
+                'logos'     => $logos
+            ]);
+        }
+
+        return redirect()->to('my-applications');
     }
 }

@@ -9,7 +9,9 @@
 namespace App\Services;
 
 
+use App\Entities\GeoLocation;
 use App\Entities\Resume;
+use App\Entities\User;
 use App\Repositories\Files\ResumeFileRepository;
 use App\Repositories\ResumeRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -34,7 +36,16 @@ class ResumeService extends ResourceService
      */
     public function getAuthResume()
     {
-        return $this->repository->findByJobseekerId(auth()->user()->id);
+        return $this->getResume(auth()->user());
+    }
+
+    /**
+     * @param User $user
+     * @return Model|null|static
+     */
+    public function getResume(User $user)
+    {
+        return $this->repository->findByJobseekerId($user->id);
     }
 
     /**
@@ -109,6 +120,24 @@ class ResumeService extends ResourceService
     public function addNewExperiences(Model $resume, $models)
     {
         $this->repository->saveExperiences($resume, $models);
+    }
+
+    /**
+     * @param null $skillId
+     * @param GeoLocation|null $geoLocation
+     * @param null $search
+     * @return array
+     */
+    public function getSearchResumes($skillId = null, GeoLocation $geoLocation = null, $search = null)
+    {
+        if(is_null($geoLocation)) {
+            $resumes = $this->repository->getSearchResumes($skillId, $search);
+        }
+        else {
+            $resumes = $this->repository->getSearchResumesNear($skillId, $geoLocation, $search);
+        }
+
+        return ['resumes' => $this->repository->customPaginateCollection($resumes), 'markers' => $resumes->toJson(), 'total' => $this->repository->count()];
     }
 
 }

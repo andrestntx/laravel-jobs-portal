@@ -28,20 +28,24 @@ class UsersTableSeeder extends Seeder
     {
         $faker = $this->faker;
 
-        factory(User::class, 50)->create()
+        factory(User::class, 30)->create()
             ->each(function($user) use ($faker){
                 $jobseeker  = $user->jobseeker()->save(factory(\App\Entities\Jobseeker::class)->make());
-                $resume     = $jobseeker->resumes()->save(factory(\App\Entities\Resume::class)->make());
+                $jobseeker->geoLocation()->associate(factory(\App\Entities\GeoLocation::class)->create())->save();
+                $resume  = $jobseeker->resumes()->save(factory(\App\Entities\Resume::class)->make());
                 $resume->studies()->saveMany(factory(\App\Entities\Study::class, 2)->make());
                 $resume->experiences()->saveMany(factory(\App\Entities\Experience::class, 2)->make());
                 $resume->skills()->sync($faker->randomElements([1,2,3,4,5,6,7,8,9,10], 3));
             });
 
-        factory(User::class, 'employer', 5)
+        factory(User::class, 'employer', 10)
             ->create()
             ->each(function($user) {
                 $company = $user->companies()->save(factory(Company::class)->make());
-                $company->jobs()->saveMany(factory(Job::class, 15)->make());
+                $company->jobs()->saveMany(factory(Job::class, 5)->make())
+                    ->each(function($job) {
+                        $job->geoLocation()->associate(factory(\App\Entities\GeoLocation::class)->create())->save();
+                    });
             });
     }
 }

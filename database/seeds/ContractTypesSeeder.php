@@ -27,7 +27,7 @@ class ContractTypesSeeder extends Seeder
         ]);
 
         factory(\App\Entities\ContractType::class)->create([
-            'name'  => 'prestación de servicios'
+            'name'  => 'OPS'
         ]);
 
         factory(\App\Entities\ContractType::class)->create([

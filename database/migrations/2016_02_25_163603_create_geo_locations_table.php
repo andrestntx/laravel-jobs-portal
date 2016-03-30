@@ -37,6 +37,8 @@ class CreateGeoLocationsTable extends Migration
             $table->string('url')->nullable();
             $table->string('website')->nullable();
 
+            $table->boolean('is_search')->default(false);
+
             $table->timestamps();
         });
     }

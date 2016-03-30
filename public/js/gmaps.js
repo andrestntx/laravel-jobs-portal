@@ -744,6 +744,7 @@
 
   GMaps.prototype.addMarkers = function(array) {
     for (var i = 0, marker; marker=array[i]; i++) {
+      console.log(marker);
       this.addMarker(marker);
     }
 
@@ -1774,6 +1775,7 @@
 
     /** Markers **/
     if (markers) {
+      console.log(markers);
       var marker, loc;
 
       for (var i = 0; data = markers[i]; i++) {

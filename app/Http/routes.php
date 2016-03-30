@@ -31,6 +31,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::resource('job-categories', 'JobCategoriesController');
 		Route::resource('contract-types', 'ContractTypesController');
 		Route::resource('occupations', 'OccupationsController');
+		Route::resource('geo-locations', 'GeoLocationsController', ['only' => ['index', 'store', 'edit']]);
 		Route::resource('skills', 'SkillsController');
 		Route::controller('stats', 'StatsController');
 
@@ -52,7 +53,7 @@ Route::group(['middleware' => 'web'], function () {
 				'uses' 	=> 'CompaniesJobsController@apply'
 			]);
 			Route::post('companies/{companies}/jobs/{jobs}/apply', [
-				'as' 	=> 'companies.jobs.apply',
+				'as' 	=> 'companies.jobs.store-apply',
 				'uses' 	=> 'CompaniesJobsController@postApply'
 			]);
 		});
@@ -61,6 +62,10 @@ Route::group(['middleware' => 'web'], function () {
 			Route::get('my-resume', [
 				'as' 	=> 'jobseeker.resume',
 				'uses'	=> 'ResumesController@myResume'
+			]);
+			Route::get('my-applications', [
+				'as' 	=> 'jobseeker.resume.applications',
+				'uses'	=> 'ResumesController@myApplications'
 			]);
 		});
 

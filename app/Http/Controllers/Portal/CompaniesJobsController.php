@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Portal;
 use App\Entities\Company;
 use App\Entities\Job;
 use App\Facades\EmployerFacade;
+use App\Facades\JobseekerFacade;
 use App\Http\Controllers\ResourceController;
+use App\Http\Requests\Job\ApplyRequest;
 use App\Http\Requests\Job\CreateRequest;
 use App\Http\Requests\Job\EditRequest;
 use App\Http\Requests\Job\StoreRequest;
@@ -42,14 +44,22 @@ class CompaniesJobsController extends ResourceController
     protected  $facade;
 
     /**
+     * [$facade service manager]
+     * @var JobseekerFacade
+     */
+    protected $jobseekerFacade;
+
+    /**
      * CompaniesController constructor.
      * @param JobService $service
      * @param EmployerFacade $facade
+     * @param JobseekerFacade $jobseekerFacade
      */
-    function __construct(JobService $service, EmployerFacade $facade)
+    function __construct(JobService $service, EmployerFacade $facade, JobseekerFacade $jobseekerFacade)
     {
         $this->service = $service;
         $this->facade = $facade;
+        $this->jobseekerFacade = $jobseekerFacade;
     }
 
     /**
@@ -152,12 +162,27 @@ class CompaniesJobsController extends ResourceController
         $this->service->deleteModel($job);
     }
 
+
     /**
      * @param Company $company
      * @param Job $job
+     * @return \Illuminate\Auth\Access\Response
      */
     public function apply(Company $company, Job $job)
     {
+        return $this->view('apply', ['job' => $job, 'company' => $company]);
+    }
 
+
+    /**
+     * @param ApplyRequest $request
+     * @param Company $company
+     * @param Job $job
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postApply(ApplyRequest $request, Company $company, Job $job)
+    {
+        $this->jobseekerFacade->applyJob($job, $request->all());
+        return $this->view('thanks', ['company' => $company, 'job' => $job]);
     }
 }

@@ -11,7 +11,7 @@ class Application extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['intro', 'resume_id', 'job_id'];
     
     /**
      * Get the resume that owns the application.

@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers\Resume;
 
 use App\Repositories\Files\JobseekerFileRepository;
+use App\Repositories\GeoLocationRepository;
 use App\Repositories\ResumeRepository;
 use App\Repositories\OccupationRepository;
 use Illuminate\Contracts\View\View;
@@ -13,12 +14,15 @@ class ListComposer extends BaseComposer
 {
     protected $skillRepository;
     protected $jobseekerFileRepository;
+    protected $geoLocationRepository;
 
-    function __construct(ResumeRepository $repository, OccupationRepository $skillRepository, JobseekerFileRepository $jobseekerFileRepository)
+    function __construct(ResumeRepository $repository, OccupationRepository $skillRepository,
+                         JobseekerFileRepository $jobseekerFileRepository, GeoLocationRepository $geoLocationRepository)
     {
         $this->repository = $repository;
         $this->skillRepository = $skillRepository;
         $this->jobseekerFileRepository = $jobseekerFileRepository;
+        $this->geoLocationRepository = $geoLocationRepository;
     }
 
     /**
@@ -28,14 +32,14 @@ class ListComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $resumes            = $this->repository->getAllResumes();
         $skills             = $this->skillRepository->listsSelect();
         $photos             = $this->jobseekerFileRepository;
+        $locations          = $this->geoLocationRepository->getSearchSelect();
 
         $view->with([
-            'resumes'   => $resumes,
             'skills'    => $skills,
-            'photos'    => $photos
+            'photos'    => $photos,
+            'locations' => $locations
         ]);
     }
 }
