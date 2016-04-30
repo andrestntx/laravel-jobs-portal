@@ -1,1 +1,1 @@
-<h1>Ay Mama!!</h1>
+<h1>En construcción la página de error</h1>
