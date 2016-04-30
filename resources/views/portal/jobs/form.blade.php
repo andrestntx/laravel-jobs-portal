@@ -18,16 +18,16 @@
     {!! Form::model($job, $formData) !!}
     <div class="mj_postdiv mj_shadow_yellow mj_postpage mj_toppadder50 mj_bottompadder50">
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
-            {!! Field::text('name', ['ph' => 'Nombre del empleo']) !!}
-            {!! Field::select('occupation_id', $occupations) !!}
-            {!! Field::select('contract_type_id', $contractTypes) !!}
+            {!! Field::text('name', ['ph' => 'Nombre del empleo', 'required']) !!}
+            {!! Field::select('occupation_id', $occupations, ['required']) !!}
+            {!! Field::select('contract_type_id', $contractTypes, ['required']) !!}
             <div class="form-group">
                 <label for="skills">Habilidades</label>
                 {!! Form::select('skills[]', $skills, $jobSkills, ['multiple', 'class' => 'select2 form-control']) !!}
             </div>
             {!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90']) !!}
             @include('includes.google-maps.map')
-            {!! Field::textarea('description', ['ph' => 'Descripción del empleo', 'class' => 'editor-html']) !!}
+            {!! Field::textarea('description', ['ph' => 'Descripción del empleo', 'class' => 'editor-html', 'required']) !!}
             {!! Field::textarea('who_apply', ['ph' => '¿Quien puede aplicar?', 'class' => 'editor-html']) !!}
             {!! Field::textarea('offer', ['ph' => 'Beneficios del empleo', 'class' => 'editor-html']) !!}
             {!! Field::number('experience', ['ph' => 'Años de experiencia']) !!}

@@ -55,8 +55,8 @@
                                         <span>Editar Oferta de empleo</span>
                                     </a>
                                 </li>
-                                <li><a href="{{ route('companies.show', $job->company) }}" class="mj_mainbtn mj_btnblue" data-text="Mi empresa">
-                                        <span>Mi empresa</span>
+                                <li><a href="{{ route('companies.show', $job->company) }}" class="mj_mainbtn mj_btnblue" data-text="solicitudes">
+                                        <span>solicitudes</span>
                                     </a>
                                 </li>
                             @else
@@ -162,7 +162,7 @@
                     <div class="mj_about_section mj_toppadder80 mj_bottompadder80">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
-                                <h1><span>{{ $job->company->name }}</span></h1>
+                                <h1><span><a href="{{ route('companies.show', $job->company) }}">{{ $job->company->name }}</a></span></h1>
                                 {!! $job->company->description !!}
                                 <ul>
                                     <li><a href="{{ route('companies.show', $job->company) }}"><i class="fa fa-plus"></i> Más empleos</a>

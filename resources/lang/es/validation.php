@@ -172,7 +172,7 @@ return array(
 	'offer'			=> 'beneficios del empelo',
 	'salary'        => 'salario',
 	'wage_aspiration' => 'aspiración salarial',
-	'closing_date'  => 'fecha de finalziación',
+	'closing_date'  => 'fecha de finalización de la oferta',
 	'contract_type_id' => 'tipo de contrato',
 	'occupation_id' => 'ocupación',
 	'first_name'	=> 'nombres',
@@ -180,7 +180,13 @@ return array(
 	'phone'			=> 'teléfono',
 	'profile'		=> 'perfil',
 	'photo'			=> 'foto',
-	'study_title'	=> 'título'
+	'study_title'	=> 'título profesional',
+	'experience'	=> 'experiencia',
+	'company_category_id' => 'categoría',
+	'website'		=> 'página web',
+    'famale'        => 'femenino',
+    'male'          => 'masculino'
+
 ),
 
 'translate' => array(

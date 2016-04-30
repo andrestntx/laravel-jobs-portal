@@ -19,6 +19,7 @@ class CreateJobseekersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');
+            $table->enum('sex', ['M', 'F']);
 
             $table->string('geo_location_id')->nullable();
             $table->foreign('geo_location_id')->references('id')->on('geo_locations');

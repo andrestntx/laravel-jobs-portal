@@ -30,9 +30,11 @@ class FormComposer extends BaseComposer
     public function compose(View $view)
     {
         $skills = $this->skillRepository->listsSelect();
+        $sex    = ['M' => ucfirst(\Lang::get('validation.attributes.male')), 'F' => ucfirst(\Lang::get('validation.attributes.famale'))];
 
         $view->with([
-            'skills'        => $skills
+            'skills'    => $skills,
+            'sex'       => $sex    
         ]);
     }
 }

@@ -34,8 +34,8 @@ class FormComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $occupations = $this->repository->listsSelect();
-        $contractTypes = $this->occupationRepository->listsSelect();
+        $occupations = $this->occupationRepository->listsSelect();
+        $contractTypes = $this->repository->listsSelect();
         $skills = $this->skillRepository->listsSelect();
 
         $view->with([

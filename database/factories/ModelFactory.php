@@ -46,6 +46,7 @@ $factory->define(CompanyCategory::class, function (Faker\Generator $faker) {
 
 $factory->define(Company::class, function (Faker\Generator $faker) {
     return [
+        'nit'    => $faker->unique()->ean13,
         'name' => $faker->unique()->company,
         'email' => $faker->unique()->email
     ];
@@ -93,7 +94,8 @@ $factory->define(App\Entities\Jobseeker::class, function (Faker\Generator $faker
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'email' => $faker->unique()->email,
-        'phone' => $faker->unique()->phoneNumber
+        'phone' => $faker->unique()->phoneNumber,
+        'sex'   => $faker->randomElement(['M', 'F']),
     ];
 });
 

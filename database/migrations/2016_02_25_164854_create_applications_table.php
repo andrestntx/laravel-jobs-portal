@@ -15,6 +15,7 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
             $table->string('intro');
+            $table->boolean('accepted')->default(false);
             $table->timestamps();
 
             $table->integer('resume_id')->unsigned();

@@ -59,7 +59,7 @@
                                 --}}
                             @endcan
                         </ul>
-                        <p><a target="_blank" href="{{ $resumeFileUrl }}"><i class="fa fa-2x fa-download"></i></a>
+                        <p><a target="_blank" href="{{ $resumeFileUrl }}"><i class="fa fa-2x fa-download"></i> Descargar Hoja de Vida</a>
                         </p>
                         </p>
                     </div>

@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="mj_pricingtable mj_bluetable mj_freelancer_form_wrapper">
                             {{-- <p class="mj_toppadder40">You can also sign up with <a href="#">Facebook</a>, <a href="#">Linkedin</a>, or <a href="#">Google</a>.</p> --}}
-                            {!! Form::open(['url' => '/register', 'method' => 'POST']) !!}
+                            {!! Form::open(['id' => 'form-jobseeker', 'url' => '/register', 'method' => 'POST']) !!}
                                 <div class="mj_freelancer_form">
                                     @include('auth.inputs.register', ['name_checkbox' => 'terms-jobseeker'])
                                     {!! Field::hidden('role', 'jobseeker')!!}

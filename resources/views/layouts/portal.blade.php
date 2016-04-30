@@ -55,7 +55,7 @@
 							->render('themes.bootstrap.menus.main') !!}
 
 							<div class="mj_profilediv" id="my_profile_div">
-								{!! Menu::make('menu.acount')
+								{!! Menu::make('menu.account')
 									->setParam('username', Auth::user()->username)
 									->render('themes.bootstrap.menus.main') 
 								!!}
@@ -151,6 +151,7 @@
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyC6sKlTXpgXNAWqCUF5K8CV2S_vM1yhJ04"></script>
 	<script src="/js/plugins/maps/jquery.geocomplete.js"></script>
 	<script src="/js/plugins/logger.js"></script>
+	<script src="/js/plugins/form-validation/validation.min.js"></script>
 	<script src="/js/custom.js" type="text/javascript"></script>
 	<!-- Script End -->
 	@yield('extra-js')

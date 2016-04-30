@@ -16,9 +16,9 @@
 	{!! Form::model($company, $formData) !!}
 		<div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
 	        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
-				{!! Field::text('name', ['ph' => 'Nombre de la empresa']) !!}
+				{!! Field::text('name', ['ph' => 'Nombre de la empresa', 'required']) !!}
 				{!! Field::text('description', ['ph' => 'Descripción de la empresa']) !!}
-				{!! Field::select('company_category_id', $categories, ['class' => 'custom-select']) !!}
+				{!! Field::select('company_category_id', $categories, ['class' => 'custom-select', 'required']) !!}
 				{!! Field::file('logo', ['data-input' => 'false', 'data-buttonText' => 'Buscar Logo']) !!}
 				{!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90']) !!}
 				@include('includes.google-maps.map')

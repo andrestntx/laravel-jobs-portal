@@ -16,8 +16,8 @@
                     <div class="mj_pricingtable mj_greentable mj_login_form_wrapper">
                         {!! Form::open(['url' => '/login', 'method' => 'POST']) !!}
                             <div class="mj_login_form">
-                                {!! Field::email('email', ['ph' => 'Correo electrónico', 'tpl' => 'themes.bootstrap.forms.login']) !!}
-                                {!! Field::password('password', ['ph' => 'Su contraseña', 'tpl' => 'themes.bootstrap.forms.login']) !!}
+                                {!! Field::email('email', ['ph' => 'Correo electrónico', 'tpl' => 'themes.bootstrap.forms.login', 'required']) !!}
+                                {!! Field::password('password', ['ph' => 'Su contraseña', 'tpl' => 'themes.bootstrap.forms.login', 'required']) !!}
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mj_toppadder20">
                                         <div class="form-group  pull-left">

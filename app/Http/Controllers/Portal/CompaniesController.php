@@ -6,6 +6,7 @@ use App\Entities\Company;
 use App\Entities\Job;
 use App\Facades\EmployerFacade;
 use App\Http\Controllers\ResourceController;
+use App\Http\Requests\Company\UpdateRequest;
 use App\Services\CompanyService;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -83,12 +84,13 @@ class CompaniesController extends ResourceController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  UpdateRequest $request
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(UpdateRequest $request, Company $company)
     {
+        dd($request->all());
         $this->facade->updateCompany($request->all(), $company);
         return $this->redirect('show', $company);
     }

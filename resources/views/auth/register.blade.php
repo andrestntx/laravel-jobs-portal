@@ -12,7 +12,7 @@
                                 <h1>Q<span>uiero</span> <span>personas en mi equipo de trabajo</span></h1>
                             </div>
                             <div class="mj_blog_btn">
-                                <a href="#" class="mj_mainbtn mj_btnblack" data-text="contratar" data-toggle="modal" data-target="#myModal"><span>contratar</span></a>
+                                <a href="#" class="mj_mainbtn mj_btnblack" data-text="empresa" data-toggle="modal" data-target="#myModal"><span>empresa</span></a>
                             </div>
                             <div class="mj_signup_section_img">
                                 <img src="images/signup_bg1.png" class="img-responsive" alt="contratar">
@@ -27,7 +27,7 @@
                                 <h1>E<span>stoy</span> <span>buscando un nuevo empleo</span></h1>
                             </div>
                             <div class="mj_blog_btn">
-                                <a href="#" class="mj_mainbtn mj_btnblack" data-text="postularme" data-toggle="modal" data-target="#myModal1"><span>postularme</span></a>
+                                <a href="#" class="mj_mainbtn mj_btnblack" data-text="trabajador" data-toggle="modal" data-target="#myModal1"><span>trabajador</span></a>
                             </div>
                             <div class="mj_signup_section_img">
                                 <img src="images/signup_bg2.png" class="img-responsive" alt="job">
@@ -38,6 +38,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal -->
     @include('auth.forms.register-employer')
     @include('auth.forms.register-jobseeker')
@@ -91,5 +92,14 @@
         </div>
     </div>
     <!--Model End-->
+@endsection
 
+
+@section('extra-js')
+    <script src="/js/validations/auth/employerValidation.js" type="text/javascript"></script>
+    <script src="/js/validations/auth/jobseekerValidation.js" type="text/javascript"></script>
+    <script>
+        EmployerValidation.init();
+        JobseekerValidation.init();
+    </script>
 @endsection

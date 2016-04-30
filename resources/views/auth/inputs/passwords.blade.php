@@ -1,2 +1,2 @@
-{!! Field::password('password', ['ph' => 'Su contraseña', 'tpl' => 'themes.bootstrap.forms.login']) !!}
-{!! Field::password('password_confirmation', ['ph' => 'Repita su contraseña', 'tpl' => 'themes.bootstrap.forms.login']) !!}
+{!! Field::password('password', ['ph' => 'Su contraseña', 'tpl' => 'themes.bootstrap.forms.login', 'required']) !!}
+{!! Field::password('password_confirmation', ['ph' => 'Repita su contraseña', 'tpl' => 'themes.bootstrap.forms.login', 'required']) !!}

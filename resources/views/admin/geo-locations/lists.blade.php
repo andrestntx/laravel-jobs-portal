@@ -10,7 +10,7 @@
 			<table class="table table-striped">
 				<thead>
 				<tr>
-					<th colspan="1" class="text-center" rowspan="" headers="" scope="">Descativar</th>
+					<th colspan="1" class="text-center" rowspan="" headers="" scope="">Desactivar</th>
 					<th colspan="2" rowspan="" headers="" scope="">Dirección</th>
 				</tr>
 				</thead>
