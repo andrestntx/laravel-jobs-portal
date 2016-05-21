@@ -25,6 +25,11 @@
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'HomeController@index');
+	Route::get('account', 'HomeController@account');
+	Route::post('account/{users}', [
+		'as'	=> 'account',
+		'uses' 	=> 'HomeController@postAccount'
+	]);
 
     Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:admin']], function () {
 		Route::resource('company-categories', 'CompanyCategoriesController');

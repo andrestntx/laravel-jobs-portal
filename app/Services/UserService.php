@@ -11,7 +11,7 @@ namespace App\Services;
 
 use App\Repositories\UserRepository;
 
-class UserService
+class UserService extends ResourceService
 {
     /**
      * @var UserRepository
@@ -24,7 +24,7 @@ class UserService
      */
     public function __construct(UserRepository $userRepository)
     {
-        $this->userRepository = $userRepository;
+        $this->repository = $userRepository;
     }
 
     /**
@@ -33,10 +33,10 @@ class UserService
      */
     public function register(array $data){
 
-        $user = $this->userRepository->create($data);
+        $user = $this->repository->create($data);
 
         if($user->isEmployer()) {
-            $this->userRepository->addCompany($user, ['name' => $data['company'], 'nit' => $data['nit']]);
+            $this->repository->addCompany($user, ['name' => $data['company'], 'nit' => $data['nit']]);
         }
 
         return $user;

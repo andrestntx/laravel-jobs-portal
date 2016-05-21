@@ -6,6 +6,12 @@ Breadcrumbs::register('home', function ($breadcrumbs) {
 });
 
 // Home > admin
+Breadcrumbs::register('account', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Mi Cuenta', url('accunt'));
+});
+
+// Home > admin
 Breadcrumbs::register('admin', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Admin', url('admin'));
