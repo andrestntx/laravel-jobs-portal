@@ -57,6 +57,7 @@ class EmployerFacade
      */
     public function createCompanyJob(Company $company, array $data)
     {
+        $data = $this->geoLocationService->validAndMerge($data);
         $newJob = $this->jobService->newModel($data);
         return $this->companyService->addNewJob($company, $newJob);
     }

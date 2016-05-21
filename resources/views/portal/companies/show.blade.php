@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-xs-12">
                     <p> {{ $company->description }}</p>
-                    <a href="#" class="mj_btn mj_greenbtn">{{ $company->category->name }}</a>
+                    <a href="#" class="mj_btn mj_greenbtn">{{ $company->category_name }}</a>
                 </div>
                 <div class="col-xs-12 mj_toppadder10">
                     <a href="{{ $company->website_link }}" target="_blank" class="text-warning"><i class="fa fa-2x fa-external-link-square"></i></a>
@@ -33,7 +33,7 @@
             </div>
         </div>
         @can('edit', $company)
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4 mj_bottompadder40">
                 <div class="mj_showmore">
                     <a href="{{ route('companies.edit', $company) }}" class="mj_showmorebtn mj_yellowbtn">Editar Empresa</a>
                 </div>
@@ -60,6 +60,11 @@
         @endcan
         <div class="mj_jobdetail mj_tabcontent mj_bottompadder10">
             <table class="table table-striped">
+                <tr>
+                   <th class="text-center">Empleo</th>
+                   <th>Dirección</th>
+                   <th>Tipo de contrato</th>
+                 </tr>
                 @foreach($jobs as $job)
                     <tr>
                         <td>

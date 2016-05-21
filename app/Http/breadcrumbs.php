@@ -111,7 +111,7 @@ Breadcrumbs::register('stats', function ($breadcrumbs) {
 // Home > companies
 Breadcrumbs::register('companies', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Empresas', route('companies.index'));
+    $breadcrumbs->push('Empresas', url('/'));
 });
 
 // Home > companies > {{ $company }}

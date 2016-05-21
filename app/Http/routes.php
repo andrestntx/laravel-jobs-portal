@@ -94,7 +94,7 @@ Route::group(['middleware' => 'web'], function () {
 			'uses' 	=> 'JobsController@search'
 		]);
 
-		Route::resource('companies', 'CompaniesController', ['only' => ['index', 'show']]);
+		Route::resource('companies', 'CompaniesController', ['only' => ['show']]);
 
 		/*Route::post('search/companies', [
 			'as' 	=> 'companies.search',

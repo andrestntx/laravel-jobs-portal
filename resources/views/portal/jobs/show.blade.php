@@ -32,7 +32,7 @@
                                                 <label>Empresa: </label><span class="mj_green_text"><a href="{{ route('companies.show', $job->company) }}">{{ $job->company->name }}</a></span>
                                             </li>
                                             <li>
-                                                <label>Salario: </label><span class="mj_green_text">${{ $job->salary }}</span>
+                                                <label>Salario: </label><span class="mj_green_text salary">{{ $job->salary }}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -72,6 +72,20 @@
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <label>Empresa</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                    <div class="mj_detaildiv">
+                                        <a href="{{ route('companies.show', $job->company) }}" title="Ver empresa" style="font-size: 24px;"> 
+                                            {!! $job->company->name !!} 
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
+                                    <div class="mj_divider"></div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <label>Ocupación</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
@@ -82,6 +96,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
                                     <div class="mj_divider"></div>
                                 </div>
+
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <label>Finalización</label>
                                 </div>
@@ -99,6 +114,18 @@
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                     <div class="mj_detaildiv">
                                         {!! $job->description !!}
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
+                                    <div class="mj_divider"></div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <label>Salario</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                    <div class="mj_detaildiv salary">
+                                        {!! $job->salary !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">

@@ -146,7 +146,7 @@ class CompaniesJobsController extends ResourceController
      */
     public function update(UpdateRequest $request, Company $company, Job $job)
     {
-        $this->service->updateModel($request->all(), $job);
+        $this->facade->updateJob($request->all(), $job);
         return $this->redirect('show', [$company, $job]);
     }
 

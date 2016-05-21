@@ -61,6 +61,16 @@ class Company extends Model
     /**
      * @return mixed
      */
+    public function getCategoryNameAttribute()
+    {
+        if($category = $this->category) {
+            return $category->name;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
     public function getEmailAttribute($value)
     {
         if(! $value && $this->user ){

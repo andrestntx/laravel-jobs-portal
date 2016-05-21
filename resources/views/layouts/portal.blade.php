@@ -153,6 +153,17 @@
 	<script src="/js/plugins/logger.js"></script>
 	<script src="/js/plugins/form-validation/validation.min.js"></script>
 	<script src="/js/custom.js" type="text/javascript"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$.each($('.salary'), function( index, value ) {
+				$(this).text( numeral($(this).text()).format('$ 0,0[.]00') ) ;
+			});
+		});
+		
+	</script>
+
 	<!-- Script End -->
 	@yield('extra-js')
 </body>

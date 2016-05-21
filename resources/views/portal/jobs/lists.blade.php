@@ -80,10 +80,18 @@
                     </div>
                     <div class="mj_tabcontent mj_bottompadder80">
                         <table class="table table-striped">
+                            <tr>
+                               <th>Aplicar</th>
+                               <th>Empresa</th>
+                               <th>Empleo</th>
+                               <th>Ocupación</th>
+                               <th>Dirección</th>
+                               <th>Tipo de contrato</th>
+                             </tr>
                             @foreach($jobs as $job)
                                 <tr>
                                     <td>
-                                        <div class="mj_liks"><a href="{{ route('companies.jobs.apply', [$job->company_id, $job]) }}"><i class="fa fa-heart"></i></a><span>Aplicar</span>
+                                        <div class="mj_liks"><a href="{{ route('companies.jobs.apply', [$job->company_id, $job]) }}"><i style="font-size: 25px;" class="fa fa-envelope-o"></i></a><span>Aplicar</span>
                                         </div>
                                     </td>
                                     <td>
