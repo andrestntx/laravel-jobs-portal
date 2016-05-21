@@ -36,7 +36,7 @@ class UserService
         $user = $this->userRepository->create($data);
 
         if($user->isEmployer()) {
-            $this->userRepository->addCompany($user, ['name' => $data['company']]);
+            $this->userRepository->addCompany($user, ['name' => $data['company'], 'nit' => $data['nit']]);
         }
 
         return $user;

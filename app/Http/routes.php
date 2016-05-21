@@ -108,6 +108,13 @@ Route::group(['middleware' => 'web'], function () {
 		]);*/
 
 	});
+
+	Route::group(['namespace' => 'Validations', 'prefix' => 'validations'], function (){
+		Route::post('register', [
+			'as' 	=> 'validations.register',
+			'uses' 	=> 'RegisterController@validation'
+		]);
+	});
 });
 
 

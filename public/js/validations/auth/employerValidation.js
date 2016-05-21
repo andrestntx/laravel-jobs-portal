@@ -29,36 +29,58 @@ var EmployerValidation = function() {
                     e.closest('.help-block').remove();
                 },
                 rules: {
-                    'username': {
-                        required: true,
-                        minlength: 3
-                    },
                     'name': {
                         required: true,
                         minlength: 3
                     },
                     'email': {
                         required: true,
-                        email: true
+                        email: true,
+                        remote: {
+                            url: "/validations/register",
+                            type: "post",
+                            data: {
+                                validate: function() {
+                                    return 'email'
+                                },
+                            }
+                        }
                     },
                     'nit': {
                         required: true,
+                        remote: {
+                            url: "/validations/register",
+                            type: "post",
+                            data: {
+                                validate: function() {
+                                    return 'company'
+                                },
+                            }
+                        }
                     },
                     'company': {
                         required: true,
+                        remote: {
+                            url: "/validations/register",
+                            type: "post",
+                            data: {
+                                validate: function() {
+                                    return 'company'
+                                },
+                            }
+                        }
                     },
                     'password': {
                         required: true,
-                        minlength: 2
+                        minlength: 6
                     },
                     'password_confirmation': {
                         required: true,
-                        //equalTo: '#password'
+                        equalTo: '#form-employer #password'
                     },
                     'terms-employer':{
                         'required': true,
                     }
-                    
                 },
                 messages: {
                     'username': {
@@ -67,9 +89,19 @@ var EmployerValidation = function() {
                     'name': {
                         required: 'El nombre es requerido',
                     },
-                    'email': 'Ingrese un email válido',
-                    'nit': 'El nit de la empresa es requerido',
-                    'company': 'El nombre de la empresa es requerido',
+                    'email': {
+                        required: 'El email es requerido',
+                        email: 'Ingrese un email valido',
+                        remote: 'El email ya está registrado'
+                    },
+                    'nit': {
+                        required: 'El nit de la empresa es requerido',
+                        remote: 'El nit ya está registrado'
+                    },
+                    'company': {
+                        required: 'El nombre de la empresa es requerido',
+                        remote: 'La empresa ya está registrada'
+                    },
                     'password': {
                         required:  'La contraseña es requerida',
                         minlength: 'La contraseña es muy debil'

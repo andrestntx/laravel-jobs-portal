@@ -61,6 +61,18 @@ class Company extends Model
     /**
      * @return mixed
      */
+    public function getEmailAttribute($value)
+    {
+        if(! $value && $this->user ){
+            $value = $this->user->email;
+        }
+
+        return $value;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getTwitterLinkAttribute()
     {
         return 'https://twitter.com/' . $this->twitter;

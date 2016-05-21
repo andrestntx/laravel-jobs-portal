@@ -78,10 +78,10 @@ body {
 }
 
 #terms-employer-error, #terms-jobseeker-error  { 
-  position: relative;
-  width: 400px;
   text-align: center;
-  margin-top: 2em;
+  position: absolute;
+  width: 400px;
+  margin-top: 31px;
 }
 
 .map_canvas {

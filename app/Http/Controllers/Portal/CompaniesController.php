@@ -47,7 +47,11 @@ class CompaniesController extends ResourceController
      */
     public function myCompany()
     {
-        return $this->redirect('show', $this->service->getAuthCompany()->id);
+        if($category = $this->service->getAuthCompany()->category) {
+            return $this->redirect('show', $this->service->getAuthCompany()->id);    
+        }
+        
+        return $this->redirect('edit', $this->service->getAuthCompany()->id);
     }
 
     /**
@@ -90,7 +94,6 @@ class CompaniesController extends ResourceController
      */
     public function update(UpdateRequest $request, Company $company)
     {
-        dd($request->all());
         $this->facade->updateCompany($request->all(), $company);
         return $this->redirect('show', $company);
     }

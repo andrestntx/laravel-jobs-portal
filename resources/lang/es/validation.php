@@ -195,4 +195,9 @@ return array(
     'off'           => 'Celular apagado'
 ),
 
+'empty_option'      => array( 
+    'default'       => 'seleccione una opción',
+    'company_category_id'   => 'escoja una categoría'
+),
+
 );

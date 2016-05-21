@@ -15,7 +15,7 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nit')->unique();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('email');
             $table->string('description')->nullable();
             $table->string('website')->nullable();
@@ -30,7 +30,7 @@ class CreateCompaniesTable extends Migration
             $table->string('geo_location_id')->nullable();
             $table->foreign('geo_location_id')->references('id')->on('geo_locations');
 
-            $table->integer('company_category_id')->unsigned()->default(1);
+            $table->integer('company_category_id')->unsigned()->nullable();
             $table->foreign('company_category_id')->references('id')->on('company_categories');
         });
     }

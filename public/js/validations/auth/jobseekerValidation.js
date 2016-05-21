@@ -29,25 +29,30 @@ var JobseekerValidation = function() {
                     e.closest('.help-block').remove();
                 },
                 rules: {
-                    'username': {
-                        required: true,
-                        minlength: 3
-                    },
                     'name': {
                         required: true,
                         minlength: 3
                     },
                     'email': {
                         required: true,
-                        email: true
+                        email: true,
+                        remote: {
+                            url: "/validations/register",
+                            type: "post",
+                            data: {
+                                validate: function() {
+                                    return 'email'
+                                },
+                            }
+                        }
                     },
                     'password': {
                         required: true,
-                        minlength: 2
+                        minlength: 6
                     },
                     'password_confirmation': {
                         required: true,
-                        //equalTo: '#password'
+                        equalTo: '#form-jobseeker #password'
                     },
                     'terms-jobseeker':{
                         'required': true,
@@ -61,7 +66,11 @@ var JobseekerValidation = function() {
                     'name': {
                         required: 'El nombre es requerido',
                     },
-                    'email': 'Ingrese un email válido',
+                    'email': {
+                        required: 'El email es requerido',
+                        email: 'Ingrese un email valido',
+                        remote: 'El email ya está registrado'
+                    },
                     'password': {
                         required:  'La contraseña es requerida',
                         minlength: 'La contraseña es muy debil'

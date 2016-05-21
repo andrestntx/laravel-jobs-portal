@@ -13,7 +13,7 @@
 @endsection
 
 @section('article')
-	{!! Form::model($company, $formData) !!}
+	{!! Form::model($company, $formData + ['id' => 'form-company']) !!}
 		<div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
 	        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
 				{!! Field::text('name', ['ph' => 'Nombre de la empresa', 'required']) !!}
@@ -43,5 +43,9 @@
 
 @section('extra-js')
 	<script src="/js/services/searchLocation.js"></script>
-	<script> searchLocation.init(); </script>
+	<script src="/js/validations/companyValidation.js" type="text/javascript"></script>
+	<script> 
+		searchLocation.init(); 
+		CompanyValidation.init();
+	</script>
 @endsection

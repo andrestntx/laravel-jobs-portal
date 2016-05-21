@@ -149,4 +149,16 @@ class Resume extends Model
     {
         return $query->join('jobseekers', 'jobseekers.user_id', '=', 'resumes.jobseeker_id');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEmailAttribute($value)
+    {
+        if(! $value && $this->user ) {
+            $value = $this->user->email;
+        }
+
+        return $value;
+    }
 }

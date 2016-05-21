@@ -1,7 +1,7 @@
 @extends('layouts.portal')
 
 @section('content')
-
+    
     <div class="mj_transprentbg">
         <div class="container-fluid">
             <div class="row">

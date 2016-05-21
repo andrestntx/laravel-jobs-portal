@@ -15,8 +15,8 @@
 @endsection
 
 @section('article')
-
-    {!! Form::model($jobseekerResume, $formData) !!}
+    
+    {!! Form::model($jobseekerResume, $formData + ['id' => 'form-resume']) !!}
         <div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
                 {!! Field::text('doc', ['ph' => 'Cédula', 'required']) !!}
@@ -25,7 +25,13 @@
                 {!! Field::select('sex', $sex, ['ph' => 'Género', 'required']) !!}
                 {!! Field::file('photo', ['data-input' => 'false', 'data-buttonText' => 'Buscar Foto', 'data-iconName' => 'glyphicon glyphicon-user']) !!}
                 {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file']) !!}
-                {!! Field::text('email', ['ph' => 'Correo electrónico', 'required']) !!}
+                
+                @if($resume->exists)
+                    {!! Field::text('email', ['ph' => 'Correo electrónico', 'required']) !!}
+                @else
+                    {!! Field::text('email', auth()->user()->email, ['ph' => 'Correo electrónico', 'required']) !!}
+                @endif
+
                 {!! Field::text('phone', ['ph' => 'Teléfono', 'required']) !!}
                 {!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90', 'required']) !!}
                 @include('includes.google-maps.map')
@@ -128,4 +134,8 @@
         });
     </script>
     <script src="/js/services/deleteService.js"></script>
+    <script src="/js/validations/resumeValidation.js" type="text/javascript"></script>
+    <script>
+        ResumeValidation.init();
+    </script>
 @endsection
