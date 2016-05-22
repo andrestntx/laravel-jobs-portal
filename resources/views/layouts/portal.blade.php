@@ -8,6 +8,10 @@
 	<title>Portal de empleo</title>
 	<!--srart theme style -->
 	<link href="/css/main.css" rel="stylesheet" type="text/css" />
+	<!-- Data Tables -->
+    <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
 	<!-- end theme style -->
 	<!-- favicon links -->
 	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
@@ -154,6 +158,12 @@
 	<script src="/js/plugins/form-validation/validation.min.js"></script>
 	<script src="/js/custom.js" type="text/javascript"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+	
+	<!-- Data Tables -->
+    <script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="/js/plugins/dataTables/dataTables.responsive.js"></script>
+    <script src="/js/plugins/dataTables/dataTables.tableTools.min.js"></script>
 
 	<script type="text/javascript">
 		$( document ).ready(function() {

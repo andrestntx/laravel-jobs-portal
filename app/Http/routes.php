@@ -39,6 +39,11 @@ Route::group(['middleware' => 'web'], function () {
 		Route::resource('geo-locations', 'GeoLocationsController', ['only' => ['index', 'store', 'edit']]);
 		Route::resource('skills', 'SkillsController');
 		Route::controller('stats', 'StatsController');
+		Route::resource('companies', 'CompaniesController', ['only' => ['index']]);
+		Route::post('companies/{companies}/active', [
+			'as' 	=> 'companies.active',
+			'uses' 	=> 'CompaniesController@active'
+		]);
 
 		// Route::resource('jobs', 'JobsController', ['only' => ['index', 'show']]);
 	});
@@ -104,7 +109,6 @@ Route::group(['middleware' => 'web'], function () {
 				'as' 	=> 'companies.jobs.accept-application',
 				'uses' 	=> 'CompaniesJobsController@acceptJobApplication'
 			]);
-
 		});
 
 		//All Users

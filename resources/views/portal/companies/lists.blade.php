@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin-lg')
 
 @section('breadcrumbs')
     {!! Breadcrumbs::render('companies') !!}
@@ -8,29 +8,41 @@
 	<span>Empresas</span>
 @endsection
 
-@section('pre-article')
-	{{-- <a href="{{ route('companies.create') }}" class="btn btn-lg mj_btnblue" data-text="Nueva Empresa"><span>Nueva Empresa</span></a> --}}
-@endsection
-
 @section('article')
-	<div class="mj_postdiv mj_postpage mj_shadow_blue mj_toppadder20">
-		<table class="table table-striped">
+	<div class="mj_postdiv mj_postpage mj_shadow_blue" style="padding:30px;">
+		<table class="table table-striped datatable">
 			<thead>
 				<tr>
-					<th colspan="" rowspan="" headers="" scope=""></th>
-					<th colspan="1" rowspan="" headers="" scope="">Nombre</th>	
-					<th colspan="3" rowspan="" headers="" scope="">Descripción</th>	
+					<th class="text-center">Activar</th>
+					<th class="text-center">Editar</th>
+					<th>Nombre</th>	
+					<th>Usuario</th>
+					<th>Categoría</th>	
+					<th>Descripción</th>	
 				</tr>
 			</thead>
 			@foreach($companies as $company)
 	            <tr>
-	            	<td style="text-align: center;">
-	            		<a href="{{ route('companies.edit', $company) }}" title="Editar"><i class="fa fa-pencil"></i></a>
+	            	<td> 
+                        <div class="mj_checkbox" style="float: none; margin: auto;">
+                            <input type="checkbox" value="1" data-company="{{ $company->id }}" 
+                            id="company-{{ $company->id }}" @if($company->active) checked @endif>
+                            <label for="company-{{ $company->id }}" style="border: 1px solid gray;"></label>
+                        </div>
+                    </td>
+	            	<td class="text-center">
+	            		<a href="{{ route('companies.edit', $company) }}" title="Editar" class="btn btn-info"><i class="fa fa-pencil"></i></a>
 	            	</td>
 	                <td>
-	                    <a href="{{ route('companies.edit', $company) }}" title="Editar">
+	                    <a href="{{ route('companies.show', $company) }}" title="Editar" target="_blank"> 
 							{{ $company->name }}
 						</a>
+	                </td>
+	                <td>
+	                    {{ $company->user->name }}
+	                </td>
+	                <td>
+	                    {{ $company->category_name }}
 	                </td>
 	                <td>
 	                    {{ $company->description }}
@@ -39,4 +51,61 @@
 	        @endforeach
         </table>
 	</div>
+@endsection
+
+@section('extra-js')
+	<script type="text/javascript">
+		$('.datatable').DataTable({
+			"order": [[2, "asc"]],
+			"columnDefs": [
+                {
+                    "targets": [0,1],
+                    "visible": true,
+                    "searchable": false,
+                    "orderable": false
+                },
+            ],
+			"language": {
+                "lengthMenu": "Ver _MENU_ por página",
+                "zeroRecords": "Lo siento, no se enontraron empresas",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay empresas",
+                "infoFiltered": "(Filtrado de _MAX_ asignados)",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "paginate": {
+                    "first": "Primera",
+                    "last": "Última",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+		});
+
+		$('.mj_checkbox input').change(function () {
+
+            company_id = $(this).data('company');
+
+            if (confirm('¿Está seguro?')) {
+                $.ajax({
+                    url: '/admin/companies/' + company_id + '/active',
+                    dataType: 'json',
+                    method: 'POST',
+                    success: function (data) {
+                        if (data['success']) {
+                            console.log('activada');
+                        }
+                        else {
+                            console.log('No se eliminó');
+                        }
+                    },
+                    error: function () {
+                        alert('fallo la conexión');
+                    }
+                });
+            }
+            console.log();
+        });
+	</script>
 @endsection

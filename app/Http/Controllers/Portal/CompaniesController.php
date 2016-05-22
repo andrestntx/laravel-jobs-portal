@@ -77,6 +77,10 @@ class CompaniesController extends ResourceController
     {
         $logoUrl = $this->service->getLogo($company);
 
+        if(! $company->active && ! \Gate::allows('edit', $company)) {
+            abort('404');
+        }
+
         return $this->view('show', [
             'company' => $company,
             'jobs'    => $this->service->getCompanyJobs($company),

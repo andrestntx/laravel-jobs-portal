@@ -14,8 +14,9 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3 col-sm-12 col-xs-12">
                     <div class="mj_pricingtable mj_greentable mj_login_form_wrapper">
-                        {!! Form::open(['url' => '/password/email', 'method' => 'POST']) !!}
+                        {!! Form::open(['url' => '/password/reset', 'method' => 'POST']) !!}
                             <div class="mj_login_form">
+                                <input type="hidden" name="token" value="{{ $token }}">
                                 {!! Field::email('email', ['ph' => 'Correo electrónico', 'tpl' => 'themes.bootstrap.forms.login']) !!}
                                 {!! Field::password('password', ['ph' => 'Nueva contraseña', 'tpl' => 'themes.bootstrap.forms.login']) !!}
                                 {!! Field::password('password_confirmation', ['ph' => 'Repita la nueva contraseña', 'tpl' => 'themes.bootstrap.forms.login']) !!}

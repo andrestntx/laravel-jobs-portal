@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'admin@portalempleo.com', 'name' => 'Portal de empleo'],
 
     /*
     |--------------------------------------------------------------------------

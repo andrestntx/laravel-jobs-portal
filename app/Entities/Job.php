@@ -224,12 +224,14 @@ class Job extends Model
     public function scopeJoinCompanies($query, $id = null)
     {
         if(is_null($id) || empty($id)) {
-            return $query->join('companies', 'companies.id', '=', 'jobs.company_id');
+            return $query->join('companies', 'companies.id', '=', 'jobs.company_id')
+                ->where('companies.active', '=', 1);
         }
 
         return $query->join('companies', function($join) use ($id){
             $join->on('companies.id', '=', 'jobs.company_id')
-                ->on('companies.id', '=', \DB::raw($id));
+                ->on('companies.id', '=', \DB::raw($id))
+                ->on('companies.active', '=', \DB::raw(1));
         });
 
     }
