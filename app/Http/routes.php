@@ -100,6 +100,11 @@ Route::group(['middleware' => 'web'], function () {
 				'as' 	=> 'companies.jobs.applications',
 				'uses' 	=> 'CompaniesJobsController@jobApplications'
 			]);
+			Route::post('companies/{companies}/jobs/{jobs}/accept-application', [
+				'as' 	=> 'companies.jobs.accept-application',
+				'uses' 	=> 'CompaniesJobsController@acceptJobApplication'
+			]);
+
 		});
 
 		//All Users

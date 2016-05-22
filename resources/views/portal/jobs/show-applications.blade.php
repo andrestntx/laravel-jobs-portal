@@ -61,6 +61,7 @@
                             <div class="mj_tabcontent mj_bottompadder80">
                                 <table class="table table-striped">
                                     <tr>
+                                        <th>Contratado</th>
                                         <th class="text-center" colspan="2">Postulante</th>
                                         <th>Télefono</th>
                                         <th>Email</th>
@@ -68,6 +69,15 @@
                                      </tr>
                                     @foreach($applications as $application)
                                         <tr>
+                                            <td> 
+                                                <div class="mj_checkbox" style="float: none; margin: auto;">
+                                                    <input type="checkbox" value="1" data-company="{{ $job->company->id }}" data-job="{{ $job->id }}"
+                                                    data-application="{{ $application->id }}" id="app-{{ $application->id }}" @if($application->accepted) checked @endif>
+
+
+                                                    <label for="app-{{ $application->id }}" style="border: 1px solid gray;"></label>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <a href="{{ route('resumes.show', $application->resume) }}" target="_blank"><img src="{{ $logos->getPhotoUrl($application->resume->jobseeker) }}" class="img-responsive" alt="">
                                                 </a>
@@ -94,5 +104,41 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('extra-js')
+
+    <script type="text/javascript">
+        $('.mj_checkbox input').change(function () {
+
+            company_id = $(this).data('company');
+            job_id = $(this).data('job');
+            application_id = $(this).data('application');
+
+            if (confirm('¿Está seguro?')) {
+                $.ajax({
+                    url: '/companies/' + company_id + '/jobs/' + job_id + '/accept-application',
+                    dataType: 'json',
+                    method: 'POST',
+                    data: {
+                        'application': application_id
+                    },
+                    success: function (data) {
+                        if (data['success']) {
+                            console.log('contratado');
+                        }
+                        else {
+                            console.log('No se eliminó');
+                        }
+                    },
+                    error: function () {
+                        alert('fallo la conexión');
+                    }
+                });
+            }
+            console.log();
+        });
+    </script>
 
 @endsection

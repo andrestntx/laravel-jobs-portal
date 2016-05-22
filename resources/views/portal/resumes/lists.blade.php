@@ -50,12 +50,14 @@
                 </div>
                 <div class="mj_tabcontent mj_bottompadder80">
                     <table class="table table-striped">
+                        <tr>
+                            <th class="text-center">Foto</th>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Habilidades</th>
+                        </tr>
                         @foreach($resumes as $resume)
                             <tr>
-                                <td>
-                                    <div class="mj_liks"><a href="#"><i class="fa fa-heart"></i></a><span>Contactar</span>
-                                    </div>
-                                </td>
                                 <td>
                                     <a href="#"><img src="{{ $photos->getPhotoUrlId($resume->user_id) }}" class="img-responsive" alt="">
                                     </a>

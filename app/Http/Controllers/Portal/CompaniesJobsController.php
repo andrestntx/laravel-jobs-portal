@@ -226,4 +226,20 @@ class CompaniesJobsController extends ResourceController
             'logos' => $logos
         ]);
     }
+
+    public function acceptJobApplication(Request $request, Company $company, Job $job)
+    {
+        $application = $job->applications()->findOrFail($request->get('application'));
+
+        if($application->accepted) {
+            $application->accepted = 0;
+        }
+        else {
+            $application->accepted = 1;
+        }
+
+        $application->save();
+
+        return ['success' => true];
+    }
 }
