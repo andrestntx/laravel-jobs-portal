@@ -11,6 +11,7 @@ namespace App\Repositories\Files;
 
 use App\Entities\Resume;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class ResumeFileRepository extends BaseFileRepostory
 {
@@ -40,6 +41,32 @@ class ResumeFileRepository extends BaseFileRepostory
      */
     public function getResumeFileUrl(Resume $resume)
     {
-        return '/' . $this->getPathResume($resume). "/resume.pdf";
+        if($this->hasPdf($resume)) {
+            return '/' . $this->getPathResume($resume). "/resume.pdf";
+        }
+
+        return '#';
+    }
+
+    /**
+     * @param Resume $resume
+     * @return string
+     */
+    public function getResumeFile(Resume $resume)
+    {
+        if($this->hasPdf($resume)) {
+            return Storage::get($this->getResumeFileUrl($resume));
+        }
+
+        return null;
+    }
+
+    /**
+     * @param Resume $resume
+     * @return string
+     */
+    public function hasPdf(Resume $resume)
+    {
+        return Storage::exists('/' . $this->getPathResume($resume). "/resume.pdf");
     }
 }

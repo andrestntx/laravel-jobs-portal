@@ -22,9 +22,9 @@
                 {!! Field::text('doc', ['ph' => 'Cédula', 'required']) !!}
                 {!! Field::text('first_name', ['ph' => 'Nombres', 'required']) !!}
                 {!! Field::text('last_name', ['ph' => 'Apellidos', 'required']) !!}
-                {!! Field::select('sex', $sex, ['ph' => 'Género', 'required']) !!}
+                {!! Field::select('sex', $sex, ['empty' => 'Género', 'required']) !!}
                 {!! Field::file('photo', ['data-input' => 'false', 'data-buttonText' => 'Buscar Foto', 'data-iconName' => 'glyphicon glyphicon-user']) !!}
-                {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file']) !!}
+                {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file', 'required', 'accept' => 'application/pdf']) !!}
                 
                 @if($resume->exists)
                     {!! Field::text('email', ['ph' => 'Correo electrónico', 'required']) !!}
@@ -36,7 +36,7 @@
                 {!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90', 'required']) !!}
                 @include('includes.google-maps.map')
                 {!! Field::text('study_title', ['placeholder' => 'Título Profesional']) !!}
-                {!! Field::textarea('profile', ['ph' => 'Introducción', 'class' => 'editor-html']) !!}
+                {!! Field::textarea('profile', ['ph' => 'Introducción', 'class' => 'editor-html', 'required']) !!}
                 <div class="form-group">
                     <label>Education<span>(Opcional)</span>
                         <a href="javascript:void(0)" class="btn btn-sm btn-info mj_add_education">

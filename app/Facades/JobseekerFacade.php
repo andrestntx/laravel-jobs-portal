@@ -14,6 +14,7 @@ use App\Entities\Jobseeker;
 use App\Entities\Resume;
 use App\Entities\User;
 use App\Services\ApplicationService;
+use App\Services\EmailService;
 use App\Services\ExperienceService;
 use App\Services\GeoLocationService;
 use App\Services\JobseekerService;
@@ -55,6 +56,11 @@ class JobseekerFacade
     protected $applicationService;
 
     /**
+     * @var EmailService
+     */
+    protected $emailService;
+
+    /**
      * JobseekerFacade constructor.
      * @param ResumeService $resumeService
      * @param JobseekerService $jobseekerService
@@ -62,10 +68,12 @@ class JobseekerFacade
      * @param StudyService $studyService
      * @param ExperienceService $experienceService
      * @param ApplicationService $applicationService
+     * @param EmailService $emailService
      */
     public function __construct(ResumeService $resumeService, JobseekerService $jobseekerService,
                                 GeoLocationService $geoLocationService, StudyService $studyService,
-                                ExperienceService $experienceService, ApplicationService $applicationService)
+                                ExperienceService $experienceService, ApplicationService $applicationService,
+                                EmailService $emailService)
     {
         $this->resumeService = $resumeService;
         $this->geoLocationService = $geoLocationService;
@@ -73,6 +81,7 @@ class JobseekerFacade
         $this->studyService = $studyService;
         $this->experienceService = $experienceService;
         $this->applicationService = $applicationService;
+        $this->emailService = $emailService;
     }
 
     /**
@@ -162,6 +171,7 @@ class JobseekerFacade
      */
     public function createResume(array $dataResume, $skills = array(), array $newStudies = null, array $newExperiences = null)
     {
+        $dataResume = $this->geoLocationService->validAndMerge($dataResume);
         $jobseeker  = $this->createJobseeker($dataResume);
         $newResume  = $this->resumeService->newModel($dataResume);
         $resume     = $this->jobseekerService->addNewResume($jobseeker, $newResume);
@@ -187,6 +197,7 @@ class JobseekerFacade
     public function updateResume(Resume $resume, array $dataResume, $skills = array(), array $newStudies = null, array $studies = null,
                                     array $newExperiences = null, array $experiences = null)
     {
+        $dataResume = $this->geoLocationService->validAndMerge($dataResume);
         $this->updateJobseeker($dataResume, $resume->jobseeker);
         $this->resumeService->syncSkills($resume, $skills);
 
@@ -211,7 +222,11 @@ class JobseekerFacade
     public function applyJob(Job $job, array $data)
     {
         $resume = $this->resumeService->getAuthResume();
-        return $this->applicationService->applyJob($resume, $job, $data);
+        $application = $this->applicationService->applyJob($resume, $job, $data);
+        $pathResume = $this->resumeService->getResumeFile($resume);
+        $this->emailService->sendResume($resume, $job, $application, $pathResume);
+
+        return $application;
     }
 
     /**
@@ -233,5 +248,23 @@ class JobseekerFacade
     public function getApplications(Resume $resume)
     {
         return $this->applicationService->getOfResume($resume);
+    }
+
+    /**
+     * @param Resume $resume
+     * @return string
+     */
+    public function hasPdf(Resume $resume)
+    {
+        return $this->resumeService->hasPdf($resume);
+    }
+
+    /**
+     * @param Resume $resume
+     * @return string
+     */
+    public function getResumeFile(Resume $resume)
+    {
+        return $this->resumeService->getFile($resume);
     }
 }

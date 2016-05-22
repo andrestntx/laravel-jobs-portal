@@ -185,7 +185,8 @@ return array(
 	'company_category_id' => 'categoría',
 	'website'		=> 'página web',
     'famale'        => 'femenino',
-    'male'          => 'masculino'
+    'male'          => 'masculino',
+    'resume_file'   => 'hoja de vida'
 
 ),
 

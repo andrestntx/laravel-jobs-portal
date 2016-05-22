@@ -30,7 +30,7 @@
                                                 </label><a href="#">{{ $resume->jobseeker->phone }}</a>
                                             </li>
                                             <li>
-                                                <label>Aspiración salarial: </label><span class="mj_green_text">${{ $resume->wage_aspiration }}</span>
+                                                <label>Aspiración salarial: </label><span class="mj_green_text salary">{{ $resume->wage_aspiration }}</span>
                                             </li>
                                         </ul>
                                     </div>

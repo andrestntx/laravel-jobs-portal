@@ -11,7 +11,8 @@
         "laravelcollective/html": "5.2.*",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "styde/html": "~1.1",
-        "nesbot/carbon": "~1.14"
+        "nesbot/carbon": "~1.14",
+        "guzzlehttp/guzzle": "~5.3|~6.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

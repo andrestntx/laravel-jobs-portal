@@ -140,4 +140,22 @@ class ResumeService extends ResourceService
         return ['resumes' => $this->repository->customPaginateCollection($resumes), 'markers' => $resumes->toJson(), 'total' => $this->repository->count()];
     }
 
+    /**
+     * @param Resume $resume
+     * @return string
+     */
+    public function hasPdf(Resume $resume)
+    {
+        return $this->fileRepository->hasPdf($resume);
+    }
+
+    /**
+     * @param Resume $resume
+     * @return string
+     */
+    public function getFile(Resume $resume)
+    {
+        return $this->fileRepository->getResumeFile($resume);
+    }
+
 }

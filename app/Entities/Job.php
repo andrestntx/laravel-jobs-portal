@@ -126,6 +126,18 @@ class Job extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function getEmailAttribute($value)
+    {
+        if(! $value && is_object($this->company)) {
+            $value = $this->company->email;
+        }
+
+        return $value;
+    }
+
+    /**
      * @param $closing_date
      */
     public function setClosingDateAttribute($closing_date)

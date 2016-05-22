@@ -54,7 +54,8 @@ class JobPolicy
      */
     public function apply(User $user, Job $job)
     {
-        if($user->isJobseeker() && $this->jobseekerFacade->countApplications($user, $job) == 0 && $user->resumes()->count() > 0) {
+        if($user->isJobseeker() && $this->jobseekerFacade->countApplications($user, $job) == 0 &&
+            $user->resumes()->count() > 0 && $this->jobseekerFacade->hasPdf($user->resumes->first())) {
             return true;
         }
     }
