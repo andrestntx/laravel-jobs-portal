@@ -61,12 +61,19 @@
         <div class="mj_jobdetail mj_tabcontent mj_bottompadder10">
             <table class="table table-striped">
                 <tr>
-                   <th class="text-center">Empleo</th>
-                   <th>Dirección</th>
-                   <th>Tipo de contrato</th>
+                    <th class="text-center"># Solicitudes</th>
+                    <th class="text-center">Empleo</th>
+                    <th>Dirección</th>
+                    <th>Tipo de contrato</th>
                  </tr>
                 @foreach($jobs as $job)
                     <tr>
+                        <td class="text-center">
+                            <h4><a href="{{ route('companies.jobs.applications', [$company, $job]) }}">
+                                {{ $job->count_applications }} 
+                                </a>
+                            </h4>
+                        </td>
                         <td>
                             <h4><a href="{{ route('companies.jobs.show', [$company, $job]) }}">{{ $job->name }}</a></h4>
                             <p style="width: 100%;"><a href="#">{{ $job->occupation->name }}</a></p>

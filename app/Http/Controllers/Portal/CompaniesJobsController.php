@@ -12,6 +12,7 @@ use App\Http\Requests\Job\CreateRequest;
 use App\Http\Requests\Job\EditRequest;
 use App\Http\Requests\Job\StoreRequest;
 use App\Http\Requests\Job\UpdateRequest;
+use App\Repositories\Files\JobseekerFileRepository;
 use App\Services\JobService;
 use Illuminate\Http\Request;
 
@@ -184,5 +185,45 @@ class CompaniesJobsController extends ResourceController
     {
         $this->jobseekerFacade->applyJob($job, $request->all());
         return $this->view('thanks', ['company' => $company, 'job' => $job]);
+    }
+
+
+    /**
+     * @param Request $request
+     * @param Company $company
+     * @return \Illuminate\Auth\Access\Response
+     */
+    public function applications(Request $request, Company $company)
+    {
+        $this->authorize('edit', $company);
+        $logoUrl    = $this->facade->getCompanyLogo($company);
+        $jobs =     $company->jobs()->with(['applications.resume.jobseeker.geoLocation'])->paginate();
+
+        return $this->view('applications', [
+            'logoUrl'   => $logoUrl,
+            'jobs'      => $jobs,
+            'company'   => $company
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Company $company
+     * @param Job $job
+     * @return \Illuminate\Auth\Access\Response
+     */
+    public function jobApplications(Request $request, Company $company, Job $job)
+    {
+        $this->authorize('edit', $job);
+        $logos      = new JobseekerFileRepository();
+        $logoUrl   = $this->facade->getCompanyLogo($company);
+        $applications = $job->applications()->with(['resume.jobseeker.geoLocation'])->paginate();
+
+        return $this->view('show-applications', [
+            'job' => $job,
+            'logoUrl' => $logoUrl,
+            'applications' => $applications,
+            'logos' => $logos
+        ]);
     }
 }

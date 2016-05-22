@@ -42,7 +42,7 @@
                                         <a href="/my-applications">solicitudes de empleo</a>
                                         y si ya diligenció completamente su <a href="/my-resume">hoja de vida</a></p>
                                 @else
-                                    <p>Para poder aplicar a esta oferta de empleo debe estar registrado como trabajador</p>
+                                    <p>Para poder aplicar a esta oferta de empleo debe estar registrado como <strong>trabajador</strong></p>
                                 @endif
                             @endcan
                         </div>

@@ -53,13 +53,16 @@ Route::group(['middleware' => 'web'], function () {
 				'as' 	=> 'resumes.applications',
 				'uses' 	=> 'ResumesController@applications'
 			]);
-			Route::get('companies/{companies}/jobs/{jobs}/apply', [
-				'as' 	=> 'companies.jobs.apply',
-				'uses' 	=> 'CompaniesJobsController@apply'
-			]);
 			Route::post('companies/{companies}/jobs/{jobs}/apply', [
 				'as' 	=> 'companies.jobs.store-apply',
 				'uses' 	=> 'CompaniesJobsController@postApply'
+			]);
+		});
+
+		Route::group(['middleware' => ['auth', 'role:jobseeker;employer;admin']], function () {
+			Route::get('companies/{companies}/jobs/{jobs}/apply', [
+				'as' 	=> 'companies.jobs.apply',
+				'uses' 	=> 'CompaniesJobsController@apply'
 			]);
 		});
 
@@ -84,6 +87,14 @@ Route::group(['middleware' => 'web'], function () {
 			Route::get('my-company', [
 				'as' 	=> 'employer.company',
 				'uses'	=> 'CompaniesController@myCompany'
+			]);
+			Route::get('companies/{companies}/applications', [
+				'as' 	=> 'companies.applications',
+				'uses' 	=> 'CompaniesJobsController@applications'
+			]);
+			Route::get('companies/{companies}/jobs/{jobs}/applications', [
+				'as' 	=> 'companies.jobs.applications',
+				'uses' 	=> 'CompaniesJobsController@jobApplications'
 			]);
 		});
 

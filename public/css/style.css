@@ -718,6 +718,7 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 	border-radius: 0;
 	padding: 15px 8px;
 	position: relative;
+  vertical-align: middle;
 }
 .mj_tabcontent .table tr:first-child td:first-child {
 	border-top-left-radius: 10px;
@@ -751,7 +752,6 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 	line-height: 22px;
 	padding-right: 5px;
 	color: #959595;
-	padding-top: 15px;
 }
 .mj_tabcontent .table tr td p {
 	float: left;
@@ -770,14 +770,8 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 	border-radius: 100%;
     max-width: 75px;
 }
-.mj_tabcontent .table tr td:nth-child(4) i {
-	padding-top: 25px;
-}
-.mj_tabcontent .table tr td:nth-child(4) p {
-	padding-top: 25px;
-}
+
 .mj_tabcontent .table tr td:nth-child(5) a {
-	margin-top: 20px;
 	float: left;
 	width: auto;
 }

@@ -114,6 +114,18 @@ class Job extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function getCountApplicationsAttribute()
+    {
+        if($applications = $this->applications){
+            return $applications->count();
+        }
+
+        return 0;
+    }
+
+    /**
      * @param $closing_date
      */
     public function setClosingDateAttribute($closing_date)
@@ -200,7 +212,7 @@ class Job extends Model
     public function scopeJoinCompanies($query, $id = null)
     {
         if(is_null($id) || empty($id)) {
-            return $query->join('companies', 'companies.id', '=', 'jobs.contract_type_id');
+            return $query->join('companies', 'companies.id', '=', 'jobs.company_id');
         }
 
         return $query->join('companies', function($join) use ($id){

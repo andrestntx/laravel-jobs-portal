@@ -55,12 +55,17 @@
                                         <span>Editar Oferta de empleo</span>
                                     </a>
                                 </li>
-                                <li><a href="{{ route('companies.show', $job->company) }}" class="mj_mainbtn mj_btnblue" data-text="solicitudes">
+                                <li><a href="{{ route('companies.jobs.applications', [$job->company, $job]) }}" class="mj_mainbtn mj_btnblue" data-text="solicitudes">
                                         <span>solicitudes</span>
                                     </a>
                                 </li>
                             @else
-                                <li><a href="{{ route('companies.jobs.apply', [$job->company, $job]) }}" class="mj_mainbtn mj_btnyellow" data-text="Aplicar"><span>Aplicar</span></a></li>
+                                @can('apply', $job)
+                                    <li><a href="{{ route('companies.jobs.apply', [$job->company, $job]) }}" class="mj_mainbtn mj_btnyellow" data-text="Aplicar"><span>Aplicar</span></a></li>
+                                    }
+                                @else
+                                    <li style="margin-bottom: 30px;"><a href="#">-</a></li>
+                                @endcan
                             @endcan
                         </ul>
                     </div>
