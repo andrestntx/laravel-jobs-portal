@@ -24,6 +24,43 @@ class JobRepository extends BaseRepository
     }
 
     /**
+     * @param array $data
+     * @return mixed
+     */
+    public function newModel(array $data = array())
+    {
+        $model = $this->model->getModel();
+
+        if(! array_key_exists('google', $data)){
+            $data['google'] = 0;
+        }
+
+        $model->fill($data);
+
+        return $model;
+    }
+
+    /**
+     * @param array $data
+     * @param Model $entity
+     * @return mixed
+     */
+    public function update(array $data, $entity)
+    {
+        if(! array_key_exists('google', $data)){
+            $data['google'] = 0;
+        }
+
+        $entity->fill($data);
+
+        if($entity->save()) {
+            return $entity;
+        }
+
+        return false;
+    }
+
+    /**
      * @param $companyId
      * @return mixed
      */

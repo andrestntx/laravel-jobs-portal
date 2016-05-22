@@ -39,6 +39,18 @@
             @if($job->exists && $job->geoLocation)
                 @include('includes.google-maps.init', ['geo_location' => $job->geoLocation])
             @endif
+
+            <div class="form-group">
+                <label for="google" class="control-label">
+                    Google
+                    <span>(opcional)</span>     
+                </label> <br>
+                <div class="mj_checkbox">
+                    <input type="checkbox" value="1" id="google" name="google" @if($job->google) checked @endif>
+                    <label for="google" style="border: 1px solid gray;"></label>
+                </div>
+                <span> Permitir que el empleo aparezca en Google</span>
+            </div>
         </div>
     </div>
 

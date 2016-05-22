@@ -1,5 +1,12 @@
 @extends('layouts.portal')
 
+@section('extra-head')
+    @if(! $job->google)
+        <meta name="robots" content="noindex">
+    @endif
+@endsection
+
+
 @section('content')
     <div class="mj_pagetitle2">
         <div class="mj_pagetitleimg">

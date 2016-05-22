@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="MobileOptimized" content="320">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	@yield('extra-head')
 	<title>Portal de empleo</title>
 	<!--srart theme style -->
 	<link href="/css/main.css" rel="stylesheet" type="text/css" />
