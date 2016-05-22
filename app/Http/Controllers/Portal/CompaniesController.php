@@ -55,6 +55,19 @@ class CompaniesController extends ResourceController
     }
 
     /**
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myJobs()
+    {
+        if($category = $this->service->getAuthCompany()->category) {
+            return $this->redirect('applications', $this->service->getAuthCompany()->id);
+        }
+
+        return $this->redirect('edit', $this->service->getAuthCompany()->id);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param Company $company

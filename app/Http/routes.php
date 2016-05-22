@@ -88,6 +88,10 @@ Route::group(['middleware' => 'web'], function () {
 				'as' 	=> 'employer.company',
 				'uses'	=> 'CompaniesController@myCompany'
 			]);
+			Route::get('my-jobs', [
+				'as' 	=> 'employer.jobs',
+				'uses'	=> 'CompaniesController@myJobs'
+			]);
 			Route::get('companies/{companies}/applications', [
 				'as' 	=> 'companies.applications',
 				'uses' 	=> 'CompaniesJobsController@applications'
