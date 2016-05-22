@@ -136,6 +136,10 @@ Route::group(['middleware' => 'web'], function () {
 			'uses' 	=> 'CompaniesJobsController@search'
 		]);*/
 
+		Route::get('terms', function(){
+			return view('portal.terms');
+		});
+
 	});
 
 	Route::group(['namespace' => 'Validations', 'prefix' => 'validations'], function (){
