@@ -46,9 +46,9 @@ class ResourceService {
         try {
             $this->repository->delete($entity);
         } catch (\Exception $e) {
-            return false;
+            return ['success' => false];
         }
 
-        return true;
+        return ['success' => true];
     }
 }

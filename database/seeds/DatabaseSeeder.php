@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ContractTypesSeeder::class);
         $this->call(CategoriesSeeder::class);
+        $this->call(ParametersSeeder::class);
 	    $this->call(UsersTableSeeder::class);
 
 	    Model::reguard();

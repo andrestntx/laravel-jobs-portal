@@ -83,8 +83,7 @@ class CompaniesJobsController extends ResourceController
     public function create(CreateRequest $request, Company $company)
     {
         return $this->defaultCreate([
-            'company'   => $company,
-            'jobSkills' => null
+            'company'   => $company
             ], $company->id
         );
     }
@@ -132,7 +131,6 @@ class CompaniesJobsController extends ResourceController
         return $this->view('form', [
             'company'   => $company,
             'job'       => $job,
-            'jobSkills' => $this->service->getJobSkillsSelect($job),
             'formData'  => $this->getFormDataUpdate([$company, $job])
         ]);
     }

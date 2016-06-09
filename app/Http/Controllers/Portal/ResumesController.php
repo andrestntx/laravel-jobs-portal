@@ -81,10 +81,9 @@ class ResumesController extends ResourceController
      */
     public function index(Request $request)
     {
-        $result = $this->facade->searchResumes($request->get('skills'), $request->get('location'), $request->get('search'));
+        $result = $this->facade->searchResumes($request->get('location'), $request->get('search'));
 
         $defaultVars = [
-            'selectSkills' => $request->get('skills'),
             'location' => $request->get('location'),
             'search' => $request->get('search')
         ];
@@ -103,7 +102,6 @@ class ResumesController extends ResourceController
         return $this->view('form', [
             'resume'                => $this->service->newModel(),
             'jobseekerResume'       => $this->service->getModelsForm(new Resume()),
-            'resumeSkills'          => null,
             'formData'              => $this->getFormDataStore(true)
         ]);
     }
@@ -114,9 +112,7 @@ class ResumesController extends ResourceController
      */
     public function store(StoreRequest $request)
     {
-        $resume = $this->facade->createResume($request->all(), $request->get('skills'), $request->get('new_studies'),
-            $request->get('new_experiences')
-        );
+        $resume = $this->facade->createResume($request->all(), $request->get('new_studies'), $request->get('new_experiences'));
 
         return $this->redirect('show', $resume);
     }
@@ -151,7 +147,6 @@ class ResumesController extends ResourceController
         return $this->view('form', [
             'resume'            => $resume,
             'jobseekerResume'   => $this->service->getModelsForm($resume),
-            'resumeSkills'       => $this->service->getResumeSkillsSelect($resume),
             'formData'          => $this->getFormDataUpdate($resume->jobseeker_id, true)
         ]);
     }
@@ -165,7 +160,7 @@ class ResumesController extends ResourceController
      */
     public function update(UpdateRequest $request, Resume $resume)
     {
-        $this->facade->updateResume($resume, $request->all(), $request->get('skills'), $request->get('new_studies'),
+        $this->facade->updateResume($resume, $request->all(), $request->get('new_studies'),
             $request->get('studies'), $request->get('new_experiences'), $request->get('experiences')
         );
 

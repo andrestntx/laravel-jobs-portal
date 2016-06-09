@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Entities\User;
+use App\Facades\UserFacade;
 use App\Services\UserService;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -45,16 +46,16 @@ class AuthController extends Controller
      */
     protected $lockoutTime = 30;
 
-    private $userService;
+    private $userFacade;
 
     /**
      * Create a new authentication controller instance.
      *
-     * @param UserService $userService
+     * @param UserFacade $userFacade
      */
-    public function __construct(UserService $userService)
+    public function __construct(UserFacade $userFacade)
     {
-        $this->userService = $userService;
+        $this->userFacade = $userFacade;
         $this->middleware('guest', ['except' => 'logout']);
     }
 
@@ -86,7 +87,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return $this->userService->register($data);
+        return $this->userFacade->register($data);
     }
 
     /**

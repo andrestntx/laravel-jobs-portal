@@ -87,11 +87,11 @@
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                     <div class="mj_detaildiv">
                                         <ul class="mj_selected_content">
-                                            @foreach($resume->skills as $skill)
+                                            @foreach($resume->skills_array as $skill)
                                                 <li>
-                                                    <a href="#"> <i class="fa fa-check"></i> {{ $skill->name }}</a>
+                                                    <a href="#"> <i class="fa fa-check"></i> {{ $skill }}</a>
                                                 </li>
-                                            @endforeach
+                                            @endforeach 
                                         </ul>
                                     </div>
                                 </div>

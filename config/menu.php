@@ -23,7 +23,7 @@ return [
         'account'       => ['title' => 'Mi Cuenta', 'url' => 'account', 'i' => 'fa fa-cogs', 'logged' => true],
 
         // Admin user
-        //'company-categories'    => array('url' => 'admin/company-categories', 'title' => 'Categorías de empresa', 'i' => 'fa fa-building', 'roles' => 'admin'),
+        'company-categories'    => ['url' => 'admin/company-categories', 'title' => 'Categorías de empresa', 'i' => 'fa fa-building', 'roles' => 'admin'],
         //'job-categories'        => array('url' => 'admin/job-categories', 'title' => 'Categorías de trabajo', 'i' => 'fa fa-mortar-board', 'roles' => 'admin'),
         'companies'             => ['url' => 'admin/companies', 'title' => 'Empresas', 'i' => 'fa fa-building-o', 'roles' => 'admin'],
         'contract-types'        => ['url' => 'admin/contract-types', 'title' => 'Tipos de contrato', 'i' => 'fa fa-briefcase', 'roles' => 'admin'],

@@ -122,6 +122,6 @@ class OccupationsController extends ResourceController
      */
     public function destroy(Occupation $occupation)
     {
-        $this->service->deleteModel($occupation);
+        return $this->service->deleteModel($occupation);
     }
 }

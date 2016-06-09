@@ -33,20 +33,6 @@ class JobService extends ResourceService {
         $this->companyService = $companyService;
     }
 
-    /**
-     * @param Model $job
-     * @param array $data
-     * @return mixed
-     */
-    public function syncSkills(Model $job, array $data)
-    {
-        $skills = [];
-        if(array_key_exists('skills', $data)) {
-            $skills = $data['skills'];
-        }
-
-        return $this->repository->syncSkills($job, $skills);
-    }
 
     protected function getSalaryRange($salaryRange) {
         $defaultRange = ['min' => 0, 'max' => null];
@@ -84,14 +70,5 @@ class JobService extends ResourceService {
     public function getCompanyJobs(Company $company)
     {
         return $this->repository->getCompanyJobs($company);
-    }
-
-    /**
-     * @param Job $job
-     * @return mixed
-     */
-    public function getJobSkillsSelect(Job $job)
-    {
-        return $this->repository->getJobSkillsSelect($job);
     }
 }

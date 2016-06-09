@@ -31,27 +31,6 @@ class ResumeRepository extends BaseRepository
         return $this->findBy('jobseeker_id', $id);
     }
 
-    /**
-     * @param Resume $resume
-     */
-    public function getJobSkillsSelect(Resume $resume)
-    {
-        return $resume->skills()->lists('id')->all();
-    }
-
-    /**
-     * @param Model $resume
-     * @param array $skills
-     * @return mixed
-     */
-    public function syncSkills(Model $resume, $skills = array())
-    {
-        if(is_null($skills)) {
-            $skills = array();
-        }
-
-        return $resume->skills()->sync($skills);
-    }
 
     /**
      * @param Model $resume
@@ -76,12 +55,12 @@ class ResumeRepository extends BaseRepository
      */
     public function getAllResumes()
     {
-        return $this->model->with(['jobseeker', 'skills'])->paginate();
+        return $this->model->with(['jobseeker'])->paginate();
     }
 
-    protected function defaultSearchResumes($skillId = null, $search = null)
+    protected function defaultSearchResumes($search = null)
     {
-        $query = $this->model->with('skills')->frequentJoins($skillId);
+        $query = $this->model->frequentJoins();
 
         if(! is_null($search)){
             $query->where(function($query) use ($search) {
@@ -95,25 +74,23 @@ class ResumeRepository extends BaseRepository
     }
 
     /**
-     * @param null $skillId
      * @param null $search
      * @return Collection
      */
-    public function getSearchResumes($skillId = null, $search = null)
+    public function getSearchResumes($search = null)
     {
-        $query = $this->defaultSearchResumes($skillId, $search);
+        $query = $this->defaultSearchResumes($search);
         return $query->groupBy('user_id')->take(config('app.maxResults'))->get();
     }
 
     /**
-     * @param null $skillId
      * @param GeoLocation|null $location
      * @param null $search
      * @return Collection
      */
-    public function getSearchResumesNear($skillId = null, GeoLocation $location = null, $search = null)
+    public function getSearchResumesNear(GeoLocation $location = null, $search = null)
     {
-        $query = $this->defaultSearchResumes($skillId, $search);
+        $query = $this->defaultSearchResumes($search);
 
         if(! is_null($location)) {
             $query->selectRawDistance($location->lat, $location->lng)

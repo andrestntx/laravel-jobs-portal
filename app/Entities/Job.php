@@ -34,7 +34,7 @@ class Job extends Model
      * @var array
      */
     protected $fillable = ['name', 'description', 'company_id', 'salary', 'closing_date', 'experience',
-        'email', 'contract_type_id', 'occupation_id', 'geo_location_id', 'who_apply', 'offer', 'google'
+        'email', 'contract_type_id', 'occupation_id', 'geo_location_id', 'who_apply', 'offer', 'google', 'skills'
     ];
     
     /**
@@ -96,14 +96,6 @@ class Job extends Model
     }
 
     /**
-     * Get the skills for the Job.
-     */
-    public function skills()
-    {
-        return $this->belongsToMany('App\Entities\Skill');
-    }
-
-    /**
      * @return mixed
      */
     public function getAddressAttribute()
@@ -142,6 +134,7 @@ class Job extends Model
      */
     public function setClosingDateAttribute($closing_date)
     {
+
         if(empty($closing_date)) {
             $this->attributes['closing_date'] = Carbon::now()->addDays(10);
         }
@@ -203,6 +196,19 @@ class Job extends Model
             ->where('salary', '>=', $salaryMin);
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeClosing($query)
+    {
+        return $query->where('closing_date', '>=', Carbon::now()->format('Y-m-d'));
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeSelectDefaultJoins($query)
     {
         return $query->select(['jobs.name as name', 'jobs.id', 'geo_locations.lat', 'geo_locations.lng', 'companies.name as company',
@@ -211,16 +217,32 @@ class Job extends Model
         ]);
     }
 
+    /**
+     * @param $lat
+     * @param $lng
+     * @return string
+     */
     public function getRawDistance($lat, $lng)
     {
         return "( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) as distance";
     }
 
+    /**
+     * @param $query
+     * @param $lat
+     * @param $lng
+     * @return mixed
+     */
     public function scopeSelectRawDistance($query, $lat, $lng)
     {
         return $query->selectRaw($this->getRawDistance($lat, $lng));
     }
 
+    /**
+     * @param $query
+     * @param null $id
+     * @return mixed
+     */
     public function scopeJoinCompanies($query, $id = null)
     {
         if(is_null($id) || empty($id)) {
@@ -233,9 +255,13 @@ class Job extends Model
                 ->on('companies.id', '=', \DB::raw($id))
                 ->on('companies.active', '=', \DB::raw(1));
         });
-
     }
 
+    /**
+     * @param $query
+     * @param null $id
+     * @return mixed
+     */
     public function scopeJoinContractTypes($query, $id = null)
     {
         if(is_null($id) || empty($id)) {
@@ -254,6 +280,11 @@ class Job extends Model
         });
     }
 
+    /**
+     * @param $query
+     * @param null $id
+     * @return mixed
+     */
     public function scopeJoinOccupations($query, $id = null)
     {
         if(is_null($id) || empty($id)) {
@@ -266,6 +297,11 @@ class Job extends Model
         });
     }
 
+    /**
+     * @param $query
+     * @param null $id
+     * @return mixed
+     */
     public function scopeJoinGeoLocations($query, $id = null)
     {
         if(is_null($id) || empty($id)) {
@@ -276,5 +312,13 @@ class Job extends Model
             $join->on('geo_locations.id', '=', 'jobs.geo_location_id')
                 ->on('geo_locations.id', '=', \DB::raw($id));
         });
+    }
+
+    /**
+     * @return array
+     */
+    public function getSkillsArrayAttribute()
+    {
+        return explode(',', $this->skills);
     }
 }

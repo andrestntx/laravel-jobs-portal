@@ -160,9 +160,9 @@
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                     <div class="mj_detaildiv">
                                         <ul class="mj_selected_content">
-                                            @foreach($job->skills as $skill)
+                                            @foreach($job->skills_array as $skill)
                                                 <li>
-                                                    <a href="#"> <i class="fa fa-check"></i> {{ $skill->name }}</a>
+                                                    <a href="#"> <i class="fa fa-check"></i> {{ $skill }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -205,11 +205,11 @@
                                 <ul>
                                     <li><a href="{{ route('companies.show', $job->company) }}"><i class="fa fa-plus"></i> Más empleos</a>
                                     </li>
-                                    <li><a href="{{ $job->company->website_link }}"><i class="fa fa-link"></i> Página Web</a>
+                                    <li><a target="_blank" href="{{ $job->company->website_link }}"><i class="fa fa-link"></i> Página Web</a>
                                     </li>
-                                    <li><a href="{{ $job->company->twitter_link }}"><i class="fa fa-twitter"></i>Twitter</a>
+                                    <li><a target="_blank" href="{{ $job->company->twitter_link }}"><i class="fa fa-twitter"></i>Twitter</a>
                                     </li>
-                                    <li><a href="{{ $job->company->facebook_link }}"><i class="fa fa-facebook"></i>facebook</a>
+                                    <li><a target="_blank" href="{{ $job->company->facebook_link }}"><i class="fa fa-facebook"></i>facebook</a>
                                     </li>
                                 </ul>
                             </div>

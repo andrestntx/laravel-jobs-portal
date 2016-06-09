@@ -112,6 +112,6 @@ class CompanyCategoriesController extends ResourceController
      */
     public function destroy(CompanyCategory $category)
     {
-        $this->service->deleteModel($category);
+        return $this->service->deleteModel($category);
     }
 }

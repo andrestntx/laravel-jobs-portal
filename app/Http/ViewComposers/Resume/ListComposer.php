@@ -12,15 +12,13 @@ use App\Http\ViewComposers\BaseComposer;
 
 class ListComposer extends BaseComposer
 {
-    protected $skillRepository;
     protected $jobseekerFileRepository;
     protected $geoLocationRepository;
 
-    function __construct(ResumeRepository $repository, OccupationRepository $skillRepository,
+    function __construct(ResumeRepository $repository,
                          JobseekerFileRepository $jobseekerFileRepository, GeoLocationRepository $geoLocationRepository)
     {
         $this->repository = $repository;
-        $this->skillRepository = $skillRepository;
         $this->jobseekerFileRepository = $jobseekerFileRepository;
         $this->geoLocationRepository = $geoLocationRepository;
     }
@@ -32,12 +30,10 @@ class ListComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $skills             = $this->skillRepository->listsSelect();
         $photos             = $this->jobseekerFileRepository;
         $locations          = $this->geoLocationRepository->getSearchSelect();
 
         $view->with([
-            'skills'    => $skills,
             'photos'    => $photos,
             'locations' => $locations
         ]);

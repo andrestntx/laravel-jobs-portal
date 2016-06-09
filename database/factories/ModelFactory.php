@@ -43,8 +43,16 @@ $factory->define(CompanyCategory::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(\App\Entities\Parameter::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->unique()->name,
+        'value' => $faker->unique()->name
+    ];
+});
+
 $factory->define(Company::class, function (Faker\Generator $faker) {
     return [
+        'active' => true,
         'nit'    => $faker->unique()->ean13,
         'name' => $faker->unique()->company,
         'email' => $faker->unique()->email

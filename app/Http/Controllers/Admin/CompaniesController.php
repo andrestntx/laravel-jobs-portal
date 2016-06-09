@@ -70,6 +70,16 @@ class CompaniesController extends ResourceController
         $company->save();
 
         return ['success' => true];
-
     }
+
+    /**
+     * @param Company $company
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Company $company)
+    {
+        return $this->service->deleteModel($company);
+    }
+
+
 }

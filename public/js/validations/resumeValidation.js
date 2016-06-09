@@ -39,6 +39,9 @@ var ResumeValidation = function() {
                     'doc': {
                         required: true
                     },
+                    'doc_type': {
+                        required: true
+                    },
                     'first_name': {
                         required: true
                     },
@@ -59,8 +62,11 @@ var ResumeValidation = function() {
                     }                 
                 },
                 messages: {
+                    'doc_type': {
+                        required: 'El tipo de identificación es requerido'
+                    },
                     'doc': {
-                        required: 'La cédula es requerido'
+                        required: 'La número de identificación es requerido'
                     },
                     'first_name': {
                         required: 'El nombre es requerido'
@@ -79,7 +85,8 @@ var ResumeValidation = function() {
                     },
                     'address': {
                         required: 'La dirección es requerido'
-                    }                  
+                    },
+                    'resume_file': 'La hoja de vida es requerida'                  
                 }
             });
         }

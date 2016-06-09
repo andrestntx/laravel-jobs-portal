@@ -19,12 +19,9 @@
     <div class="mj_postdiv mj_shadow_yellow mj_postpage mj_toppadder50 mj_bottompadder50">
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
             {!! Field::text('name', ['ph' => 'Nombre del empleo', 'required']) !!}
-            {!! Field::select('occupation_id', $occupations, ['required']) !!}
-            {!! Field::select('contract_type_id', $contractTypes, ['required']) !!}
-            <div class="form-group">
-                <label for="skills">Habilidades</label>
-                {!! Form::select('skills[]', $skills, $jobSkills, ['multiple', 'class' => 'select2 form-control']) !!}
-            </div>
+            {!! Field::select('occupation_id', $occupations, ['required', 'class' => 'select2']) !!}
+            {!! Field::select('contract_type_id', $contractTypes, ['required', 'class' => 'select2']) !!}
+            {!! Field::text('skills', ['ph' => 'Habilidades requeridas para el empleo', 'data-role' => 'tagsinput']) !!}
             {!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90']) !!}
             @include('includes.google-maps.map')
             {!! Field::textarea('description', ['ph' => 'Descripción del empleo', 'class' => 'editor-html', 'required']) !!}
@@ -42,14 +39,14 @@
 
             <div class="form-group">
                 <label for="google" class="control-label">
-                    Google
+                    Motores de búsqueda como google
                     <span>(opcional)</span>     
                 </label> <br>
                 <div class="mj_checkbox">
                     <input type="checkbox" value="1" id="google" name="google" @if($job->google) checked @endif>
                     <label for="google" style="border: 1px solid gray;"></label>
                 </div>
-                <span> Permitir que el empleo aparezca en Google</span>
+                <span> Permitir que se indexe en motores de búsqueda</span>
             </div>
         </div>
     </div>

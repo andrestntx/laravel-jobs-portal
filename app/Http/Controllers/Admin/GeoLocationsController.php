@@ -75,4 +75,13 @@ class GeoLocationsController extends ResourceController
         $this->service->setNotSearch($geoLocation);
         return $this->redirect('index');
     }
+
+    /**
+     * @param GeoLocation $geoLocation
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(GeoLocation $geoLocation)
+    {
+        return $this->service->deleteModel($geoLocation);
+    }
 }

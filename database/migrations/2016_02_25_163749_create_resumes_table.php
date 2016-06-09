@@ -16,6 +16,7 @@ class CreateResumesTable extends Migration
             $table->increments('id');
 
             $table->string('profile');
+            $table->text('skills')->nullable();
             $table->string('study_title')->nullable();
             $table->string('wage_aspiration')->nullable();
 

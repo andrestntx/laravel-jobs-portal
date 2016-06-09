@@ -164,19 +164,17 @@ class JobseekerFacade
 
     /**
      * @param array $dataResume
-     * @param array|null $skills
      * @param array $newStudies
      * @param array $newExperiences
      * @return mixed
      */
-    public function createResume(array $dataResume, $skills = array(), array $newStudies = null, array $newExperiences = null)
+    public function createResume(array $dataResume, array $newStudies = null, array $newExperiences = null)
     {
         $dataResume = $this->geoLocationService->validAndMerge($dataResume);
         $jobseeker  = $this->createJobseeker($dataResume);
         $newResume  = $this->resumeService->newModel($dataResume);
         $resume     = $this->jobseekerService->addNewResume($jobseeker, $newResume);
 
-        $this->resumeService->syncSkills($resume, $skills);
         $this->addNewStudies($newStudies, $resume);
         $this->addNewExperiences($newExperiences, $resume);
         $this->resumeService->validAndSaveResumeFile($dataResume, $resume);
@@ -187,19 +185,17 @@ class JobseekerFacade
     /**
      * @param Resume $resume
      * @param array $dataResume
-     * @param array $skills
      * @param array $newStudies
      * @param array $studies
      * @param array $newExperiences
      * @param array $experiences
      * @return mixed
      */
-    public function updateResume(Resume $resume, array $dataResume, $skills = array(), array $newStudies = null, array $studies = null,
+    public function updateResume(Resume $resume, array $dataResume, array $newStudies = null, array $studies = null,
                                     array $newExperiences = null, array $experiences = null)
     {
         $dataResume = $this->geoLocationService->validAndMerge($dataResume);
         $this->updateJobseeker($dataResume, $resume->jobseeker);
-        $this->resumeService->syncSkills($resume, $skills);
 
         $this->addNewStudies($newStudies, $resume);
         $this->updateStudies($studies);
@@ -213,10 +209,10 @@ class JobseekerFacade
         return $resume;
     }
 
-    public function searchResumes($skillId = null, $locationId = null, $search = null)
+    public function searchResumes($locationId = null, $search = null)
     {
         $geoLocation = $this->geoLocationService->getModel($locationId);
-        return $this->resumeService->getSearchResumes($skillId, $geoLocation, $search);
+        return $this->resumeService->getSearchResumes($geoLocation, $search);
     }
 
     public function applyJob(Job $job, array $data)
@@ -224,7 +220,7 @@ class JobseekerFacade
         $resume = $this->resumeService->getAuthResume();
         $application = $this->applicationService->applyJob($resume, $job, $data);
         $pathResume = $this->resumeService->getResumeFile($resume);
-        $this->emailService->sendResume($resume, $job, $application, $pathResume);
+        //$this->emailService->sendResume($resume, $job, $application, $pathResume);
 
         return $application;
     }

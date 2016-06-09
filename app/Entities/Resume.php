@@ -18,7 +18,7 @@ class Resume extends Model
      *
      * @var array
      */
-    protected $fillable = ['profile', 'wage_aspiration', 'study_title'];
+    protected $fillable = ['profile', 'wage_aspiration', 'study_title', 'skills'];
 
     /**
      * Get the route key for the model.
@@ -62,13 +62,6 @@ class Resume extends Model
         return $this->hasMany('App\Entities\Experience');
     }
 
-    /**
-     * Get the skills for the resume.
-     */
-    public function skills()
-    {
-        return $this->belongsToMany('App\Entities\Skill');
-    }
 
     /**
      * The jobs that belong to the resume.
@@ -102,35 +95,13 @@ class Resume extends Model
 
     /**
      * @param $query
-     * @param $skillId
      * @return mixed
      */
-    public function scopeFrequentJoins($query, $skillId)
+    public function scopeFrequentJoins($query)
     {
         return $query->selectDefaultJoins()
-        ->joinSkills($skillId)
         ->joinJobseeker()
         ->joinGeoLocation();
-    }
-
-    public function scopeJoinSkills($query, $id = null)
-    {
-        $query->join('resume_skill', 'resume_skill.resume_id', '=', 'resumes.id');
-
-        if(is_null($id) || empty($id) || count($id) > 0) {
-            return $query->join('skills', 'skills.id', '=', 'resume_skill.skill_id');
-        }
-        else if(is_array($id)) {
-            return $query->join('skills', function($join) use ($id){
-                $join->on('skills.id', '=', 'resume_skill.skill_id')
-                    ->whereIn('skills.id', $id);
-            });
-        }
-
-        return $query->join('skills', function($join) use ($id){
-            $join->on('skills.id', '=', 'resume_skill.skill_id')
-                ->on('skills.id', '=', \DB::raw($id));
-        });
     }
 
     public function scopeJoinGeoLocation($query, $id = null)
@@ -160,5 +131,13 @@ class Resume extends Model
         }
 
         return $value;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSkillsArrayAttribute()
+    {
+        return explode(',', $this->skills);
     }
 }

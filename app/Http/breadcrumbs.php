@@ -74,23 +74,6 @@ Breadcrumbs::register('contract-types.type', function ($breadcrumbs, $type) {
     }
 });
 
-// Home > admin > skills
-Breadcrumbs::register('skills', function ($breadcrumbs) {
-    $breadcrumbs->parent('admin');
-    $breadcrumbs->push('Habilidades', route('admin.skills.index'));
-});
-
-// Home > admin > skills > {{ $skill }}
-Breadcrumbs::register('skills.skill', function ($breadcrumbs, $skill) {
-    $breadcrumbs->parent('skills');
-
-    if ($skill->exists) {
-        $breadcrumbs->push($skill->name, route('admin.skills.show', $skill));
-    } else {
-        $breadcrumbs->push('Nueva', route('admin.skills.create'));
-    }
-});
-
 // Home > admin > occupations
 Breadcrumbs::register('occupations', function ($breadcrumbs) {
     $breadcrumbs->parent('admin');

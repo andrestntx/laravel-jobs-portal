@@ -112,6 +112,6 @@ class ContractTypesController extends ResourceController
      */
     public function destroy(ContractType $type)
     {
-        $this->service->deleteModel($type);
+        return $this->service->deleteModel($type);
     }
 }

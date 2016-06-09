@@ -17,15 +17,19 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th colspan="" rowspan="" headers="" scope=""></th>
+					<th colspan="" rowspan="" headers="" scope="" class="text-center">Borrar</th>
+					<th colspan="" rowspan="" headers="" scope="" class="text-center">Editar</th>
 					<th colspan="1" rowspan="" headers="" scope="">Nombre</th>	
 					<th colspan="3" rowspan="" headers="" scope="">Descripción</th>	
 				</tr>
 			</thead>
 			@foreach($categories as $category)
-	            <tr>
+	            <tr id="category_{{ $category->id }}">
 	            	<td style="text-align: center;">
-	            		<a href="{{ route('admin.company-categories.edit', $category) }}" title="Editar"><i class="fa fa-pencil"></i></a>
+	            		<button class="btn btn-danger" title="Borrar"  onClick = "deleteService.deleteCompanyCategory({{ $category->id }});"><i class="fa fa-trash-o"></i></button>
+	            	</td>
+	            	<td style="text-align: center;">
+	            		<a href="{{ route('admin.company-categories.edit', $category) }}" class="btn btn-warning" title="Editar" ><i class="fa fa-pencil"></i></a>
 	            	</td>
 	                <td>
 	                    <a href="{{ route('admin.company-categories.edit', $category) }}" title="Editar">
@@ -39,4 +43,8 @@
 	        @endforeach
         </table>
 	</div>
+@endsection
+
+@section('extra-js')
+	<script src="/js/services/deleteService.js"></script>
 @endsection

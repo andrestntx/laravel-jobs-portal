@@ -16,6 +16,7 @@ class CreateJobseekersTable extends Migration
 
             $table->string('email')->unique();
             $table->string('doc')->unique();
+            $table->string('doc_type')->default('cc');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');

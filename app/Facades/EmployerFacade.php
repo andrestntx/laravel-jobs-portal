@@ -70,7 +70,6 @@ class EmployerFacade
     public function updateJob(array $data, Model $job)
     {
         $data = $this->geoLocationService->validAndMerge($data);
-        $this->jobService->syncSkills($job, $data);
         return $this->jobService->updateModel($data, $job);
     }
 

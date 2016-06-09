@@ -25,6 +25,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $roles = [
+        'jobseeker' => 'trabajador',
+        'employer'  => 'empresa',
+        'admin'     => 'admin'
+    ];
+
     /**
      * Get the companies for the user.
      */
@@ -101,5 +107,13 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->isRole('admin');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRoleNameAttribute()
+    {
+        return $this->roles[$this->role];
     }
 }

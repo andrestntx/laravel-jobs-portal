@@ -71,25 +71,6 @@ class JobRepository extends BaseRepository
             ->paginate();
     }
 
-
-    /**
-     * @param Model $job
-     * @param array $skills
-     * @return mixed
-     */
-    public function syncSkills(Model $job, array $skills = array())
-    {
-        return $job->skills()->sync($skills);
-    }
-
-    /**
-     * @param Job $job
-     */
-    public function getJobSkillsSelect(Job $job)
-    {
-        return $job->skills()->lists('id')->all();
-    }
-
     /**
      * @param null $occupationId
      * @param null $companyId
@@ -115,7 +96,7 @@ class JobRepository extends BaseRepository
             });
         }
 
-        return $query;
+        return $query->closing();
     }
 
     /**
@@ -163,6 +144,9 @@ class JobRepository extends BaseRepository
         return $this->model->with(['contractType', 'company', 'geoLocation', 'occupation'])->paginate();
     }
 
+    /**
+     * @return array
+     */
     public function getSalaryRange()
     {
         $min = money_format('%.2n', $this->model->select('salary')->orderBy('salary', 'asc')->take(1)->first()->salary);
@@ -171,6 +155,9 @@ class JobRepository extends BaseRepository
         return ['salaryMin' => $min, 'salaryMax' => $max];
     }
 
+    /**
+     * @return array
+     */
     public function getExperienceRange()
     {
         $min = $this->model->select('experience')->orderBy('experience', 'asc')->take(1)->first()->experience;

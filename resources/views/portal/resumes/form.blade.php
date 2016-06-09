@@ -19,12 +19,22 @@
     {!! Form::model($jobseekerResume, $formData + ['id' => 'form-resume']) !!}
         <div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
-                {!! Field::text('doc', ['ph' => 'Cédula', 'required']) !!}
+                {!! Field::select('doc_type', $docTypes, ['required']) !!}
+                {!! Field::text('doc', ['ph' => 'Identificación', 'required']) !!}
                 {!! Field::text('first_name', ['ph' => 'Nombres', 'required']) !!}
                 {!! Field::text('last_name', ['ph' => 'Apellidos', 'required']) !!}
-                {!! Field::select('sex', $sex, ['empty' => 'Género', 'required']) !!}
+                {!! Field::select('sex', $sex, ['empty' => 'Seleccione el Género', 'required']) !!}
+
+
                 {!! Field::file('photo', ['data-input' => 'false', 'data-buttonText' => 'Buscar Foto', 'data-iconName' => 'glyphicon glyphicon-user']) !!}
-                {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file', 'required', 'accept' => 'application/pdf']) !!}
+
+                @if($resume->exists)
+                    {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file', 'accept' => 'application/pdf']) !!}
+                @else
+                    {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file', 'required', 'accept' => 'application/pdf']) !!}
+                @endif
+
+                
                 
                 @if($resume->exists)
                     {!! Field::text('email', ['ph' => 'Correo electrónico', 'required']) !!}
@@ -69,10 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="skills">Habilidades</label>
-                    {!! Form::select('skills[]', $skills, $resumeSkills, ['multiple', 'class' => 'select2 form-control']) !!}
-                </div>
+                {!! Field::text('skills', ['ph' => 'Habilidades separadas por coma', 'data-role' => 'tagsinput']) !!}
                 <div class="form-group">
                     <label>Experiencia<span>(opcional)</span>
                         <a href="javascript:void(0)" class="btn btn-sm btn-info mj_add_experience">

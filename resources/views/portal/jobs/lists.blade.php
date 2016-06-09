@@ -106,7 +106,7 @@
                                     <td><i class="fa fa-map-marker"></i>
                                         <P>{{ $job->formatted_address }}</P>
                                     </td>
-                                    <td><a href="#" class="mj_btn mj_greenbtn">{{ $job->contractType }}</a>
+                                    <td><a href="#" class="mj_btn mj_greenbtn" style="cursor:default;">{{ $job->contractType }}</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -11,6 +11,13 @@ use Illuminate\Database\Seeder;
 class ContractTypesSeeder extends Seeder
 {
 
+    protected $types = [
+        ['name' => 'Tiempo Completo',   'description' => 'Contrato de Tiempo Completo'],
+        ['name' => 'Medio Tiempo',      'description' => 'Solo se dedica a 4 horas laborales diarias'],
+        ['name' => 'Orden de Prestación de Servicios (OPS)', 'description' => 'Contrato de Prestación de Servicios'],
+        ['name' => 'Freelance',         'description' => 'Contrato de trabajo remoto']
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -18,20 +25,8 @@ class ContractTypesSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Entities\ContractType::class)->create([
-            'name'  => 'tiempo completo'
-        ]);
-
-        factory(\App\Entities\ContractType::class)->create([
-            'name'  => 'medio tiempo'
-        ]);
-
-        factory(\App\Entities\ContractType::class)->create([
-            'name'  => 'OPS'
-        ]);
-
-        factory(\App\Entities\ContractType::class)->create([
-            'name'  => 'frelance'
-        ]);
+        foreach ($this->types as $type) {
+            factory(\App\Entities\ContractType::class)->create($type);
+        }
     }
 }

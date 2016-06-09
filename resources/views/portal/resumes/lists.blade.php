@@ -8,13 +8,10 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="mj_top_searchbox">
                         <form>
-                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                {!! Form::select('skills[]', $skills, $selectSkills, ['class' => 'custom-select', 'placeholder' => 'Habilidades']) !!}
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 {!! Form::select('location', $locations, $location, ['class' => 'custom-select', 'placeholder' => 'Ubicación']) !!}
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                 <div class="form-group">
                                     <input name="search" type="text" class="form-control" value="{{ $search }}" placeholder="Palabra clave..">
                                 </div>
@@ -71,9 +68,7 @@
                                 </td>
                                 <td>
                                     <ul>
-                                        @foreach($resume->skills as $skill)
-                                            <li> {{ $skill->name }} </li>
-                                        @endforeach
+                                        {{ $resume->skills }}
                                     </ul>
                                 </td>
                             </tr>
@@ -81,7 +76,7 @@
 
                     </table>
                     <div class="mj_paginations">
-                         {!! $resumes->appends(['skills' =>  $selectSkills, 'location' =>  $location, 'search' =>  $search])->render() !!}
+                         {!! $resumes->appends(['location' =>  $location, 'search' =>  $search])->render() !!}
                     </div>
                 </div>
             </div>

@@ -44,6 +44,10 @@ Route::group(['middleware' => 'web'], function () {
 			'as' 	=> 'companies.active',
 			'uses' 	=> 'CompaniesController@active'
 		]);
+		Route::delete('companies/{companies}', [
+			'as' 	=> 'companies.destroy',
+			'uses' 	=> 'CompaniesController@destroy'
+		]);
 
 		// Route::resource('jobs', 'JobsController', ['only' => ['index', 'show']]);
 	});
@@ -148,6 +152,8 @@ Route::group(['middleware' => 'web'], function () {
 			'uses' 	=> 'RegisterController@validation'
 		]);
 	});
+
+
 });
 
 

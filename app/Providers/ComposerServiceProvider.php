@@ -13,6 +13,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composers([
+            'App\Http\ViewComposers\GlobalComposer' => '*',
             'App\Http\ViewComposers\CompanyCategory\ListComposer' => 'admin.company-categories.lists',
             'App\Http\ViewComposers\JobCategory\ListComposer' => 'admin.job-categories.lists',
             'App\Http\ViewComposers\ContractType\ListComposer' => ['admin.contract-types.lists'],
@@ -28,7 +29,7 @@ class ComposerServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the application services.
+     * Register the applicadtion services.
      */
     public function register()
     {

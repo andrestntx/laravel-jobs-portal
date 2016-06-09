@@ -70,7 +70,7 @@ return [
             'field_classes' => [
                 // type => class or classes
                 'file'  => 'filestyle',
-                'select' => 'custom-select',
+                'select' => 'select-search form-control',
                 'default' => 'form-control',
                 'checkbox' => '',
                 'error' => 'input-with-feedback'

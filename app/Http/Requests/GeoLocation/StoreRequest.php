@@ -30,7 +30,7 @@ class StoreRequest extends Request
     public function rules() {
         return [
             'address'   => 'required',
-            'geo.*.id'    => 'required'
+            'geo.id'    => 'required'
         ];
     }
 }

@@ -1246,7 +1246,6 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 .mj_pricing_footer {
 	float: left;
 	width: 100%;
-	padding: 25px 0px;
 	border-radius: 0px 0px 10px 10px;
 }
 .mj_pricing_footer a, .mj_pricing_footer button {
@@ -1255,6 +1254,8 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 	font-weight: bold;
 	font-size: 20px;
 	text-transform: capitalize;
+  padding: 25px 0px;
+  width: 100%;
 }
 .mj_pricing_footer a i {
 	font-size: 18px;
@@ -3744,7 +3745,7 @@ ol.comment li:after {
 }
 .mj_postdiv .form-group label {
     color: #111111;
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 10px;
 	  font-size: 18px;
 }
@@ -4216,7 +4217,7 @@ a.mj_removefile {
     float: left;
     width: 100%;
     text-align: center;
-    padding: 15px 0px;
+    padding: 0px;
 }
 .mj_resume_changeing a {
     float: left;
@@ -4224,7 +4225,8 @@ a.mj_removefile {
     color: #fff;
     font-size: 20px;
     text-transform: capitalize;
-	text-decoration:none;
+	  text-decoration:none;
+    padding: 15px 0;
 }
 .mj_resume_changeing a i {
     padding: 0px 10px;

@@ -13,6 +13,8 @@
     <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <link href="/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
     <link href="/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
+
+    <link href="/js/plugins/tags/bootstrap-tagsinput.css" rel="stylesheet">
 	<!-- end theme style -->
 	<!-- favicon links -->
 	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
@@ -39,7 +41,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="mj_logo">
-						<a href="/"><img src="/images/logo.png" class="img-responsive" alt="logo">
+						<a href="/"><img src="{{ $portalLogo }}" class="img-responsive" alt="logo">
 						</a>
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mj_menu" aria-expanded="false">
 							<span class="sr-only">MENU</span>
@@ -60,6 +62,12 @@
 							->render('themes.bootstrap.menus.main') !!}
 
 							<div class="mj_profilediv" id="my_profile_div">
+								<p style="text-align: left; margin-bottom: 0; font-size: 1em; margin-left: 20px;">
+									<strong>{{ auth()->user()->name }}</strong>
+								</p>
+								<p style="text-align: left; margin-bottom: 0; font-size: 0.9em; margin-left: 20px;">
+									{{ auth()->user()->role_name }}
+								</p>
 								{!! Menu::make('menu.account')
 									->setParam('username', Auth::user()->username)
 									->render('themes.bootstrap.menus.main') 
@@ -108,12 +116,12 @@
 			<div class="row">
 				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
 					<div class="mj_weight mj_bottompadder20">
-						<a href="index.html"><img src="/images/logo.png" class="img-responsive" alt="">
+						<a href="index.html"><img src="{{ $portalLogo }}" class="img-responsive" alt="">
 						</a>
 						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat wisi enim ad minim veniam. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.</p>
 					</div>
 					<div class="mj_copyright">
-						<p>&copy; 2015 <a href="#">mesh<span class="mj_yellow_text">jobs</span></a> Inc.
+						<p>&copy; 2015 <a href="#">{{ $companyFirstName }}<span class="mj_yellow_text">{{ $companyLastName }}</span></a> Inc.
 							<br> Designerd by <a href="#">themefire</a> &nbsp; / &nbsp; Only on <a href="#">Envato Market</a>
 						</p>
 						<span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
@@ -166,11 +174,19 @@
     <script src="/js/plugins/dataTables/dataTables.responsive.js"></script>
     <script src="/js/plugins/dataTables/dataTables.tableTools.min.js"></script>
 
+    <script src="/js/plugins/tags/bootstrap-tagsinput.js"></script>
+
 	<script type="text/javascript">
 		$( document ).ready(function() {
 			$.each($('.salary'), function( index, value ) {
 				$(this).text( numeral($(this).text()).format('$ 0,0[.]00') ) ;
 			});
+
+			$(".select-search").select2();
+		});
+
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
 		
 	</script>

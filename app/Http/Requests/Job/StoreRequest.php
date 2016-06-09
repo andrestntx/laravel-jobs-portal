@@ -33,8 +33,7 @@ class StoreRequest extends CreateRequest
             'salary'            => 'numeric',
             'experience'        => 'numeric|max:15',
             'occupation_id'     => 'required|exists:occupations,id',
-            'contract_type_id'  => 'required|exists:contract_types,id',
-            'skills'            => 'exists:skills,id'
+            'contract_type_id'  => 'required|exists:contract_types,id'
         ];
     }
 }

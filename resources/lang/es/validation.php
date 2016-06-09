@@ -140,7 +140,8 @@ return array(
     'date_of_birth'	=> 'fecha de cumpleaños',
     'communities'	=> 'comunidades',
     'description'	=> 'descripción',
-    'doc'           => 'cédula',
+	'doc_type'		=> 'tipos de identificación',
+    'doc'           => 'identificación',
     'type_id'       => 'tipo',
     'type'          => 'tipo',
     'image'         => 'imagen',
@@ -186,8 +187,14 @@ return array(
 	'website'		=> 'página web',
     'famale'        => 'femenino',
     'male'          => 'masculino',
-    'resume_file'   => 'hoja de vida'
+    'resume_file'   => 'hoja de vida (sólo PDF)',
+    'google'        => 'motores de búsqueda como google',
+    'skills'        => 'habilidades'
+),
 
+'doc_types' => array(
+	'cc' => 'cédula',
+	'passport' => 'pasaporte'
 ),
 
 'translate' => array(

@@ -112,6 +112,11 @@ class CompaniesController extends ResourceController
     public function update(UpdateRequest $request, Company $company)
     {
         $this->facade->updateCompany($request->all(), $company);
+
+        if(auth()->user()->isAdmin()) {
+            return redirect()->route('admin.companies.index');
+        }
+
         return $this->redirect('show', $company);
     }
 

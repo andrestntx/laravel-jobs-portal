@@ -27,9 +27,7 @@
                         <div class="mj_mainheading mj_toppadder80 mj_bottompadder50">
                             <h1>A<span>plicar al empleo</span></h1>
                             @can('apply', $job)
-                                <p>Escriba el mensaje que lo presentará a esta oferta de empelo y que recibirá la empresa con su
-                                    <a href="/my-resume">Hoja de Vida</a>
-                                </p>
+                                <p>Escriba el mensaje para aplicar a esta oferta de empleo. La empresa será notificada con su <a href="/my-resume" title="Ver hoja de vida" target="_blank" data-toggle="tooltip">Hoja de Vida</a></p>
                                 <div class="mj_toppadder50 col-md-12">
                                     {!! Form::open(['route' => ['companies.jobs.store-apply', $company, $job], 'method' => 'POST']) !!}
                                         {!! Field::textarea('intro', ['tpl' => 'themes.bootstrap.fields.inline']) !!}

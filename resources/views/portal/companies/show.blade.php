@@ -69,13 +69,13 @@
                 @foreach($jobs as $job)
                     <tr>
                         <td class="text-center">
-                            <h4><a href="{{ route('companies.jobs.applications', [$company, $job]) }}">
+                            <h4><a href="{{ route('companies.jobs.applications', [$company, $job]) }}" title="Ver Solicitudes" data-toggle="tooltip">
                                 {{ $job->count_applications }} 
                                 </a>
                             </h4>
                         </td>
                         <td>
-                            <h4><a href="{{ route('companies.jobs.show', [$company, $job]) }}">{{ $job->name }}</a></h4>
+                            <h4><a href="{{ route('companies.jobs.show', [$company, $job]) }}" title="Ver Oferta" data-toggle="tooltip">{{ $job->name }}</a></h4>
                             <p style="width: 100%;"><a href="#">{{ $job->occupation->name }}</a></p>
                         </td>
                         <td><i class="fa fa-map-marker"> {{ $job->address }} </i>
@@ -94,5 +94,9 @@
 
 @section('extra-js')
     <script src="/js/services/searchLocation.js"></script>
-    <script> searchLocation.initShowLocation(); </script>
+    <script> 
+        searchLocation.initShowLocation(); 
+    </script>
+
+
 @endsection
