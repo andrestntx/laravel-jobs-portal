@@ -6,6 +6,7 @@ use App\Entities\Company;
 use App\Entities\Job;
 use App\Services\ApplicationService;
 use App\Services\CompanyService;
+use App\Services\EmailService;
 use App\Services\GeoLocationService;
 use App\Services\JobService;
 use Illuminate\Database\Eloquent\Model;
@@ -15,18 +16,22 @@ class EmployerFacade
     protected $jobService;
     protected $companyService;
     protected $geoLocationService;
+    protected $emailService;
 
     /**
      * EmployerFacade constructor.
      * @param JobService $jobService
      * @param CompanyService $companyService
      * @param GeoLocationService $geoLocationService
+     * @param EmailService $emailService
      */
-    public function __construct(JobService $jobService, CompanyService $companyService, GeoLocationService $geoLocationService)
+    public function __construct(JobService $jobService, CompanyService $companyService, GeoLocationService $geoLocationService,
+        EmailService $emailService)
     {
         $this->jobService = $jobService;
         $this->companyService = $companyService;
         $this->geoLocationService = $geoLocationService;
+        $this->emailService = $emailService;
     }
 
     /**
@@ -59,7 +64,13 @@ class EmployerFacade
     {
         $data = $this->geoLocationService->validAndMerge($data);
         $newJob = $this->jobService->newModel($data);
-        return $this->companyService->addNewJob($company, $newJob);
+        $job = $this->companyService->addNewJob($company, $newJob);
+
+        if($job->company->email_new_job) {
+            $this->emailService->notifyNewJob($job);
+        }
+
+        return $job;
     }
 
     /**

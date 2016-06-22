@@ -35,6 +35,10 @@ class JobRepository extends BaseRepository
             $data['google'] = 0;
         }
 
+        if(! array_key_exists('email_new_application', $data)) {
+            $data['email_new_application'] = 0;
+        }
+
         $model->fill($data);
 
         return $model;
@@ -49,6 +53,14 @@ class JobRepository extends BaseRepository
     {
         if(! array_key_exists('google', $data)){
             $data['google'] = 0;
+        }
+
+        if(! array_key_exists('email_new_application', $data)) {
+            $data['email_new_application'] = 0;
+        }
+
+        if(! array_key_exists('inactive', $data)) {
+            $data['inactive'] = 0;
         }
 
         $entity->fill($data);
@@ -96,7 +108,7 @@ class JobRepository extends BaseRepository
             });
         }
 
-        return $query->closing();
+        return $query->whereInactive(0)->closing();
     }
 
     /**

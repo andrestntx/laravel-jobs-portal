@@ -28,4 +28,12 @@ class Application extends Model
     {
         return $this->belongsTo('App\Entities\Job');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getJobseekerSexAttribute()
+    {
+        return $this->resume->jobseeker->sex;
+    }
 }

@@ -47,4 +47,19 @@ class CompanyRepository extends BaseRepository
     {
         return $company->jobs()->save($job);
     }
+
+    /**
+     * @param array $data
+     * @param $entity
+     * @return mixed
+     */
+    public function update(array $data, $entity)
+    {
+        if(! array_key_exists('email_new_job', $data))
+        {
+            $data['email_new_job'] = 0;
+        }
+
+        return parent::update($data, $entity);
+    }
 }

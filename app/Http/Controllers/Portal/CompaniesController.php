@@ -34,6 +34,7 @@ class CompaniesController extends ResourceController
     /**
      * CompaniesController constructor.
      * @param CompanyService $service
+     * @param EmployerFacade $facade
      */
     function __construct(CompanyService $service, EmployerFacade $facade)
     {

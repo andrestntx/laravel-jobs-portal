@@ -45,13 +45,15 @@ class EmailService
         $fromEmail = $this->fromEmail;
         $fromName = $this->fromName;
 
-        Mail::send('emails.apply-company', ['resume' => $resume, 'job' => $job, 'application' => $application], function ($m) use ($job, $resume, $fromEmail, $fromName, $pathToFile) {
-            $m->from($fromEmail, $fromName);
-            $m->to($job->email, $job->company->name)
-                ->subject('Haz recibido una hoja de vida de ' . $resume->jobseeker->full_name)
-                ->cc(self::$cc)
-                ->attach(url($pathToFile));
-        });
+        if($job->company->email_new_application) {
+            Mail::send('emails.apply-company', ['resume' => $resume, 'job' => $job, 'application' => $application], function ($m) use ($job, $resume, $fromEmail, $fromName, $pathToFile) {
+                $m->from($fromEmail, $fromName);
+                $m->to($job->email, $job->company->name)
+                    ->subject('Haz recibido una hoja de vida de ' . $resume->jobseeker->full_name)
+                    ->cc(self::$cc)
+                    ->attach(url($pathToFile));
+            });
+        }
 
         Mail::send('emails.apply-jobseeker', ['resume' => $resume, 'job' => $job], function ($m) use ($job, $resume, $fromEmail, $fromName) {
             $m->from($fromEmail, $fromName);
@@ -73,6 +75,23 @@ class EmailService
             $m->from($fromEmail, $fromName);
             $m->to($user->email, $user->full_name)
                 ->subject('Bienvenido ' . $user->name)
+                ->cc(self::$cc);
+        });
+    }
+
+    /**
+     * @param Job $job
+     */
+    public function notifyNewJob(Job $job)
+    {
+        $fromEmail = $this->fromEmail;
+        $fromName = $this->fromName;
+        $user = $job->company->user;
+
+        Mail::send('emails.notify-new-job', ['job' => $job], function ($m) use ($user, $job, $fromEmail, $fromName) {
+            $m->from($fromEmail, $fromName);
+            $m->to($job->email, $user->name)
+                ->subject('Ha creado una nueva oferta de empleo con éxito')
                 ->cc(self::$cc);
         });
     }

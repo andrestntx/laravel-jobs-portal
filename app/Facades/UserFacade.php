@@ -11,22 +11,31 @@ namespace App\Facades;
 
 use App\Entities\User;
 use App\Services\EmailService;
+use App\Services\StatsService;
 use App\Services\UserService;
 
 class UserFacade
 {
     protected $userService;
     protected $emailService;
+    protected $statsService;
 
     /**
      * UserFacade constructor.
      * @param UserService $userService
      * @param EmailService $emailService
+     * @param StatsService $statsService
      */
-    public function __construct(UserService $userService, EmailService $emailService)
+    public function __construct(UserService $userService, EmailService $emailService, StatsService $statsService)
     {
         $this->userService = $userService;
         $this->emailService = $emailService;
+        $this->statsService = $statsService;
+    }
+
+    public function getStats()
+    {
+        return $this->statsService->getStats();
     }
 
     /**

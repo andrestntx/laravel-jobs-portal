@@ -23,7 +23,9 @@ class CreateJobsTable extends Migration
             $table->integer('experience')->default(0);
             $table->date('closing_date')->nullable();
             $table->string('email')->nullable();
-            $table->boolean('google')->default(true);
+            $table->boolean('google')->default(false);
+            $table->boolean('email_new_application')->default(false);
+            $table->boolean('inactive')->default(false);
 
             $table->timestamps();
 

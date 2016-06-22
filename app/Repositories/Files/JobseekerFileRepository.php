@@ -14,7 +14,7 @@ use Illuminate\Http\UploadedFile;
 class JobseekerFileRepository extends BaseFileRepostory
 {
     protected $path = "storage/jobseekers";
-    protected $defaultPhoto = "images/default.jpg";
+    protected $defaultPhoto = "images/user_type.png";
 
     public function getPathJobseeker($user_id)
     {

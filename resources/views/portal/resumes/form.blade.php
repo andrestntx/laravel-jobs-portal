@@ -25,8 +25,19 @@
                 {!! Field::text('last_name', ['ph' => 'Apellidos', 'required']) !!}
                 {!! Field::select('sex', $sex, ['empty' => 'Seleccione el Género', 'required']) !!}
 
-
-                {!! Field::file('photo', ['data-input' => 'false', 'data-buttonText' => 'Buscar Foto', 'data-iconName' => 'glyphicon glyphicon-user']) !!}
+                <div class="form-group">
+                    <label for="photo" class="control-label" style="width: 100%;">Foto</label>
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                        <img src="{{ $photos->getPhotoUrlId($resume->user_id) }}" alt="img">
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                      <div>
+                        <span class="btn btn-default btn-file"><span class="fileinput-new">Buscar Foto</span><span class="fileinput-exists">Cambiar</span><input type="file" name="photo"></span>
+                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Eliminar</a>
+                      </div>
+                    </div>
+                </div>
 
                 @if($resume->exists)
                     {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file', 'accept' => 'application/pdf']) !!}
@@ -34,7 +45,6 @@
                     {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file', 'required', 'accept' => 'application/pdf']) !!}
                 @endif
 
-                
                 
                 @if($resume->exists)
                     {!! Field::text('email', ['ph' => 'Correo electrónico', 'required']) !!}

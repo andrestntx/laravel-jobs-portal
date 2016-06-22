@@ -16,7 +16,7 @@ return [
         //'search'	=> ['title' => 'Buscar', 'i' => 'fa fa-search', 'class' => 'mj_searchbtn', 'include' => 'includes.search'],
         'register'  => ['title' => 'Registrarse', 'url' => 'register', 'i' => 'fa fa-lock', 'logged' => false],
         'login'     => ['title' => 'Iniciar Sesión', 'url' => 'login', 'i' => 'fa fa-user', 'logged' => false],
-        'user'      => ['title' => '', 'url' => '#', 'i' => 'fa fa-angle-down', 'class' => 'mj_profileimg', 'img' => '/images/users40x40.png', 'logged' => true]
+        'user'      => ['title' => '', 'url' => '#', 'i' => 'fa fa-angle-down', 'class' => 'mj_profileimg', 'img' => 'user', 'logged' => true]
     ],
     'account' => [
         // Auth user

@@ -220,7 +220,7 @@ class JobseekerFacade
         $resume = $this->resumeService->getAuthResume();
         $application = $this->applicationService->applyJob($resume, $job, $data);
         $pathResume = $this->resumeService->getResumeFile($resume);
-        //$this->emailService->sendResume($resume, $job, $application, $pathResume);
+        $this->emailService->sendResume($resume, $job, $application, $pathResume);
 
         return $application;
     }

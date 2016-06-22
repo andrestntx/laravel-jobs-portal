@@ -18,6 +18,21 @@
     {!! Form::model($job, $formData) !!}
     <div class="mj_postdiv mj_shadow_yellow mj_postpage mj_toppadder50 mj_bottompadder50">
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+
+            @if($job->exists)
+                <div class="form-group">
+                    <label for="inactive" class="control-label">
+                        Desactivar oferta laboral
+                        <span>(opcional)</span>     
+                    </label> <br>
+                    <div class="mj_checkbox">
+                        <input type="checkbox" value="1" id="inactive" name="inactive" @if($job->inactive) checked @endif>
+                        <label for="inactive" style="border: 1px solid gray;"></label>
+                    </div>
+                    <span> Desactivar oferta laboral </span>
+                </div>
+            @endif
+
             {!! Field::text('name', ['ph' => 'Nombre del empleo', 'required']) !!}
             {!! Field::select('occupation_id', $occupations, ['required', 'class' => 'select2']) !!}
             {!! Field::select('contract_type_id', $contractTypes, ['required', 'class' => 'select2']) !!}
@@ -31,6 +46,20 @@
             {!! Field::number('salary', ['ph' => 'Salario']) !!}
             {!! Field::text('closing_date', $job->closing_date_form, ['ph' => 'Fecha de finalización', 'class' => 'datepicker', 'tpl' => 'themes.bootstrap.fields.text-date']) !!}
             {!! Field::text('email', ['ph' => 'Correo electrónico para recibir las hojas de vida']) !!}
+            
+            <div class="form-group">
+                <label for="email_new_application" class="control-label">
+                    Notificación al correo de la oferta
+                    <span>(opcional)</span>     
+                </label> <br>
+                <div class="mj_checkbox">
+                    <input type="checkbox" value="1" id="email_new_application" name="email_new_application" @if($job->email_new_application) checked @endif>
+                    <label for="email_new_application" style="border: 1px solid gray;"></label>
+                </div>
+                <span> Deseo recibir una notificación al correo cada vez que alguien que se postule a la oferta</span>
+            </div>
+
+
             @include('includes.google-maps.inputs')
 
             @if($job->exists && $job->geoLocation)

@@ -11,6 +11,12 @@ Breadcrumbs::register('account', function ($breadcrumbs) {
     $breadcrumbs->push('Mi Cuenta', url('accunt'));
 });
 
+// Home > admin > stats
+Breadcrumbs::register('stats', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Estadísticas', url('stats'));
+});
+
 // Home > admin
 Breadcrumbs::register('admin', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
@@ -89,12 +95,6 @@ Breadcrumbs::register('occupations.occupation', function ($breadcrumbs, $occupat
     } else {
         $breadcrumbs->push('Nueva', route('admin.occupations.create'));
     }
-});
-
-// Home > admin > stats
-Breadcrumbs::register('stats', function ($breadcrumbs) {
-    $breadcrumbs->parent('home');
-    $breadcrumbs->push('Estadísticas', route('companies.index'));
 });
 
 // Home > companies

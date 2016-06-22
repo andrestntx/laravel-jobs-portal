@@ -69,21 +69,15 @@
                                      </tr>
                                     @foreach($applications as $application)
                                         <tr>
-                                            <td> 
-                                                <div class="mj_checkbox" style="float: none; margin: auto;">
-                                                    <input type="checkbox" value="1" data-company="{{ $job->company->id }}" data-job="{{ $job->id }}"
-                                                    data-application="{{ $application->id }}" id="app-{{ $application->id }}" @if($application->accepted) checked @endif>
-
-
-                                                    <label for="app-{{ $application->id }}" style="border: 1px solid gray;"></label>
-                                                </div>
+                                            <td class="text-center"> 
+                                                @if($application->accepted) Si @else No @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('resumes.show', $application->resume) }}" target="_blank"><img src="{{ $logos->getPhotoUrl($application->resume->jobseeker) }}" class="img-responsive" alt="">
+                                                <a href="{{ route('companies.jobs.applications.show', [$job->company, $job, $application]) }}"><img src="{{ $photos->getPhotoUrl($application->resume->jobseeker) }}" class="img-responsive" alt="">
                                                 </a>
                                             </td>
                                             <td> 
-                                                <a href="{{ route('resumes.show', $application->resume) }}" target="_blank">
+                                                <a href="{{ route('companies.jobs.applications.show', [$job->company, $job, $application]) }}">
                                                     {{ $application->resume->jobseeker->full_name }} 
                                                 </a>
                                             </td>
@@ -104,41 +98,5 @@
         </div>
     </div>
 </div>
-
-@endsection
-
-@section('extra-js')
-
-    <script type="text/javascript">
-        $('.mj_checkbox input').change(function () {
-
-            company_id = $(this).data('company');
-            job_id = $(this).data('job');
-            application_id = $(this).data('application');
-
-            if (confirm('¿Está seguro?')) {
-                $.ajax({
-                    url: '/companies/' + company_id + '/jobs/' + job_id + '/accept-application',
-                    dataType: 'json',
-                    method: 'POST',
-                    data: {
-                        'application': application_id
-                    },
-                    success: function (data) {
-                        if (data['success']) {
-                            console.log('contratado');
-                        }
-                        else {
-                            console.log('No se eliminó');
-                        }
-                    },
-                    error: function () {
-                        alert('fallo la conexión');
-                    }
-                });
-            }
-            console.log();
-        });
-    </script>
 
 @endsection

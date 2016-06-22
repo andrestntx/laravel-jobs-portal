@@ -23,6 +23,7 @@ class UserRepository extends BaseRepository
         return 'App\Entities\User';
     }
 
+
     /**
      * @param User $user
      * @param array $data

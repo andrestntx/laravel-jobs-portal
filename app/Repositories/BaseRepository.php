@@ -53,7 +53,7 @@ abstract class  BaseRepository {
      */
     public function newModel(array $data = array())
     {
-        $model = $this->model->getModel();
+        $model = new $this->model();
         $model->fill($data);
 
         return $model;

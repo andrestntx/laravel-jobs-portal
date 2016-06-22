@@ -49,6 +49,11 @@ Route::group(['middleware' => 'web'], function () {
 			'uses' 	=> 'CompaniesController@destroy'
 		]);
 
+		Route::get('stats', [
+			'as'	=> 'stats',
+			'uses'  => 'StatsController@index'
+		]);
+
 		// Route::resource('jobs', 'JobsController', ['only' => ['index', 'show']]);
 	});
 
@@ -92,7 +97,7 @@ Route::group(['middleware' => 'web'], function () {
 			Route::resource('companies.jobs', 'CompaniesJobsController', ['except' => ['index', 'destroy']]);
 		});
 
-		Route::group(['middleware' => ['auth', 'role:employer']], function () {
+		Route::group(['middleware' => ['auth', 'role:employer;admin']], function () {
 			Route::get('my-company', [
 				'as' 	=> 'employer.company',
 				'uses'	=> 'CompaniesController@myCompany'
@@ -108,6 +113,10 @@ Route::group(['middleware' => 'web'], function () {
 			Route::get('companies/{companies}/jobs/{jobs}/applications', [
 				'as' 	=> 'companies.jobs.applications',
 				'uses' 	=> 'CompaniesJobsController@jobApplications'
+			]);
+			Route::get('companies/{companies}/jobs/{jobs}/applications/{application}', [
+				'as' 	=> 'companies.jobs.applications.show',
+				'uses' 	=> 'CompaniesJobsController@resumeApplications'
 			]);
 			Route::post('companies/{companies}/jobs/{jobs}/accept-application', [
 				'as' 	=> 'companies.jobs.accept-application',

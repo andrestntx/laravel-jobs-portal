@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Portal;
 
+use App\Entities\Application;
 use App\Entities\Company;
 use App\Entities\Job;
 use App\Facades\EmployerFacade;
@@ -222,6 +223,29 @@ class CompaniesJobsController extends ResourceController
             'logoUrl' => $logoUrl,
             'applications' => $applications,
             'logos' => $logos
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Company $company
+     * @param Job $job
+     * @param Application $application
+     * @return \Illuminate\Auth\Access\Response
+     */
+    public function resumeApplications(Request $request, Company $company, Job $job, Application $application)
+    {
+        $this->authorize('edit', $job);
+        $resume = $application->resume;
+
+        $photoUrl = $this->jobseekerFacade->getPhoto($resume->jobseeker);
+        $resumeFileUrl = $this->jobseekerFacade->getResumeFile($resume);
+
+        return $this->view('show-application', [
+            'resume' => $resume,
+            'application' => $application,
+            'photoUrl' => $photoUrl,
+            'resumeFileUrl' => $resumeFileUrl
         ]);
     }
 

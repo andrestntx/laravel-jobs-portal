@@ -18,6 +18,10 @@
 	<!-- end theme style -->
 	<!-- favicon links -->
 	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+
 </head>
 <body>
 	<!--Loader Start -->
@@ -167,6 +171,9 @@
 	<script src="/js/plugins/form-validation/validation.min.js"></script>
 	<script src="/js/custom.js" type="text/javascript"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
 	
 	<!-- Data Tables -->
     <script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
