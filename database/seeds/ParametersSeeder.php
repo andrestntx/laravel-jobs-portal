@@ -26,7 +26,8 @@ class ParametersSeeder extends Seeder
         ['name' => 'gerente_nombre', 'value' => 'Pedro Gomez'],
         ['name' => 'represente_identificacion', 'value' => '3456'],
         ['name' => 'represente_nombre', 'value' => 'Juan Pardo'],
-        ['name' => 'datos_complementarios', 'value' => 'xx']
+        ['name' => 'datos_complementarios', 'value' => 'xx'],
+        ['name' => 'portal_descripcion', 'value' => 'texto']
     ];
 
     /**
