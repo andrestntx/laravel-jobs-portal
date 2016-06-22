@@ -34,8 +34,8 @@
             @endif
 
             {!! Field::text('name', ['ph' => 'Nombre del empleo', 'required']) !!}
-            {!! Field::select('occupation_id', $occupations, ['required', 'class' => 'select2']) !!}
-            {!! Field::select('contract_type_id', $contractTypes, ['required', 'class' => 'select2']) !!}
+            {!! Field::select('occupation_id', $occupations, ['required', 'class' => 'select2occupation']) !!}
+            {!! Field::select('contract_type_id', $contractTypes, ['required', 'class' => 'select2contracttype']) !!}
             {!! Field::text('skills', ['ph' => 'Habilidades requeridas para el empleo', 'data-role' => 'tagsinput']) !!}
             {!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90']) !!}
             @include('includes.google-maps.map')
@@ -92,9 +92,7 @@
     <script src="/js/services/searchLocation.js"></script>
     <script>
         searchLocation.init();
-        $(".select2").select2({
-            placeholder: "Seleccione las Habilidades",
-            tags: true
-        });
+
+        
     </script>
 @endsection
