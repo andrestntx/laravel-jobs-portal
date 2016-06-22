@@ -30,7 +30,7 @@
                     </td>
 	            	<td> 
                         <div class="mj_checkbox" style="float: none; margin: auto;">
-                            <input type="checkbox" value="1" data-company="{{ $company->id }}" 
+                            <input type="checkbox" value="1" data-company="{{ $company->id }}" onchange="changeActive({{ $company->id }})"
                             id="company-{{ $company->id }}" @if($company->active) checked @endif>
                             <label for="company-{{ $company->id }}" style="border: 1px solid gray;"></label>
                         </div>
@@ -93,9 +93,7 @@
             }
 		});
 
-		$('.mj_checkbox input').change(function () {
-
-            company_id = $(this).data('company');
+        function changeActive(company_id) {
 
             if (confirm('¿Está seguro?')) {
                 $.ajax({
@@ -115,7 +113,7 @@
                     }
                 });
             }
-            console.log();
-        });
+        }
+
 	</script>
 @endsection
