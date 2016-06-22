@@ -33,4 +33,9 @@ class UserRepository extends BaseRepository
     {
         return $user->companies()->create($data);
     }
+    
+    public function admins()
+    {
+        return $this->model->whereRole('admin')->get();
+    } 
 }

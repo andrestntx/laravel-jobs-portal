@@ -6,7 +6,7 @@
  * Time: 4:07 PM
  */
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\AUser;
 
 
 use Illuminate\Routing\Route;
