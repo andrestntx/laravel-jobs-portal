@@ -91,6 +91,7 @@ class EmployerFacade
      * @param null $locationId
      * @param null $search
      * @param int $experience
+     * @param null $salaryRange
      * @return mixed
      */
     public function searchJobs($occupationId = null, $companyId = null, $contractTypeId = null, $locationId = null, $search = null, $experience = 0, $salaryRange = null)

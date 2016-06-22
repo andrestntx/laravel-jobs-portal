@@ -44,7 +44,7 @@ class JobsController extends ResourceController
     {
         $result = $this->facade->searchJobs($request->get('occupation'), $request->get('company'),
             $request->get('contract-types'), $request->get('location'), $request->get('search'),
-            $request->get('experience', 0));
+            $request->get('experience', 0), $request->get('salary'));
 
         $defaultVars = [
             'occupation' => $request->get('occupation'),
