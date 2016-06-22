@@ -30,7 +30,7 @@ return [
         //'jobs'                  => array('url' => 'admin/jobs', 'title' => 'Trabajos', 'i' => 'fa fa-location-arrow', 'roles' => 'admin'),
         'occupations'           => ['url' => 'admin/occupations', 'title' => 'Ocupaciones', 'i' => 'fa fa-users', 'roles' => 'admin'],
         'locations'             => ['url' => 'admin/geo-locations', 'title' => 'Ubicaciones', 'i' => 'fa fa-map-marker', 'roles' => 'admin'],
-        //'stats'                 => ['url' => 'admin/stats', 'title' => 'Estadísticas', 'i' => 'fa fa-pie-chart', 'roles' => 'admin'],
+        'stats'                 => ['url' => 'admin/stats', 'title' => 'Estadísticas', 'i' => 'fa fa-pie-chart', 'roles' => 'admin'],
 
         // Jobseeker user
         'resume'        => ['title' => 'Hoja de vida', 'url' => 'my-resume', 'i' => 'fa fa-mortar-board', 'roles' => 'jobseeker'],
