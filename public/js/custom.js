@@ -250,14 +250,7 @@
 			nav: false
 		});
 		
-			// On focus Placeholder css
-			var place = '';
-			$('input,textarea').focus(function(){
-				place = $(this).attr('placeholder');
-			$(this).attr('placeholder','');
-			}).blur(function(){
-			$(this).attr('placeholder',place);
-			});
+		
 		
 		// mixitup js
 		$(".mj_filter_menu a, .mj_team_filter_menu a").on("click", function(e) {

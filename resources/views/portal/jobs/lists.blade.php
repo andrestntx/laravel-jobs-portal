@@ -45,7 +45,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                                 <div class="form-group">
-                                    <label>Salario:<span> {{ $salaryMin }} - {{ $salaryMax }}</span>
+                                    <label>Salario:<span> {{ number_format($salaryMin) }} - {{ number_format($salaryMax) }}</span>
                                     </label>
                                     @if(isset($salaryRange))
                                         <input id="ex2" name="salary" type="text" class="span2" value="" data-slider-min="{{ $salaryMin }}" data-slider-max="{{ $salaryMax }}" data-slider-step="5" data-slider-value="[{{ $salaryRange }}]" />
