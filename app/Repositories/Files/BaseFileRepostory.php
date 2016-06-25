@@ -32,7 +32,7 @@ class BaseFileRepostory
             $urlFile = $urlDefault;
         }
 
-        return '/' . $urlFile;
+        return '/' . $urlFile . '?' . time();
     }
 
 }
