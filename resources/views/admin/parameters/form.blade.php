@@ -16,8 +16,22 @@
 	{!! Form::model($parameter, $formData) !!}
 	<div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
 		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
-			{!! Field::text('name', ['ph' => 'Nombre del parametro']) !!}
-			{!! Field::text('value', ['ph' => 'Valor del parametro', 'label' => 'Valor']) !!}
+			@if($parameter->file)
+				<div class="form-group">
+			        <div class="fileinput fileinput-new" data-provides="fileinput">
+			          <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+			            <img src="{{ $fileParameters->getFileUrl($parameter) }}" alt="img">
+			          </div>
+			          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+			          <div>
+			            <span class="btn btn-default btn-file"><span class="fileinput-new">Buscar Foto</span><span class="fileinput-exists">Cambiar</span><input type="file" name="parameterFile"></span>
+			            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Eliminar</a>
+			          </div>
+			        </div>
+			    </div>
+			@else
+				{!! Field::text('value', ['ph' => 'Valor del parametro', 'label' => 'Valor']) !!}
+			@endif
 		</div>
 	</div>
 	<div class="mj_resumepreview_footer">

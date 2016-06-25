@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Entities\Parameter;
+use App\Facades\ParameterFacade;
 use App\Http\Controllers\ResourceController;
 use App\Http\Requests\Parameter\StoreRequest;
 use App\Http\Requests\Parameter\UpdateRequest;
@@ -35,13 +36,15 @@ class ParametersController extends ResourceController
      */
     protected $modelName = "parameter";
 
+    protected $facade;
+
     /**
      * ParametersController constructor.
-     * @param ParameterService $service
+     * @param ParameterFacade $facade
      */
-    function __construct(ParameterService $service)
+    function __construct(ParameterFacade $facade)
     {
-        $this->service = $service;
+        $this->facade = $facade;
     }
 
     /**
@@ -52,28 +55,6 @@ class ParametersController extends ResourceController
     public function index()
     {
         return $this->view('lists');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return $this->defaultCreate();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  StoreRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreRequest $request)
-    {
-        $this->service->createModel($request->all());
-        return $this->redirect('index');
     }
 
     /**
@@ -97,7 +78,7 @@ class ParametersController extends ResourceController
     {
         return $this->view('form', [
             'parameter' => $parameter,
-            'formData' => $this->getFormDataUpdate($parameter->id)
+            'formData' => $this->getFormDataUpdate($parameter->id, true)
         ]);
     }
 
@@ -110,18 +91,8 @@ class ParametersController extends ResourceController
      */
     public function update(UpdateRequest $request, Parameter $parameter)
     {
-        $this->service->updateModel($request->all(), $parameter);
+        $this->facade->updateParameter($request->all(), $parameter);
         return $this->redirect('index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Parameter  $parameter
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Parameter $parameter)
-    {
-        return $this->service->deleteModel($parameter);
-    }
 }

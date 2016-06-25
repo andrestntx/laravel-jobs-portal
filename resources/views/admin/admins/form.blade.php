@@ -19,20 +19,20 @@
 			@include('auth.inputs.user')
 
 			<div class="form-group">
-                <div class="fileinput fileinput-new" data-provides="fileinput">
-                  <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                    <img src="{{ $photoUsers->getPhotoUrl($admin) }}" alt="img">
-                  </div>
-                  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-                  <div>
-                    <span class="btn btn-default btn-file"><span class="fileinput-new">Buscar Foto</span><span class="fileinput-exists">Cambiar</span><input type="file" name="photo"></span>
-                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Eliminar</a>
-                  </div>
-                </div>
-            </div>
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+          <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+            <img src="{{ $photoUsers->getPhotoUrl($admin) }}" alt="img">
+          </div>
+          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+          <div>
+            <span class="btn btn-default btn-file"><span class="fileinput-new">Buscar Foto</span><span class="fileinput-exists">Cambiar</span><input type="file" name="photo"></span>
+            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Eliminar</a>
+          </div>
+        </div>
+      </div>
 
-	        @include('auth.inputs.passwords')
-	        <input type="hidden" name="role" value="admin">
+      @include('auth.inputs.passwords')
+      <input type="hidden" name="role" value="admin">
 		</div>
 	</div>
 	<div class="mj_resumepreview_footer">

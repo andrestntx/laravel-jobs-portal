@@ -48,10 +48,10 @@ class UpdateRequest extends Request
      * @return array
      */
     public function rules() {
-        $parameter = $this->route->getParameter('parameters');
+        //$parameter = $this->route->getParameter('parameters');
 
         $rules = $this->storeRequest->rules();
-        $rules['name'] .= ',name,' . $parameter->id . ',id';
+        //$rules['name'] .= ',name,' . $parameter->id . ',id';
 
         return $rules;
     }

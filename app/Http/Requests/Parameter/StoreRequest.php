@@ -29,8 +29,7 @@ class StoreRequest extends Request
      */
     public function rules() {
         return [
-            'name'  => 'required|unique:parameters',
-            'value'  => 'required'
+
         ];
     }
 }

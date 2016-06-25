@@ -100,7 +100,7 @@ Breadcrumbs::register('occupations.occupation', function ($breadcrumbs, $occupat
 // Home > admin > parameters
 Breadcrumbs::register('parameters', function ($breadcrumbs) {
     $breadcrumbs->parent('admin');
-    $breadcrumbs->push('Ocupaciones', route('admin.parameters.index'));
+    $breadcrumbs->push('Parametros', route('admin.parameters.index'));
 });
 
 // Home > admin > parameters > {{ $parameter }}

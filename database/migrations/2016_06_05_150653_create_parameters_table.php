@@ -16,6 +16,8 @@ class CreateParametersTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('value');
+            $table->boolean('file')->default(false);
+            $table->string('extension')->default('png');
             $table->timestamps();
         });
     }

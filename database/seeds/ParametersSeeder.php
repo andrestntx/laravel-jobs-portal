@@ -13,7 +13,7 @@ class ParametersSeeder extends Seeder
 
     protected $parameters = [
         ['name' => 'portal_nombre', 'value' => 'Portal Trabajo'],
-        ['name' => 'portal_logo', 'value' => '/images/logo.png'],
+        ['name' => 'portal_logo', 'value' => '/images/logo.png', 'file' => true],
         ['name' => 'empresa_nombre', 'value' => 'Gestacol'],
         ['name' => 'empresa_direccion', 'value' => 'Carrera 38'],
         ['name' => 'empresa_nit', 'value' => '090398982'],
