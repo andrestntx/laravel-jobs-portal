@@ -36,7 +36,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                                 <div class="form-group">
-                                    <label>Experiencia:<span>{{ $experienceMin }} to {{ $experienceMax }} Años</span>
+                                    <label>Experiencia:<span>{{ $experienceMin }} a {{ $experienceMax }} años</span>
                                     </label>
                                     <input id="ex1" name="experience" data-slider-id='ex1Slider' type="text" data-slider-min="{{ $experienceMin }}" data-slider-max="{{ $experienceMax }}" data-slider-step="1" data-slider-value="{{ $experience }}" />
                                 </div>
@@ -45,7 +45,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                                 <div class="form-group">
-                                    <label>Salario:<span> {{ number_format($salaryMin) }} - {{ number_format($salaryMax) }}</span>
+                                    <label>Salario:<span> ${{ number_format($salaryMin, 0, ',', '.') }}  -  ${{ number_format($salaryMax, 0, ',', '.') }}</span>
                                     </label>
                                     @if(isset($salaryRange))
                                         <input id="ex2" name="salary" type="text" class="span2" value="" data-slider-min="{{ $salaryMin }}" data-slider-max="{{ $salaryMax }}" data-slider-step="5" data-slider-value="[{{ $salaryRange }}]" />

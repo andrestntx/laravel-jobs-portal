@@ -122,11 +122,11 @@
 					<div class="mj_weight mj_bottompadder20">
 						<a href="index.html"><img src="{{ $portalLogo }}" class="img-responsive" alt="">
 						</a>
-						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat wisi enim ad minim veniam. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.</p>
+						<p>{!! $portalDescription !!}</p>
 					</div>
 					<div class="mj_copyright">
-						<p>&copy; 2015 <a href="#">{{ $companyFirstName }}<span class="mj_yellow_text">{{ $companyLastName }}</span></a> Inc.
-							<br> Designerd by <a href="#">themefire</a> &nbsp; / &nbsp; Only on <a href="#">Envato Market</a>
+						<p>&copy; {{ date('Y') }} <a href="http://gestacol.net">Ges<span class="mj_yellow_text">tacol</span></a> Software.
+							<br> Licencia de uso exclusivo para <a href="#">{{ $companyName }}</a> &nbsp; / &nbsp; Todos los derechos de uso y reproducción reservados a <a href="#">Gestacol</a>
 						</p>
 						<span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
 					</div>

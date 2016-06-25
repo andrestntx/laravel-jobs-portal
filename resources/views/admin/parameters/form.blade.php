@@ -29,8 +29,10 @@
 			          </div>
 			        </div>
 			    </div>
+			@elseif($parameter->textarea)
+				{!! Field::textarea('value', ['ph' => 'Valor del parametro', 'class' => 'editor-html', 'required']) !!}
 			@else
-				{!! Field::text('value', ['ph' => 'Valor del parametro', 'label' => 'Valor']) !!}
+				{!! Field::text('value', ['ph' => 'Valor del parametro', 'label' => 'Valor', 'required']) !!}
 			@endif
 		</div>
 	</div>

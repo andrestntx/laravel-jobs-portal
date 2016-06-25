@@ -21,14 +21,13 @@ class GlobalComposer extends BaseComposer
     public function compose(View $view)
     {
         $companyName = $this->repository->getValue('empresa_nombre');
+        $portalDescription = $this->repository->getValue('portal_descripcion');
         $portalLogo = $this->repository->getValue('portal_logo');
 
-        $companyFirstName = 'Ges';
-        $companyLastName = 'tacol';
 
         $view->with([
-            'companyFirstName' => $companyFirstName,
-            'companyLastName' => $companyLastName,
+            'companyName' => $companyName,
+            'portalDescription' => $portalDescription,
             'portalLogo' => $portalLogo,
         ]);
     }
