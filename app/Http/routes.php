@@ -22,8 +22,6 @@
 |
 */
 
-setlocale(LC_MONETARY, 'co_CO');
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'HomeController@index');
@@ -40,6 +38,10 @@ Route::group(['middleware' => 'web'], function () {
 		Route::resource('occupations', 'OccupationsController');
 		Route::resource('geo-locations', 'GeoLocationsController', ['only' => ['index', 'store', 'edit']]);
 		Route::resource('skills', 'SkillsController');
+		Route::resource('admins', 'AdminsController');
+		Route::resource('parameters', 'ParametersController');
+
+
 		Route::controller('stats', 'StatsController');
 		Route::resource('companies', 'CompaniesController', ['only' => ['index']]);
 		Route::post('companies/{companies}/active', [

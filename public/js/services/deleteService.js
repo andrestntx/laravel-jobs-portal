@@ -77,6 +77,12 @@ var deleteService = function() {
         deleteOccupation: function(id) {
             postDelete('/admin/occupations/', id, 'occupation');
         },
+        deleteParameter: function(id) {
+            postDelete('/admin/parameters/', id, 'parameter');
+        },
+        deleteAdmin: function(id) {
+            postDelete('/admin/admins/', id, 'admin');
+        },
         deleteGeoLocations: function(id) {
             postDelete('/admin/geo-locations/', id, 'location');
         },

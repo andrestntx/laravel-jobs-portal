@@ -38,6 +38,8 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('users', 'App\Entities\User');
         $router->model('geo-locations', 'App\Entities\GeoLocation');
         $router->model('applications', 'App\Entities\Application');
+        $router->model('parameters', 'App\Entities\Parameter');
+        $router->model('admins', 'App\Entities\User');
     }
 
     /**

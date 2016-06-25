@@ -97,6 +97,40 @@ Breadcrumbs::register('occupations.occupation', function ($breadcrumbs, $occupat
     }
 });
 
+// Home > admin > parameters
+Breadcrumbs::register('parameters', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Ocupaciones', route('admin.parameters.index'));
+});
+
+// Home > admin > parameters > {{ $parameter }}
+Breadcrumbs::register('parameters.parameter', function ($breadcrumbs, $parameter) {
+    $breadcrumbs->parent('parameters');
+
+    if ($parameter->exists) {
+        $breadcrumbs->push($parameter->name, route('admin.parameters.show', $parameter));
+    } else {
+        $breadcrumbs->push('Nueva', route('admin.parameters.create'));
+    }
+});
+
+// Home > admin > admins
+Breadcrumbs::register('admins', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Administradores', route('admin.admins.index'));
+});
+
+// Home > admin > admins > {{ $admin }}
+Breadcrumbs::register('admins.admin', function ($breadcrumbs, $admin) {
+    $breadcrumbs->parent('admins');
+
+    if ($admin->exists) {
+        $breadcrumbs->push($admin->name, route('admin.admins.show', $admin));
+    } else {
+        $breadcrumbs->push('Nueva', route('admin.admins.create'));
+    }
+});
+
 // Home > companies
 Breadcrumbs::register('companies', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
