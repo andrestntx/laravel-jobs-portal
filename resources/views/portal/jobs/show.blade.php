@@ -69,8 +69,14 @@
                             @else
                                 @can('apply', $job)
                                     <li><a href="{{ route('companies.jobs.apply', [$job->company, $job]) }}" class="mj_mainbtn mj_btnyellow" data-text="Aplicar"><span>Aplicar</span></a></li>
+                                @elseif(auth()->user()->isJobseeker())
+                                    @if(auth()->user()->jobseeker)
+                                        <li style="margin-bottom: 30px;"><a href="#">Ya aplicó a este empleo</a></li>
+                                    @else
+                                        <li style="margin-bottom: 30px;"><a href="/my-resume">Debe completar su hoja de vida para aplicar a empleos</a></li>
+                                    @endif
                                 @else
-                                    <li style="margin-bottom: 30px;"><a href="#">-</a></li>
+                                    <li style="margin-bottom: 30px;"><a href="#"></a></li>
                                 @endcan
                             @endcan
                         </ul>

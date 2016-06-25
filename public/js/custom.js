@@ -347,6 +347,7 @@
 		});
 	
 	    $(".mj_add_education").on("click", function(e) {
+
 			var intId = $(".mj_education").length + 1;
 			var fieldWrapper = $("<div class=\"mj_education\" id=\"new_education[" + intId + "]\"/>");
 			var fInstitution = $("<input name=\"new_studies[" + intId + "][institution]\" type=\"text\" class=\"form-control\" placeholder=\"Institución\" />");
@@ -370,13 +371,16 @@
 			fieldWrapper.append(datesWrapper);
 			fieldWrapper.append(fNotes);
 			fieldWrapper.append(removeButton);
+
 			$(".mj_educations").append(fieldWrapper);
-			$( ".datepicker" ).datepicker({
+
+			$(".mj_education").last().find(".datepicker").datepicker({
 				dateFormat: "yy-mm-dd",
 				setDate: new Date(),
 				changeYear: true,
 				changeMonth: true
 			}).datepicker("setDate", new Date());
+
     	});
 
 		$(".mj_add_experience").on("click", function(e) {
@@ -404,7 +408,9 @@
 			fieldWrapper.append(fNotes);
 			fieldWrapper.append(removeButton);
 			$(".mj_experiences").append(fieldWrapper);
-			$( ".datepicker" ).datepicker({
+
+			
+			$(".mj_experience").last().find(".datepicker").datepicker({
 				dateFormat: "yy-mm-dd",
 				setDate: new Date(),
 				changeYear: true,

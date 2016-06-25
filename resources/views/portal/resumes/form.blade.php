@@ -58,7 +58,7 @@
                 {!! Field::text('study_title', ['placeholder' => 'Título Profesional']) !!}
                 {!! Field::textarea('profile', ['ph' => 'Introducción', 'class' => 'editor-html', 'required']) !!}
                 <div class="form-group">
-                    <label>Education<span>(Opcional)</span>
+                    <label>Educación<span>(Opcional)</span>
                         <a href="javascript:void(0)" class="btn btn-sm btn-info mj_add_education">
                             <i class="fa fa-plus"></i> Agregar
                         </a>
