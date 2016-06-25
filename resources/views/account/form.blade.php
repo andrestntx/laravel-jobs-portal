@@ -17,6 +17,20 @@
 		<div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
 	        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
 	            @include('auth.inputs.user')
+
+	            <div class="form-group">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                        <img src="{{ $photoUsers->getPhotoUrl($user) }}" alt="img">
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                      <div>
+                        <span class="btn btn-default btn-file"><span class="fileinput-new">Buscar Foto</span><span class="fileinput-exists">Cambiar</span><input type="file" name="photo"></span>
+                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Eliminar</a>
+                      </div>
+                    </div>
+                </div>
+
 	            @include('auth.inputs.passwords')
 	        </div>
 	    </div>

@@ -45,6 +45,7 @@ class UserFacade
      */
     function updateUser(array $data, User $user)
     {
+        $this->userService->validAndSavePhoto($data, $user);
         return $this->userService->updateModel($data, $user);
     }
 

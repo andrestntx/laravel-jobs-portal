@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
         return view('account.form', [
             'user' => auth()->user(),
-            'formData' => ['route' => ['account', auth()->user()], 'method' => 'POST']
+            'formData' => ['route' => ['account', auth()->user()], 'method' => 'POST', 'files' => true]
         ]);
     }
 
