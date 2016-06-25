@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Entities\User;
+use App\Facades\UserFacade;
 use App\Http\Controllers\ResourceController;
 use App\Http\Requests\AUser\StoreRequest;
 use App\Http\Requests\AUser\AdminUpdateRequest as UpdateRequest;
@@ -35,13 +36,17 @@ class AdminsController extends ResourceController
      */
     protected $modelName = "admin";
 
+    protected $facade;
+
     /**
      * UsersController constructor.
      * @param UserService $service
+     * @param UserFacade $userFacade
      */
-    function __construct(UserService $service)
+    function __construct(UserService $service, UserFacade $userFacade)
     {
         $this->service = $service;
+        $this->facade = $userFacade;
     }
 
     /**
@@ -61,7 +66,7 @@ class AdminsController extends ResourceController
      */
     public function create()
     {
-        return $this->defaultCreate();
+        return $this->defaultCreate(array(), null, true);
     }
 
     /**
@@ -72,7 +77,7 @@ class AdminsController extends ResourceController
      */
     public function store(StoreRequest $request)
     {
-        $this->service->createModel($request->all());
+        $this->facade->createUser($request->all());
         return $this->redirect('index');
     }
 
@@ -97,7 +102,7 @@ class AdminsController extends ResourceController
     {
         return $this->view('form', [
             'admin' => $admin,
-            'formData' => $this->getFormDataUpdate($admin->id)
+            'formData' => $this->getFormDataUpdate($admin->id, true)
         ]);
     }
 
@@ -110,7 +115,7 @@ class AdminsController extends ResourceController
      */
     public function update(UpdateRequest $request, User $admin)
     {
-        $this->service->updateModel($request->all(), $admin);
+        $this->facade->updateUser($request->all(), $admin);
         return $this->redirect('index');
     }
 

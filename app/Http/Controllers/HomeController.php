@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\User;
 use App\Facades\UserFacade;
 use App\Http\Requests;
-use App\Http\Requests\User\UpdateRequest;
+use App\Http\Requests\AUser\UpdateRequest;
 
 class HomeController extends Controller
 {

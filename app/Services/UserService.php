@@ -14,11 +14,6 @@ use App\Repositories\UserRepository;
 
 class UserService extends ResourceService
 {
-    /**
-     * @var UserRepository
-     */
-    private $userRepository;
-
     protected $fileRepository;
 
     /**

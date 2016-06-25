@@ -40,6 +40,17 @@ class UserFacade
 
     /**
      * @param array $data
+     * @return mixed
+     */
+    public function createUser(array $data)
+    {
+        $user = $this->userService->createModel($data);
+        $this->userService->validAndSavePhoto($data, $user);
+        return $user;
+    }
+
+    /**
+     * @param array $data
      * @param User $user
      * @return mixed
      */
