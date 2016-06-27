@@ -12,10 +12,8 @@ class ContractTypesSeeder extends Seeder
 {
 
     protected $types = [
-        ['name' => 'Tiempo Completo',   'description' => 'Contrato de Tiempo Completo'],
-        ['name' => 'Medio Tiempo',      'description' => 'Solo se dedica a 4 horas laborales diarias'],
-        ['name' => 'Orden de Prestación de Servicios (OPS)', 'description' => 'Contrato de Prestación de Servicios'],
-        ['name' => 'Freelance',         'description' => 'Contrato de trabajo remoto']
+        ['name' => 'Contrato laboral',   'description' => 'Contrato laboral'],
+        ['name' => 'Orden de Prestación de Servicios', 'description' => 'Orden de Prestación de Servicios'],
     ];
 
     /**

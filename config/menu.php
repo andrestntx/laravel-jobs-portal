@@ -28,11 +28,12 @@ return [
         'companies'             => ['url' => 'admin/companies', 'title' => 'Empresas', 'i' => 'fa fa-building-o', 'roles' => 'admin'],
         'contract-types'        => ['url' => 'admin/contract-types', 'title' => 'Tipos de contrato', 'i' => 'fa fa-briefcase', 'roles' => 'admin'],
         //'jobs'                  => array('url' => 'admin/jobs', 'title' => 'Trabajos', 'i' => 'fa fa-location-arrow', 'roles' => 'admin'),
-        'occupations'           => ['url' => 'admin/occupations', 'title' => 'Ocupaciones', 'i' => 'fa fa-users', 'roles' => 'admin'],
-        'locations'             => ['url' => 'admin/geo-locations', 'title' => 'Ubicaciones', 'i' => 'fa fa-map-marker', 'roles' => 'admin'],
+        'occupations'           => ['url' => 'admin/occupations', 'title' => 'Ocupaciones y Oficios', 'i' => 'fa fa-user-secret', 'roles' => 'admin'],
+        'profiles'              => ['url' => 'admin/profiles', 'title' => 'Perfiles', 'i' => 'fa fa-users', 'roles' => 'admin'],
+        //'locations'             => ['url' => 'admin/geo-locations', 'title' => 'Ubicaciones', 'i' => 'fa fa-map-marker', 'roles' => 'admin'],
         'stats'                 => ['url' => 'admin/stats', 'title' => 'Estadísticas', 'i' => 'fa fa-pie-chart', 'roles' => 'admin'],
-        'admins'             => ['url' => 'admin/admins', 'title' => 'Administradores', 'i' => 'fa fa-user', 'roles' => 'admin'],
-        'parameters'             => ['url' => 'admin/parameters', 'title' => 'Parametros', 'i' => 'fa fa-cog', 'roles' => 'admin'],
+        'admins'                => ['url' => 'admin/admins', 'title' => 'Administradores', 'i' => 'fa fa-user', 'roles' => 'admin'],
+        'parameters'            => ['url' => 'admin/parameters', 'title' => 'Parámetros', 'i' => 'fa fa-cog', 'roles' => 'admin'],
 
         // Jobseeker user
         'resume'        => ['title' => 'Hoja de vida', 'url' => 'my-resume', 'i' => 'fa fa-mortar-board', 'roles' => 'jobseeker'],

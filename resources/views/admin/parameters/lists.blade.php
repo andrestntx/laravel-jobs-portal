@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	<span>Ocupaciones</span>
+	<span>Parámetros</span>
 @endsection
 
 @section('article')

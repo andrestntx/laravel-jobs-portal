@@ -16,7 +16,8 @@
 	{!! Form::model($user, $formData) !!}
 		<div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
 	        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
-	            @include('auth.inputs.user')
+	            {!! Field::text('name', ['ph' => 'Nombre', 'required']) !!}
+				{!! Field::email('email', ['ph' => 'Correo electrónico', 'required']) !!}
 
 	            <div class="form-group">
                     <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -31,7 +32,8 @@
                     </div>
                 </div>
 
-	            @include('auth.inputs.passwords')
+	            {!! Field::password('password', ['ph' => 'Su contraseña']) !!}
+				{!! Field::password('password_confirmation', ['ph' => 'Repita su contraseña']) !!}
 	        </div>
 	    </div>
 	    <div class="mj_showmore">

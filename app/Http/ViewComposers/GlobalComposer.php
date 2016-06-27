@@ -3,14 +3,19 @@
 namespace App\Http\ViewComposers;
 
 use App\Entities\Parameter;
+use App\Repositories\Files\ParameterFileRepository;
 use App\Repositories\ParameterRepository;
 use Illuminate\Contracts\View\View;
 
 class GlobalComposer extends BaseComposer
 {
-    function __construct(ParameterRepository $repository)
+
+    protected $parameterFileRepository;
+
+    function __construct(ParameterRepository $repository, ParameterFileRepository $parameterFileRepository)
     {
         $this->repository = $repository;
+        $this->parameterFileRepository = $parameterFileRepository;
     }
 
     /**
@@ -20,15 +25,21 @@ class GlobalComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $companyName = $this->repository->getValue('empresa_nombre');
+        $portalName = $this->repository->getValue('portal_nombre');
+        $portalFirstName = substr($portalName, 0, strlen($portalName) / 2);
+        $portalLastName = substr($portalName, strlen($portalName) / 2, strlen($portalName));
         $portalDescription = $this->repository->getValue('portal_descripcion');
-        $portalLogo = $this->repository->getValue('portal_logo');
-
+        $companyName = $this->repository->getValue('empresa_nombre');
+        $companyWeb = $this->repository->getValue('empresa_web');
 
         $view->with([
-            'companyName' => $companyName,
+            'portalName'       => $portalName,
+            'portalFirstName'  => $portalFirstName,
+            'portalLastName'   => $portalLastName,
             'portalDescription' => $portalDescription,
-            'portalLogo' => $portalLogo,
+            'companyName'      => $companyName,
+            'companyWeb'      => $companyWeb,
+            'portalLogo' => '/storage/parameters/portal_logo.png?' . time(),
         ]);
     }
 }

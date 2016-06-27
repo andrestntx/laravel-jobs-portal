@@ -19,7 +19,8 @@ class CreateJobseekersTable extends Migration
             $table->string('doc_type')->default('cc');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('phone');
+            $table->string('phone')->nullable();
+            $table->string('cel');
             $table->enum('sex', ['M', 'F']);
 
             $table->string('geo_location_id')->nullable();

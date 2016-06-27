@@ -12,7 +12,7 @@ class CategoriesSeeder extends Seeder
         ['name' => 'Control y Evaluación de Personal', 'description' => 'Verificación de Personal']
     ];
 
-    protected $occupations = [
+    protected $profiles = [
         ["name" => "AYUDANTE DE METALMECANICA"],
         ["name" => "AYUDANTE TECNICO DE SOLDADURA"],
         ["name" => "AYUDANTE TECNICO DE PAILERIA"],
@@ -174,6 +174,16 @@ class CategoriesSeeder extends Seeder
         ["name" => "AUXILIAR DE TIERRA"]
     ];
 
+    protected $occupations = [
+        ['name' => 'prueba 1'],
+        ['name' => 'prueba 2'],
+        ['name' => 'prueba 3'],
+        ['name' => 'prueba 4'],
+        ['name' => 'prueba 5'],
+        ['name' => 'prueba 6'],
+        ['name' => 'prueba 7']
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -184,6 +194,10 @@ class CategoriesSeeder extends Seeder
 
         foreach ($this->companyCategories as $category) {
             factory(\App\Entities\CompanyCategory::class)->create($category);
+        }
+
+        foreach ($this->profiles as $profile) {
+            factory(\App\Entities\Profile::class)->create($profile);
         }
 
         foreach ($this->occupations as $occupation) {

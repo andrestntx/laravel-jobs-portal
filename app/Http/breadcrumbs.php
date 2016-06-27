@@ -83,7 +83,7 @@ Breadcrumbs::register('contract-types.type', function ($breadcrumbs, $type) {
 // Home > admin > occupations
 Breadcrumbs::register('occupations', function ($breadcrumbs) {
     $breadcrumbs->parent('admin');
-    $breadcrumbs->push('Ocupaciones', route('admin.occupations.index'));
+    $breadcrumbs->push('Ocupaciones y oficios', route('admin.occupations.index'));
 });
 
 // Home > admin > occupations > {{ $occupation }}
@@ -97,10 +97,27 @@ Breadcrumbs::register('occupations.occupation', function ($breadcrumbs, $occupat
     }
 });
 
+// Home > admin > profiles
+Breadcrumbs::register('profiles', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Perfiles', route('admin.profiles.index'));
+});
+
+// Home > admin > profiles > {{ $profile }}
+Breadcrumbs::register('profiles.profile', function ($breadcrumbs, $profile) {
+    $breadcrumbs->parent('profiles');
+
+    if ($profile->exists) {
+        $breadcrumbs->push($profile->name, route('admin.profiles.show', $profile));
+    } else {
+        $breadcrumbs->push('Nueva', route('admin.profiles.create'));
+    }
+});
+
 // Home > admin > parameters
 Breadcrumbs::register('parameters', function ($breadcrumbs) {
     $breadcrumbs->parent('admin');
-    $breadcrumbs->push('Parametros', route('admin.parameters.index'));
+    $breadcrumbs->push('Parámetros', route('admin.parameters.index'));
 });
 
 // Home > admin > parameters > {{ $parameter }}

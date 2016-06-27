@@ -21,6 +21,8 @@ class CreateCompaniesTable extends Migration
             $table->string('website')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
+            $table->string('cel')->nullable();
+            $table->string('tel')->nullable();
             $table->boolean('active')->default(false);
             $table->boolean('email_new_job')->default(false);
             

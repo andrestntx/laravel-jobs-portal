@@ -37,6 +37,8 @@
 				{!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90']) !!}
 				@include('includes.google-maps.map')
 				{!! Field::text('email', ['ph' => 'Correo electrónico']) !!}
+				{!! Field::text('tel', ['ph' => 'Télefono', 'label' => 'Télefono']) !!}
+				{!! Field::text('cel', ['ph' => 'Celular', 'label' => 'Celular']) !!}
 
 				<div class="form-group">
 	                <label for="email_new_job" class="control-label">

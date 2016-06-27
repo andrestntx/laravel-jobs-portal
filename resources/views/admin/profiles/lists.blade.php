@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('breadcrumbs')
-	{!! Breadcrumbs::render('occupations') !!}
+	{!! Breadcrumbs::render('profiles') !!}
 @endsection
 
 @section('title')
-	<span>Ocupaciones y Oficios</span>
+	<span>Perfiles</span>
 @endsection
 
 @section('pre-article')
-	<a href="{{ route('admin.occupations.create') }}" class="btn btn-lg mj_btnblue" data-text="Nueva Ocupación"><span>Nueva Ocupación</span></a>
+	<a href="{{ route('admin.profiles.create') }}" class="btn btn-lg mj_btnblue" data-text="Nuevo Perfil"><span>Nuevo Perfil</span></a>
 @endsection
 
 @section('article')
@@ -23,26 +23,26 @@
 				<th colspan="3" rowspan="" headers="" scope="">Descripción</th>
 			</tr>
 			</thead>
-			@foreach($occupations as $occupation)
-				<tr id="occupation_{{ $occupation->id }}">
+			@foreach($profiles as $profile)
+				<tr id="profile_{{ $profile->id }}">
 	            	<td style="text-align: center;">
-	            		<button class="btn btn-danger" title="Borrar"  onClick = "deleteService.deleteOccupation({{ $occupation->id }});"><i class="fa fa-trash-o"></i></button>
+	            		<button class="btn btn-danger" title="Borrar"  onClick = "deleteService.deleteProfile({{ $profile->id }});"><i class="fa fa-trash-o"></i></button>
 	            	</td>
 					<td style="text-align: center;">
-						<a href="{{ route('admin.occupations.edit', $occupation) }}" title="Editar" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+						<a href="{{ route('admin.profiles.edit', $profile) }}" title="Editar" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
 					</td>
 					<td>
-						<a href="{{ route('admin.occupations.edit', $occupation) }}" title="Editar">
-							{{ $occupation->name }}
+						<a href="{{ route('admin.profiles.edit', $profile) }}" title="Editar">
+							{{ $profile->name }}
 						</a>
 					</td>
 					<td>
-						{{ $occupation->description }}
+						{{ $profile->description }}
 					</td>
 				</tr>
 			@endforeach
-			{!! $occupations->render() !!}
 		</table>
+		{!! $profiles->render() !!}
 	</div>
 @endsection
 

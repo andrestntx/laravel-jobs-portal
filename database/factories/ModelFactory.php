@@ -69,7 +69,7 @@ $factory->define(JobCategory::class, function (Faker\Generator $faker) {
 $factory->define(Job::class, function (Faker\Generator $faker) {
     return [
         'name'              => $faker->unique()->name,
-        'contract_type_id'  => $faker->randomElement([1,2,3,4]),
+        'contract_type_id'  => $faker->randomElement([1,2]),
         'occupation_id'     => $faker->randomElement([1,2,3,4]),
         'experience'        => $faker->randomDigit(),
         'salary'            => $faker->randomNumber(8),
@@ -90,6 +90,12 @@ $factory->define(App\Entities\Skill::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Entities\Occupation::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name
+    ];
+});
+
+$factory->define(App\Entities\Profile::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name
     ];

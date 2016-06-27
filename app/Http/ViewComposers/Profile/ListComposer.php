@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\ViewComposers\Occupation;
+namespace App\Http\ViewComposers\Profile;
 
 
-use App\Repositories\OccupationRepository;
+use App\Repositories\ProfileRepository;
 use Illuminate\Contracts\View\View;
 
 use App\Http\ViewComposers\BaseComposer;
 
 class ListComposer extends BaseComposer
 {
-    function __construct(OccupationRepository $repository)
+    function __construct(ProfileRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -22,10 +22,10 @@ class ListComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $occupations = $this->repository->paginate(15);
+        $profiles = $this->repository->paginate(15);
 
         $view->with([
-            'occupations' => $occupations,
+            'profiles' => $profiles,
         ]);
     }
 }

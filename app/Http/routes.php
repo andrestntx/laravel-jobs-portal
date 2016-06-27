@@ -36,6 +36,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::resource('job-categories', 'JobCategoriesController');
 		Route::resource('contract-types', 'ContractTypesController');
 		Route::resource('occupations', 'OccupationsController');
+		Route::resource('profiles', 'ProfilesController');
 		Route::resource('geo-locations', 'GeoLocationsController', ['only' => ['index', 'store', 'edit']]);
 		Route::resource('skills', 'SkillsController');
 		Route::resource('admins', 'AdminsController');

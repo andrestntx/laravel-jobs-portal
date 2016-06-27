@@ -10,10 +10,12 @@
                         <div class="mj_top_searchbox">
 
                                 <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                    {!! Form::select('occupation', $occupations, $occupation, ['class' => 'custom-select', 'placeholder' => 'Ocupación']) !!}
+                                    {!! Form::select('occupation', $occupations, $occupation, ['class' => 'custom-select', 'placeholder' => 'Perfil laboral']) !!}
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    {!! Form::select('location', $locations, $location, ['class' => 'custom-select', 'placeholder' => 'Ubicación']) !!}
+                                    <div class="form-group">
+                                        <input type="text" name="location" value="{{ $location }}" class="form-control" placeholder="Ubicación">
+                                    </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <div class="form-group">

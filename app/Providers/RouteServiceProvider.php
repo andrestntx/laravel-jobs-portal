@@ -30,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('job_categories', 'App\Entities\JobCategory');
         $router->model('contract_types', 'App\Entities\ContractType');
         $router->model('occupations', 'App\Entities\Occupation');
+        $router->model('profiles', 'App\Entities\Profile');
         $router->model('resumes', 'App\Entities\Resume');
         $router->model('companies', 'App\Entities\Company');
         $router->model('jobs', 'App\Entities\Job');

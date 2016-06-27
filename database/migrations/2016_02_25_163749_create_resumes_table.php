@@ -19,8 +19,12 @@ class CreateResumesTable extends Migration
             $table->text('skills')->nullable();
             $table->string('study_title')->nullable();
             $table->string('wage_aspiration')->nullable();
+            $table->string('vaccines')->nullable();
 
             $table->timestamps();
+
+            $table->integer('occupation_id')->nullable();
+            $table->foreign('occupation_id')->references('id')->on('occupations');
 
             $table->integer('jobseeker_id')->unsigned();
             $table->foreign('jobseeker_id')->references('user_id')->on('jobseekers');

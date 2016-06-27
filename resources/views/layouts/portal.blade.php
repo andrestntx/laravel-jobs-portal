@@ -45,7 +45,9 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="mj_logo">
-						<a href="/"><img src="{{ $portalLogo }}" class="img-responsive" alt="logo">
+						<a href="/">
+							<img src="{{ $portalLogo }}" class="img-responsive" alt="logo" style="max-height: 50px; display:inline-block; vertical-align: middle;">
+							<p style="color:white; display: inline-block; margin-left: 10px; font-size: 1.35em; vertical-align: middle;margin-bottom: 0;">{{ $portalFirstName }}<span class="mj_yellow_text">{{ $portalLastName }}</span></p>
 						</a>
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mj_menu" aria-expanded="false">
 							<span class="sr-only">MENU</span>
@@ -120,14 +122,15 @@
 			<div class="row">
 				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
 					<div class="mj_weight mj_bottompadder20">
-						<a href="index.html"><img src="{{ $portalLogo }}" class="img-responsive" alt="">
+						<a href="index.html"><img src="{{ $portalLogo }}" class="img-responsive" alt="" style="max-height: 50px;">
 						</a>
 						<p>{!! $portalDescription !!}</p>
 					</div>
 					<div class="mj_copyright">
 						<p>&copy; {{ date('Y') }} <a href="http://gestacol.net">Ges<span class="mj_yellow_text">tacol</span></a> Software.
-							<br> Licencia de uso exclusivo para <a href="#">{{ $companyName }}</a> &nbsp; / &nbsp; Todos los derechos de uso y reproducción reservados a <a href="#">Gestacol</a>
+							<br> Licencia de uso exclusivo para <a href="{{ $companyWeb }}">{{ $companyName }}</a> &nbsp; / &nbsp; Todos los derechos de uso y reproducción reservados a <a href="http://gestacol.net">Gestacol Software</a>
 						</p>
+						<p> <a href="http://comunidad.serviciodeempleo.gov.co" target="_blank">Comunidad de servicio publico de empleo</a> </p>
 						<span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
 					</div>
 				</div>

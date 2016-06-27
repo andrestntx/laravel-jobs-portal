@@ -45,18 +45,23 @@
                     {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file', 'required', 'accept' => 'application/pdf']) !!}
                 @endif
 
-                
+                {!! Field::text('vaccines', ['ph' => 'Teléfono', 'label' => 'Vacunas vigentes']) !!}
+                {!! Field::file('vaccines_file', ['ph' => 'Teléfono', 'label' => 'Vacunas vigentes']) !!}
+
                 @if($resume->exists)
                     {!! Field::text('email', ['ph' => 'Correo electrónico', 'required']) !!}
                 @else
                     {!! Field::text('email', auth()->user()->email, ['ph' => 'Correo electrónico', 'required']) !!}
                 @endif
 
-                {!! Field::text('phone', ['ph' => 'Teléfono', 'required']) !!}
+                {!! Field::text('phone', ['ph' => 'Teléfono']) !!}
+                {!! Field::text('cel', ['ph' => 'Celular', 'label' => 'Celular', 'required']) !!}
                 {!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90', 'required']) !!}
                 @include('includes.google-maps.map')
                 {!! Field::text('study_title', ['placeholder' => 'Título Profesional']) !!}
+                {!! Field::select('occupation_id', $occupations, ['empty' => 'Seleccione la ocupación principal', 'required']) !!}
                 {!! Field::textarea('profile', ['ph' => 'Introducción', 'class' => 'editor-html', 'required']) !!}
+
                 <div class="form-group">
                     <label>Educación<span>(Opcional)</span>
                         <a href="javascript:void(0)" class="btn btn-sm btn-info mj_add_education">
@@ -89,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                {!! Field::text('skills', ['ph' => 'Habilidades separadas por coma', 'data-role' => 'tagsinput']) !!}
+
                 <div class="form-group">
                     <label>Experiencia<span>(opcional)</span>
                         <a href="javascript:void(0)" class="btn btn-sm btn-info mj_add_experience">

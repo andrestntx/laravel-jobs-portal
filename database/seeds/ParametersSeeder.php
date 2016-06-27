@@ -14,6 +14,7 @@ class ParametersSeeder extends Seeder
     protected $parameters = [
         ['name' => 'portal_nombre', 'value' => 'Portal Trabajo'],
         ['name' => 'portal_logo', 'value' => '/images/logo.png', 'file' => true],
+        ['name' => 'portal_descripcion', 'value' => 'texto', 'textarea' => true],
         ['name' => 'empresa_nombre', 'value' => 'Gestacol'],
         ['name' => 'empresa_direccion', 'value' => 'Carrera 38'],
         ['name' => 'empresa_nit', 'value' => '090398982'],
@@ -22,12 +23,9 @@ class ParametersSeeder extends Seeder
         ['name' => 'empresa_email', 'value' => 'gerencia@gestacol.com'],
         ['name' => 'empresa_telefono', 'value' => '435675'],
         ['name' => 'empresa_logo', 'value' => 'www.gestacol.com/logo'],
-        ['name' => 'gerente_identificacion', 'value' => '93489859'],
-        ['name' => 'gerente_nombre', 'value' => 'Pedro Gomez'],
         ['name' => 'represente_identificacion', 'value' => '3456'],
         ['name' => 'represente_nombre', 'value' => 'Juan Pardo'],
-        ['name' => 'datos_complementarios', 'value' => 'xx'],
-        ['name' => 'portal_descripcion', 'value' => 'texto', 'textarea' => true]
+        ['name' => 'datos_complementarios', 'value' => 'xx']
     ];
 
     /**

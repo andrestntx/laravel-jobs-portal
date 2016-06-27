@@ -4,14 +4,14 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Occupation extends Model
+class Profile extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'description',  'created_by'];
+    protected $fillable = ['name', 'description', 'created_by'];
 
     /**
      * The jobs that belong to the skill.
