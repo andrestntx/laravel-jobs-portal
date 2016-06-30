@@ -51,6 +51,18 @@ class Company extends Model
     /**
      * @return mixed
      */
+    public function getShowNameAttribute()
+    {
+        if($this->showdata) {
+            return $this->name;
+        }
+
+        return Parameter::where('name', 'portal_nombre')->get()->first()->value;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getAddressAttribute()
     {
         if($geoLocation = $this->geoLocation) {

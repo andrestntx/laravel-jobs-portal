@@ -45,8 +45,8 @@
                     {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file', 'required', 'accept' => 'application/pdf']) !!}
                 @endif
 
-                {!! Field::text('vaccines', ['ph' => 'Teléfono', 'label' => 'Vacunas vigentes']) !!}
-                {!! Field::file('vaccines_file', ['ph' => 'Teléfono', 'label' => 'Vacunas vigentes']) !!}
+                {!! Field::text('vaccines', ['ph' => 'Describa sus vacunas vigentes', 'label' => 'Vacunas vigentes']) !!}
+                {!! Field::file('vaccines_file', ['ph' => 'Certificación de vacunas en PDF', 'label' => 'Certificación de vacunas', 'accept' => 'application/pdf', 'data-buttonText' => 'Subir certificado']) !!}
 
                 @if($resume->exists)
                     {!! Field::text('email', ['ph' => 'Correo electrónico', 'required']) !!}

@@ -205,6 +205,7 @@ class JobseekerFacade
 
         $resume = $this->resumeService->updateModel($dataResume, $resume);
         $this->resumeService->validAndSaveResumeFile($dataResume, $resume);
+        $this->resumeService->validAndSaveVaccinesFile($dataResume, $resume);
 
         return $resume;
     }

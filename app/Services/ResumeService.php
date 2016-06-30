@@ -73,6 +73,17 @@ class ResumeService extends ResourceService
     }
 
     /**
+     * @param array $data
+     * @param Resume $resume
+     */
+    public function validAndSaveVaccinesFile(array $data, Resume $resume)
+    {
+        if(array_key_exists('vaccines_file', $data)) {
+            $this->fileRepository->saveVaccine($data['vaccines_file'], $resume);
+        }
+    }
+
+    /**
      * @param Resume $resume
      * @return string
      */
@@ -146,7 +157,7 @@ class ResumeService extends ResourceService
      */
     public function hasPdf(Resume $resume)
     {
-        return $this->fileRepository->hasPdf($resume);
+        return $this->fileRepository->hasResumePdf($resume);
     }
 
     /**

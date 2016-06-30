@@ -36,9 +36,6 @@
                                                 <a href="#" class="mj_btn mj_greenbtn">{{ $job->contractType->name }}</a>
                                             </li>
                                             <li>
-                                                <label>Empresa: </label><span class="mj_green_text"><a href="{{ route('companies.show', $job->company) }}">{{ $job->company->name }}</a></span>
-                                            </li>
-                                            <li>
                                                 <label>Salario: </label><span class="mj_green_text salary">{{ $job->salary }}</span>
                                             </li>
                                         </ul>
@@ -69,7 +66,7 @@
                             @else
                                 @can('apply', $job)
                                     <li><a href="{{ route('companies.jobs.apply', [$job->company, $job]) }}" class="mj_mainbtn mj_btnyellow" data-text="Aplicar"><span>Aplicar</span></a></li>
-                                @elseif(auth()->user()->isJobseeker())
+                                @elseif(auth()->user() && auth()->user()->isJobseeker())
                                     @if(auth()->user()->jobseeker)
                                         <li style="margin-bottom: 30px;"><a href="#">Ya aplicó a este empleo</a></li>
                                     @else
@@ -88,19 +85,21 @@
                     <div class="mj_postdiv mj_jobdetail mj_toppadder50 mj_bottompadder50">
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
                             <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                    <label>Empresa</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                                    <div class="mj_detaildiv">
-                                        <a href="{{ route('companies.show', $job->company) }}" title="Ver empresa" style="font-size: 24px;"> 
-                                            {!! $job->company->name !!} 
-                                        </a>
+                                @if($job->company->showdata)
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <label>Empresa</label>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
-                                    <div class="mj_divider"></div>
-                                </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                        <div class="mj_detaildiv">
+                                            <a href="{{ route('companies.show', $job->company) }}" title="Ver empresa" style="font-size: 24px;"> 
+                                                {!! $job->company->name !!} 
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
+                                        <div class="mj_divider"></div>
+                                    </div>
+                                @endif
 
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <label>Ocupación</label>

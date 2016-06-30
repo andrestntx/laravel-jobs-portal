@@ -41,7 +41,7 @@ class ResumeFileRepository extends BaseFileRepostory
      */
     public function getResumeFileUrl(Resume $resume)
     {
-        if($this->hasPdf($resume)) {
+        if($this->hasResumePdf($resume)) {
             return '/' . $this->getPathResume($resume). "/resume.pdf";
         }
 
@@ -54,7 +54,7 @@ class ResumeFileRepository extends BaseFileRepostory
      */
     public function getResumeFile(Resume $resume)
     {
-        if($this->hasPdf($resume)) {
+        if($this->hasResumePdf($resume)) {
             return Storage::get($this->getResumeFileUrl($resume));
         }
 
@@ -65,8 +65,52 @@ class ResumeFileRepository extends BaseFileRepostory
      * @param Resume $resume
      * @return string
      */
-    public function hasPdf(Resume $resume)
+    public function hasResumePdf(Resume $resume)
     {
         return Storage::exists('/' . $this->getPathResume($resume). "/resume.pdf");
+    }
+
+    /**
+     * @param UploadedFile $vaccineFile
+     * @param Resume $resume
+     */
+    public function saveVaccine(UploadedFile $vaccineFile, Resume $resume)
+    {
+        $this->saveFile($vaccineFile, $this->getPathResume($resume), 'vaccine.pdf');
+    }
+
+    /**
+     * @param Resume $resume
+     * @return string
+     */
+    public function getVaccineFileUrl(Resume $resume)
+    {
+        if($this->hasVaccinePdf($resume)) {
+            return '/' . $this->getPathResume($resume). "/vaccine.pdf";
+        }
+
+        return '#';
+    }
+
+    /**
+     * @param Resume $resume
+     * @return string
+     */
+    public function getVaccineFile(Resume $resume)
+    {
+        if($this->hasVaccinePdf($resume)) {
+            return Storage::get($this->getVaccineFileUrl($resume));
+        }
+
+        return null;
+    }
+
+    /**
+     * @param Resume $resume
+     * @return string
+     */
+    public function hasVaccinePdf(Resume $resume)
+    {
+        return Storage::exists('/' . $this->getPathResume($resume). "/vaccine.pdf");
     }
 }

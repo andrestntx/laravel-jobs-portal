@@ -45,7 +45,7 @@ class EmailService
         $fromEmail = $this->fromEmail;
         $fromName = $this->fromName;
 
-        if($job->company->email_new_application) {
+        /*if($job->company->email_new_application) {
             Mail::send('emails.apply-company', ['resume' => $resume, 'job' => $job, 'application' => $application], function ($m) use ($job, $resume, $fromEmail, $fromName, $pathToFile) {
                 $m->from($fromEmail, $fromName);
                 $m->to($job->email, $job->company->name)
@@ -53,7 +53,7 @@ class EmailService
                     ->cc(self::$cc)
                     ->attach(url($pathToFile));
             });
-        }
+        }*/
 
         Mail::send('emails.apply-jobseeker', ['resume' => $resume, 'job' => $job], function ($m) use ($job, $resume, $fromEmail, $fromName) {
             $m->from($fromEmail, $fromName);

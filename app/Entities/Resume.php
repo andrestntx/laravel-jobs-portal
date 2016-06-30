@@ -18,7 +18,7 @@ class Resume extends Model
      *
      * @var array
      */
-    protected $fillable = ['profile', 'wage_aspiration', 'study_title', 'skills', 'occupation_id'];
+    protected $fillable = ['profile', 'wage_aspiration', 'study_title', 'skills', 'occupation_id', 'vaccines'];
 
     /**
      * Get the route key for the model.

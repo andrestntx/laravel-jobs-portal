@@ -23,7 +23,7 @@ class CreateResumesTable extends Migration
 
             $table->timestamps();
 
-            $table->integer('occupation_id')->nullable();
+            $table->integer('occupation_id')->unsigned()->nullable();
             $table->foreign('occupation_id')->references('id')->on('occupations');
 
             $table->integer('jobseeker_id')->unsigned();

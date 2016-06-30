@@ -20,7 +20,7 @@
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
 
             @if($job->exists)
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="inactive" class="control-label">
                         Desactivar oferta laboral
                         <span>(opcional)</span>     
@@ -30,7 +30,7 @@
                         <label for="inactive" style="border: 1px solid gray;"></label>
                     </div>
                     <span> Desactivar oferta laboral </span>
-                </div>
+                </div> --}}
             @endif
 
             {!! Field::text('name', ['ph' => 'Nombre del empleo', 'required']) !!}
@@ -47,7 +47,7 @@
             {!! Field::text('closing_date', $job->closing_date_form, ['ph' => 'Fecha de finalización', 'class' => 'datepicker', 'tpl' => 'themes.bootstrap.fields.text-date']) !!}
             {!! Field::text('email', ['ph' => 'Correo electrónico para recibir las hojas de vida']) !!}
             
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="email_new_application" class="control-label">
                     Notificación al correo de la oferta
                     <span>(opcional)</span>     
@@ -57,7 +57,7 @@
                     <label for="email_new_application" style="border: 1px solid gray;"></label>
                 </div>
                 <span> Deseo recibir una notificación al correo cada vez que alguien que se postule a la oferta</span>
-            </div>
+            </div> --}}
 
 
             @include('includes.google-maps.inputs')
@@ -65,6 +65,18 @@
             @if($job->exists && $job->geoLocation)
                 @include('includes.google-maps.init', ['geo_location' => $job->geoLocation])
             @endif
+
+            <div class="form-group">
+                <label for="showdata" class="control-label">
+                    Datos de empresa públicos
+                    <span>(opcional)</span>     
+                </label> <br>
+                <div class="mj_checkbox">
+                    <input type="checkbox" value="1" id="showdata" name="showdata" @if($job->showdata) checked @endif>
+                    <label for="showdata" style="border: 1px solid gray;"></label>
+                </div>
+                <span> Permitir que el nombre, logo y nit de la empresa se muestren públicamente </span>
+            </div>
 
             <div class="form-group">
                 <label for="google" class="control-label">
