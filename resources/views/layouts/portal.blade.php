@@ -15,6 +15,9 @@
     <link href="/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
 
     <link href="/js/plugins/tags/bootstrap-tagsinput.css" rel="stylesheet">
+    <link href="/css/plugins/select-bootstrap/bootstrap-select.min.css" rel="stylesheet">
+    <link href="/css/plugins/ajax-select/ajax-bootstrap-select.min.css" rel="stylesheet">
+    
 	<!-- end theme style -->
 	<!-- favicon links -->
 	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
@@ -22,6 +25,7 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 
+	@yield('extra-css')
 </head>
 <body>
 	<!--Loader Start -->
@@ -184,6 +188,9 @@
     <script src="/js/plugins/dataTables/dataTables.responsive.js"></script>
     <script src="/js/plugins/dataTables/dataTables.tableTools.min.js"></script>
 
+    <script src="/js/plugins/select-bootstrap/bootstrap-select.min.js"></script>
+    <script src="/js/plugins/ajax-select/ajax-bootstrap-select.min.js"></script>
+
     <script src="/js/plugins/tags/bootstrap-tagsinput.js"></script>
 
 	<script type="text/javascript">
@@ -192,7 +199,7 @@
 				$(this).text( numeral($(this).text()).format('$ 0,0[.]00') ) ;
 			});
 
-			$(".select-search").select2();
+			$("select:not(.ajax-select).select-search").select2();
 		});
 
 		$(document).ready(function(){

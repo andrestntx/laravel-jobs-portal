@@ -5,6 +5,8 @@ namespace App\Repositories;
 
 
 use App\Entities\GeoLocation;
+use App\Entities\Occupation;
+use App\Entities\Profile;
 use App\Entities\Resume;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -58,9 +60,25 @@ class ResumeRepository extends BaseRepository
         return $this->model->with(['jobseeker'])->paginate();
     }
 
-    protected function defaultSearchResumes($search = null)
+
+    /**
+     * @param Occupation|null $occupation
+     * @param Profile|null $profile
+     * @param int $experience
+     * @param null $search
+     * @return mixed
+     */
+    protected function defaultSearchResumes(Occupation $occupation = null, Profile $profile = null, $experience = 0, $search = null)
     {
         $query = $this->model->frequentJoins();
+
+        if(! is_null($occupation)) {
+            $query->where('occupation_id', $occupation->id);
+        }
+
+        if(! is_null($profile)) {
+            $query->where('profile_id', $profile->id);
+        }
 
         if(! is_null($search)){
             $query->where(function($query) use ($search) {
@@ -70,35 +88,33 @@ class ResumeRepository extends BaseRepository
             });
         }
 
+        $query->where('experience', '>=', $experience);
+
         return $query;
     }
 
     /**
+     * @param Occupation|null $occupation
+     * @param Profile|null $profile
+     * @param int $experience
      * @param null $search
-     * @return Collection
+     * @return mixed
      */
-    public function getSearchResumes($search = null)
+    public function getSearchResumes(Occupation $occupation = null, Profile $profile = null, $experience = 0, $search = null)
     {
-        $query = $this->defaultSearchResumes($search);
+        $query = $this->defaultSearchResumes($occupation, $profile, $experience, $search);
         return $query->groupBy('user_id')->take(config('app.maxResults'))->get();
     }
 
     /**
-     * @param GeoLocation|null $location
-     * @param null $search
-     * @return Collection
+     * @return array
      */
-    public function getSearchResumesNear(GeoLocation $location = null, $search = null)
+    public function getExperienceRange()
     {
-        $query = $this->defaultSearchResumes($search);
+        $min = $this->model->select('experience')->orderBy('experience', 'asc')->take(1)->first()->experience;
+        $max = $this->model->select('experience')->orderBy('experience', 'desc')->take(1)->first()->experience;
 
-        if(! is_null($location)) {
-            $query->selectRawDistance($location->lat, $location->lng)
-                ->having('distance', '<', config('app.miles'))
-                ->orderBy('distance', 'asc');
-        }
-
-        return $query->groupBy('user_id')->take(config('app.maxResults'))->get();
+        return ['experienceMin' => $min, 'experienceMax' => $max];
     }
 
 

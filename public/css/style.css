@@ -2218,7 +2218,7 @@ ul.mj_joblist li a:hover, ul.mj_joblist.nav-tabs > li.active > a, ul.mj_joblist.
 	right: 0%;
 	bottom: 0%;
 	background-color: #000000;
-	padding: 40px;
+	padding: 35px 25px 20px 10px;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
 	z-index:1;

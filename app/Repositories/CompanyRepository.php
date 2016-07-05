@@ -2,9 +2,6 @@
 
 namespace App\Repositories;
 
-
-
-
 use App\Entities\Company;
 use App\Entities\Job;
 
@@ -58,6 +55,11 @@ class CompanyRepository extends BaseRepository
         if(! array_key_exists('email_new_job', $data))
         {
             $data['email_new_job'] = 0;
+        }
+
+        if(! array_key_exists('show_data', $data))
+        {
+            $data['show_data'] = 0;
         }
 
         return parent::update($data, $entity);

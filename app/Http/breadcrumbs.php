@@ -131,6 +131,12 @@ Breadcrumbs::register('parameters.parameter', function ($breadcrumbs, $parameter
     }
 });
 
+// Home > admin > registers
+Breadcrumbs::register('registers', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Registros', route('admin.registers'));
+});
+
 // Home > admin > admins
 Breadcrumbs::register('admins', function ($breadcrumbs) {
     $breadcrumbs->parent('admin');

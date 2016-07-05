@@ -4,6 +4,7 @@ namespace App\Http\ViewComposers\Resume;
 
 use App\Repositories\Files\JobseekerFileRepository;
 use App\Repositories\GeoLocationRepository;
+use App\Repositories\ProfileRepository;
 use App\Repositories\ResumeRepository;
 use App\Repositories\OccupationRepository;
 use Illuminate\Contracts\View\View;
@@ -12,13 +13,12 @@ use App\Http\ViewComposers\BaseComposer;
 
 class ListComposer extends BaseComposer
 {
-    protected $geoLocationRepository;
+    protected $profileRepository;
 
-    function __construct(ResumeRepository $repository,
-                         GeoLocationRepository $geoLocationRepository)
+    function __construct(ResumeRepository $repository, ProfileRepository $profileRepository)
     {
         $this->repository = $repository;
-        $this->geoLocationRepository = $geoLocationRepository;
+        $this->profileRepository = $profileRepository;
     }
 
     /**
@@ -28,10 +28,13 @@ class ListComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $locations          = $this->geoLocationRepository->getSearchSelect();
+        $profiles          = $this->profileRepository->listsSelect();
+        $experienceRange    = $this->repository->getExperienceRange();
 
-        $view->with([
-            'locations' => $locations
-        ]);
+        $args = array_merge([
+            'profiles'     => $profiles
+        ], $experienceRange);
+
+        $view->with($args);
     }
 }

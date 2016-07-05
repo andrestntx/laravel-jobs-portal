@@ -106,6 +106,21 @@ abstract class  BaseRepository {
     }
 
     /**
+     * @param string $query
+     * @param string $column
+     * @param string $key
+     * @param string $title
+     * @return mixed
+     */
+    function listsSelectQuery($query = "", $column = "name", $key = "id", $title = "option_select"){
+        if(is_null($title)){
+            \Lang::get($title);
+        }
+
+        return $this->model->where($column, 'LIKE', '%' . $query . '%')->lists($column, $key)->all();
+    }
+
+    /**
      * @return int
      */
     public function count() {

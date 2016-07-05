@@ -20,6 +20,7 @@ class CreateResumesTable extends Migration
             $table->string('study_title')->nullable();
             $table->string('wage_aspiration')->nullable();
             $table->string('vaccines')->nullable();
+            $table->integer('experience')->default(0);
 
             $table->timestamps();
 

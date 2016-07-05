@@ -9,8 +9,9 @@
 return [
     'main' => [
         //'companies'  => array('title' => 'Empresas', 'url' => 'companies'),
-        'jobs'  => ['title' => 'Ofertas de empleo', 'url' => '/'],
-        'resumes'  => ['title' => 'Hojas de vida', 'url' => 'resumes']
+        'jobs'  => ['title' => 'Ofertas de empleo', 'url' => 'jobs'],
+        'resumes'  => ['title' => 'Hojas de vida', 'url' => 'resumes'],
+        ['url' => 'admin/registers', 'title' => 'Registros', 'roles' => 'admin']
     ],
     'right' => [
         //'search'	=> ['title' => 'Buscar', 'i' => 'fa fa-search', 'class' => 'mj_searchbtn', 'include' => 'includes.search'],

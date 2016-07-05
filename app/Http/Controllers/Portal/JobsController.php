@@ -42,17 +42,17 @@ class JobsController extends ResourceController
      */
     public function index(Request $request)
     {
-        $result = $this->facade->searchJobs($request->get('occupation'), $request->get('company'),
-            $request->get('contract-types'), $request->get('location'), $request->get('search'),
+        $result = $this->facade->searchJobs($request->get('profile'), $request->get('contract-types'),
+            $request->get('location'), $request->get('search'),
             $request->get('experience', 0), $request->get('salary'));
 
         $defaultVars = [
-            'occupation' => $request->get('occupation'),
-            'location' => $request->get('location'),
-            'search' => $request->get('search'),
-            'experience' => $request->get('experience'),
+            'profile'       => $request->get('profile'),
+            'location'      => $request->get('location'),
+            'search'        => $request->get('search'),
+            'experience'    => $request->get('experience'),
             'contractTypesSelect' => $request->get('contract-types'),
-            'salaryRange' => $request->get('salary')
+            'salaryRange'   => $request->get('salary')
         ];
 
         return view('portal.jobs.lists')->with(array_merge($result, $defaultVars));

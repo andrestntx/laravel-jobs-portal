@@ -10,6 +10,8 @@ namespace App\Services;
 
 
 use App\Entities\GeoLocation;
+use App\Entities\Occupation;
+use App\Entities\Profile;
 use App\Entities\Resume;
 use App\Entities\User;
 use App\Repositories\Files\ResumeFileRepository;
@@ -133,22 +135,29 @@ class ResumeService extends ResourceService
         $this->repository->saveExperiences($resume, $models);
     }
 
+
     /**
-     * @param null $skillId
-     * @param GeoLocation|null $geoLocation
+     * @param Occupation|null $occupation
+     * @param Profile|null $profile
+     * @param int $experience
      * @param null $search
      * @return array
      */
-    public function getSearchResumes($skillId = null, GeoLocation $geoLocation = null, $search = null)
+    public function getSearchResumes(Occupation $occupation = null, Profile $profile = null, $experience = 0, $search = null)
     {
-        if(is_null($geoLocation)) {
-            $resumes = $this->repository->getSearchResumes($skillId, $search);
-        }
-        else {
-            $resumes = $this->repository->getSearchResumesNear($skillId, $geoLocation, $search);
+        $resumes = $this->repository->getSearchResumes($occupation, $profile, $experience, $search);
+
+        $occupations = [];
+        if(!is_null($occupation)) {
+            $occupations = [$occupation->id => $occupation->name];
         }
 
-        return ['resumes' => $this->repository->customPaginateCollection($resumes), 'markers' => $resumes->toJson(), 'total' => $this->repository->count()];
+        return [
+            'resumes'       => $this->repository->customPaginateCollection($resumes),
+            'markers'       => $resumes->toJson(),
+            'total'         => $this->repository->count(),
+            'occupations'   => $occupations
+        ];
     }
 
     /**

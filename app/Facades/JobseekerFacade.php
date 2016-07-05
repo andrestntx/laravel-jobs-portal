@@ -19,6 +19,8 @@ use App\Services\ExperienceService;
 use App\Services\GeoLocationService;
 use App\Services\JobseekerService;
 use App\Services\JobService;
+use App\Services\OccupationService;
+use App\Services\ProfileService;
 use App\Services\ResumeService;
 use App\Services\StudyService;
 use Illuminate\Database\Eloquent\Model;
@@ -61,27 +63,37 @@ class JobseekerFacade
     protected $emailService;
 
     /**
+     * @var ProfileService
+     */
+    protected $profileService;
+
+
+    /**
      * JobseekerFacade constructor.
      * @param ResumeService $resumeService
      * @param JobseekerService $jobseekerService
-     * @param GeoLocationService $geoLocationService
      * @param StudyService $studyService
+     * @param GeoLocationService $geoLocationService
      * @param ExperienceService $experienceService
      * @param ApplicationService $applicationService
      * @param EmailService $emailService
+     * @param OccupationService $occupationService
+     * @param ProfileService $profileService
      */
     public function __construct(ResumeService $resumeService, JobseekerService $jobseekerService,
-                                GeoLocationService $geoLocationService, StudyService $studyService,
+                                StudyService $studyService, GeoLocationService $geoLocationService,
                                 ExperienceService $experienceService, ApplicationService $applicationService,
-                                EmailService $emailService)
+                                EmailService $emailService, OccupationService $occupationService, ProfileService $profileService)
     {
         $this->resumeService = $resumeService;
-        $this->geoLocationService = $geoLocationService;
+        $this->occupationService = $occupationService;
         $this->jobseekerService = $jobseekerService;
         $this->studyService = $studyService;
         $this->experienceService = $experienceService;
         $this->applicationService = $applicationService;
         $this->emailService = $emailService;
+        $this->geoLocationService = $geoLocationService;
+        $this->profileService = $profileService;
     }
 
     /**
@@ -210,10 +222,19 @@ class JobseekerFacade
         return $resume;
     }
 
-    public function searchResumes($locationId = null, $search = null)
+    /**
+     * @param null $occupationId
+     * @param null $profileId
+     * @param int $experience
+     * @param null $search
+     * @return array
+     */
+    public function searchResumes($occupationId = null, $profileId = null, $experience = 0, $search = null)
     {
-        $geoLocation = $this->geoLocationService->getModel($locationId);
-        return $this->resumeService->getSearchResumes($geoLocation, $search);
+        $occupation = $this->occupationService->getModel($occupationId);
+        $profile = $this->profileService->getModel($profileId);
+
+        return $this->resumeService->getSearchResumes($occupation, $profile, $experience, $search);
     }
 
     public function applyJob(Job $job, array $data)

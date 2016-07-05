@@ -13,7 +13,7 @@ class Company extends Model
      * @var array
      */
     protected $fillable = ['nit', 'name', 'description', 'website', 'facebook', 'twitter', 'active', 'user_id',
-        'geo_location_id', 'company_category_id', 'email','email_new_job', 'tel', 'cel'
+        'geo_location_id', 'company_category_id', 'email','email_new_job', 'tel', 'cel', 'show_data'
     ];
 	
     /**
@@ -48,16 +48,29 @@ class Company extends Model
         return $this->belongsTo('App\Entities\CompanyCategory', 'company_category_id', 'id');
     }
 
+
     /**
      * @return mixed
      */
-    public function getShowNameAttribute()
+    public function getNameAttribute($value)
     {
-        if($this->showdata) {
-            return $this->name;
+        if(\Gate::allows('show_data', $this)) {
+            return $value;
         }
 
         return Parameter::where('name', 'portal_nombre')->get()->first()->value;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getShowNitAttribute($value)
+    {
+        if(\Gate::allows('show_data', $this)) {
+            return $value;
+        }
+
+        return '';
     }
 
     /**

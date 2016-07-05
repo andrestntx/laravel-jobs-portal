@@ -28,7 +28,7 @@ class UpdateRequest extends EditRequest
      */
     public function rules() {
         return [
-            'nit'                   => 'reqired|min:6|unique:companies,nit,' . $this->company->id. ',id',
+            'nit'                   => 'required|min:6|unique:companies,nit,' . $this->company->id. ',id',
             'name'                  => 'required|unique:companies,name,' . $this->company->id. ',id',
             'company_category_id'   => 'required|exists:company_categories,id'
         ];

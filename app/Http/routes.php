@@ -41,6 +41,9 @@ Route::group(['middleware' => 'web'], function () {
 		Route::resource('skills', 'SkillsController');
 		Route::resource('admins', 'AdminsController');
 		Route::resource('parameters', 'ParametersController');
+		Route::get('registers', ['as' => 'admin.registers', 'uses' => 'RegistersController@index']);
+		Route::post('registers/{users}/active', ['as' 	=> 'registers.active', 'uses' 	=> 'RegistersController@active'
+		]);
 
 
 		Route::controller('stats', 'StatsController');
@@ -158,6 +161,10 @@ Route::group(['middleware' => 'web'], function () {
 			return view('portal.terms');
 		});
 
+	});
+
+	Route::group(['namespace' => 'Ajax', 'prefix' => 'ajax'], function() {
+		Route::get('occupations', ['as' => 'ajax.occupations', 'uses' => 'AjaxController@occupations']);
 	});
 
 	Route::group(['namespace' => 'Validations', 'prefix' => 'validations'], function (){

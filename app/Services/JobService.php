@@ -49,16 +49,10 @@ class JobService extends ResourceService {
         return $defaultRange;
     }
 
-    public function getSearchJobs($occupationId = null, $companyId = null, $contractTypeId = null, GeoLocation $location = null, $search = null, $experience = 0, $salaryRange = null)
+    public function getSearchJobs($occupationId = null, $contractTypeId = null, $location = null, $search = null, $experience = 0, $salaryRange = null)
     {
         $salaryRange = $this->getSalaryRange($salaryRange);
-
-        if(! is_null($location)) {
-            $jobs = $this->repository->getAllSearchJobsNear($occupationId, $companyId, $contractTypeId, $location, $search, $experience, $salaryRange['min'], $salaryRange['max']);
-        }
-        else {
-            $jobs = $this->repository->getAllSearchJobs($occupationId, $companyId, $contractTypeId, $search, $experience, $salaryRange['min'], $salaryRange['max']);
-        }
+        $jobs = $this->repository->getAllSearchJobs($occupationId, $contractTypeId, $location, $search, $experience, $salaryRange['min'], $salaryRange['max']);
 
         return ['jobs' => $this->repository->customPaginateCollection($jobs), 'markers' => $jobs->toJson(), 'total' => $this->repository->count()];
     }

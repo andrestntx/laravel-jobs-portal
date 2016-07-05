@@ -83,25 +83,26 @@ class JobRepository extends BaseRepository
             ->paginate();
     }
 
+
     /**
      * @param null $occupationId
-     * @param null $companyId
      * @param null $contractTypeIds
+     * @param null $location
      * @param null $search
      * @param int $experience
      * @param int $salaryMin
      * @param null $salaryMax
-     * @return Builder
+     * @return mixed
      */
-    protected function defaultSearchJobs($occupationId = null, $companyId = null, $contractTypeIds = null, $search = null, $experience = 0, $salaryMin = 0, $salaryMax = null)
+    protected function defaultSearchJobs($occupationId = null, $contractTypeIds = null, $location = null, $search = null, $experience = 0, $salaryMin = 0, $salaryMax = null)
     {
-        $query = $this->model->frequentJoins($occupationId, $companyId, $contractTypeIds, $experience, $salaryMin);
+        $query = $this->model->frequentJoins($occupationId, null, $contractTypeIds, $experience, $salaryMin, $location);
 
         if(! is_null($salaryMax)){
             $query->where('salary', '<=', $salaryMax);
         }
 
-        if(! is_null($search) && !empty($search)){
+        if(! is_null($search) && ! empty($search)) {
             $query->where(function($query) use ($search) {
                 $query->where('jobs.name', 'like', '%'.$search.'%')
                     ->Orwhere('jobs.description', 'like', '%'.$search.'%');
@@ -111,19 +112,20 @@ class JobRepository extends BaseRepository
         return $query->whereInactive(0)->closing();
     }
 
+
     /**
      * @param null $occupationId
-     * @param null $companyId
      * @param null $contractTypeIds
+     * @param null $location
      * @param null $search
      * @param int $experience
      * @param int $salaryMin
      * @param null $salaryMax
-     * @return Collection
+     * @return mixed
      */
-    public function getAllSearchJobs($occupationId = null, $companyId = null, $contractTypeIds = null, $search = null, $experience = 0, $salaryMin = 0, $salaryMax = null)
+    public function getAllSearchJobs($occupationId = null, $contractTypeIds = null, $location = null, $search = null, $experience = 0, $salaryMin = 0, $salaryMax = null)
     {
-        return $this->defaultSearchJobs($occupationId, $companyId, $contractTypeIds, $search, $experience, $salaryMin, $salaryMax)->take(config('app.maxResults'))->get();
+        return $this->defaultSearchJobs($occupationId, $contractTypeIds, $location, $search, $experience, $salaryMin, $salaryMax)->take(config('app.maxResults'))->get();
     }
 
     /**

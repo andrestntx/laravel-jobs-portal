@@ -34,4 +34,11 @@ class CompanyPolicy
         }
     }
 
+    public function showData(User $user, Company $company)
+    {
+        if($user->id = $company->user_id || $company->show_data) {
+            return true;
+        }
+    }
+
 }

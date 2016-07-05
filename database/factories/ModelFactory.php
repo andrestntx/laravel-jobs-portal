@@ -21,6 +21,7 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->unique()->name,
         'email' => $faker->unique()->email,
+        'activated_at' => $faker->dateTimeThisMonth(),
         'password' => '123',
         'remember_token' => str_random(10)
     ];
@@ -73,6 +74,7 @@ $factory->define(Job::class, function (Faker\Generator $faker) {
         'occupation_id'     => $faker->randomElement([1,2,3,4]),
         'experience'        => $faker->randomDigit(),
         'salary'            => $faker->randomNumber(8),
+        'closing_date'      => '2017-03-27',
     ];
 });
 
@@ -114,9 +116,12 @@ $factory->define(App\Entities\Jobseeker::class, function (Faker\Generator $faker
 
 $factory->define(App\Entities\Resume::class, function (Faker\Generator $faker) {
     return [
-        'profile' => $faker->realText(),
-        'wage_aspiration' => $faker->randomNumber(5),
-        'study_title'       => $faker->name
+        'profile'           => $faker->realText(),
+        'wage_aspiration'   => $faker->randomNumber(5),
+        'study_title'       => $faker->name,
+        'experience'        => $faker->randomDigit(),
+        'profile_id'        => 1,
+        'occupation_id'     => 1
     ];
 });
 

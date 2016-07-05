@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->dateTime('activated_at')->nullable();
             $table->enum('role', ['jobseeker', 'employer', 'admin'])->default('jobseeker');
 
             $table->rememberToken();

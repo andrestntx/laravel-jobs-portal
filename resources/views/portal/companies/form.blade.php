@@ -16,6 +16,7 @@
 	{!! Form::model($company, $formData + ['id' => 'form-company']) !!}
 		<div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
 	        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+				{!! Field::text('nit', ['ph' => 'NIT de la empresa', 'required']) !!}
 				{!! Field::text('name', ['ph' => 'Nombre de la empresa', 'required']) !!}
 				{!! Field::text('description', ['ph' => 'Descripción de la empresa']) !!}
 				{!! Field::select('company_category_id', $categories, ['required']) !!}
@@ -24,7 +25,7 @@
                     <label for="logo" class="control-label" style="width: 100%;">Logo</label>
 					<div class="fileinput fileinput-new" data-provides="fileinput">
 					  <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="{{ $logos->getLogoUrlId($company->id) }}" alt="img">
+                        <img src="{{ $logos->getLogoUrl($company->id) }}" alt="img">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
 					  <div>
@@ -39,6 +40,20 @@
 				{!! Field::text('email', ['ph' => 'Correo electrónico']) !!}
 				{!! Field::text('tel', ['ph' => 'Télefono', 'label' => 'Télefono']) !!}
 				{!! Field::text('cel', ['ph' => 'Celular', 'label' => 'Celular']) !!}
+
+				<div class="form-group">
+	                <label for="show_data" class="control-label">
+	                    Mostrar datos de la empresa
+	                    <span>(opcional)</span>     
+	                </label> <br>
+	                <div class="col-xs-12" style="margin-bottom: 10px;">
+		                <div class="mj_checkbox">
+		                    <input type="checkbox" value="1" id="show_data" name="show_data" @if($company->show_data || ! $company->exists) checked @endif>
+		                    <label for="show_data" style="border: 1px solid gray;"></label>
+		                </div>
+		                <span> Mostrar nombre, Nit y Logo de la empresa en el portal de empleo </span>
+	                </div>
+	            </div>
 
 				<div class="form-group">
 	                <label for="email_new_job" class="control-label">

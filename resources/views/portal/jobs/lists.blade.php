@@ -8,24 +8,22 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="mj_top_searchbox">
-
-                                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                    {!! Form::select('occupation', $occupations, $occupation, ['class' => 'custom-select', 'placeholder' => 'Perfil laboral']) !!}
+                            <div class="col-sm-3 col-xs-12">
+                                {!! Form::select('profile', $profiles, $profile, ['class' => 'custom-select', 'placeholder' => 'Perfil laboral']) !!}
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                <div class="form-group">
+                                    <input type="text" name="location" value="{{ $location }}" class="form-control" placeholder="Ubicación">
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" name="location" value="{{ $location }}" class="form-control" placeholder="Ubicación">
-                                    </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Palabra clave..">
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Palabra clave..">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                    <button class="mj_mainbtn mj_btnyellow" data-text="Buscar"><span>Buscar</span></button>
-                                </div>
-
+                            </div>
+                            <div class="col-sm-2 col-xs-12">
+                                <button class="mj_mainbtn mj_btnyellow" data-text="Buscar"><span>Buscar</span></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,12 +95,12 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="#"><img src="{{ $logos->getLogoUrlId($job->company_id) }}" class="img-responsive" alt="">
+                                        <a href="#"><img src="{{ $logos->getLogoUrl($job->company) }}" class="img-responsive" alt="">
                                         </a>
                                     </td>
                                     <td>
                                         <h4><a href="{{ route('companies.jobs.show', [$job->company_id, $job->id]) }}">{{ $job->name }}</a></h4>
-                                        <p>{{ $job->company }}</p>
+                                        <p>{{ $job->company->name }}</p>
                                     </td>
                                     <td>{{ $job->occupation }}</td>
                                     <td><i class="fa fa-map-marker"></i>
@@ -114,7 +112,7 @@
                             @endforeach
                         </table>
                         <div class="mj_paginations">
-                             {!! $jobs->appends(['occupation' => $occupation, 'location' => $location,
+                             {!! $jobs->appends(['profile' => $profile, 'location' => $location,
                                 'search' => $search, 'experience' => $experience, 'contract-types' => $contractTypesSelect,
                                 'salaryRange' => $salaryRange])->render() !!}
                         </div>

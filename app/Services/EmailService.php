@@ -13,6 +13,7 @@ use App\Entities\Job;
 use App\Entities\Resume;
 use App\Entities\User;
 use App\Repositories\ParameterRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Mail;
 
 class EmailService
@@ -71,7 +72,7 @@ class EmailService
         $fromEmail = $this->fromEmail;
         $fromName = $this->fromName;
 
-        Mail::send('emails.welcome', ['user' => $user,], function ($m) use ($user, $fromEmail, $fromName) {
+        Mail::send('emails.welcome', ['user' => $user], function ($m) use ($user, $fromEmail, $fromName) {
             $m->from($fromEmail, $fromName);
             $m->to($user->email, $user->full_name)
                 ->subject('Bienvenido ' . $user->name)
@@ -93,6 +94,25 @@ class EmailService
             $m->to($job->email, $user->name)
                 ->subject('Ha creado una nueva oferta de empleo con éxito')
                 ->cc(self::$cc);
+        });
+    }
+
+    /**
+     * @param User $user
+     * @param Collection $admins
+     */
+    public function notifyNewUser(User $user, Collection $admins)
+    {
+        $fromEmail = $this->fromEmail;
+        $fromName = $this->fromName;
+
+        Mail::send('emails.notify-new-user', ['user' => $user], function ($m) use ($user, $fromEmail, $fromName, $admins) {
+            $m->from($fromEmail, $fromName);
+
+            foreach($admins as $admin) {
+                $m->to($admin->email, $admin->name)
+                    ->subject('Nuevo usuario registrado: ' . $user->name);
+            }
         });
     }
 }

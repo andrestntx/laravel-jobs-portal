@@ -4,21 +4,22 @@ namespace App\Http\ViewComposers\Resume;
 
 use App\Repositories\ContractTypeRepository;
 use App\Repositories\OccupationRepository;
+use App\Repositories\ProfileRepository;
 use Illuminate\Contracts\View\View;
 
 use App\Http\ViewComposers\BaseComposer;
 
 class FormComposer extends BaseComposer
 {
-    protected  $occupationRepository;
+    protected  $profileRepository;
 
     /**
      * FormComposer constructor.
-     * @param OccupationRepository $occupationRepository
+     * @param ProfileRepository $profileRepository
      */
-    function __construct(OccupationRepository $occupationRepository)
+    function __construct(ProfileRepository $profileRepository)
     {
-        $this->occupationRepository = $occupationRepository;
+        $this->profileRepository = $profileRepository;
     }
 
     /**
@@ -31,12 +32,12 @@ class FormComposer extends BaseComposer
         $sex        = ['M' => ucfirst(\Lang::get('validation.attributes.male')), 'F' => ucfirst(\Lang::get('validation.attributes.famale'))];
         $docTypes   = ['cc' => ucfirst(\Lang::get('validation.doc_types.cc')), 'passport' => ucfirst(\Lang::get('validation.doc_types.passport'))];
 
-        $occupations = $this->occupationRepository->listsSelect();
+        $profiles = $this->profileRepository->listsSelect();
 
         $view->with([
-            'sex'       => $sex,
+            'sex'      => $sex,
             'docTypes' => $docTypes,
-            'occupations'   => $occupations
+            'profiles' => $profiles
         ]);
     }
 }

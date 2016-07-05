@@ -46,7 +46,11 @@ class GeoLocation extends Model
         return $this->hasMany('App\Entities\Jobseeker');
     }
 
-    public function getAddressAttribute() {
+    /**
+     * @return string
+     */
+    public function getAddressAttribute()
+    {
         return substr($this->formatted_address,0,40);
     }
 

@@ -186,7 +186,7 @@ class Job extends Model
         return $this->closing_date_hummans . ',  ' . $this->closing_date_form;
     }
 
-    public function scopeFrequentJoins($query, $occupationId = null, $companyId = null, $contractTypeIds = null, $experience = 0, $salaryMin = 0)
+    public function scopeFrequentJoins($query, $occupationId = null, $companyId = null, $contractTypeIds = null, $experience = 0, $salaryMin = 0, $location = null)
     {
         return $query->selectDefaultJoins()
             ->joinOccupations($occupationId)
@@ -194,7 +194,8 @@ class Job extends Model
             ->joinContractTypes($contractTypeIds)
             ->joinGeoLocations()
             ->where('experience', '>=', $experience)
-            ->where('salary', '>=', $salaryMin);
+            ->where('salary', '>=', $salaryMin)
+            ->where('geo_locations.formatted_address', 'LIKE', '%' . $location . '%');
     }
 
     /**
@@ -212,7 +213,7 @@ class Job extends Model
      */
     public function scopeSelectDefaultJoins($query)
     {
-        return $query->select(['jobs.name as name', 'jobs.id', 'geo_locations.lat', 'geo_locations.lng', 'companies.name as company',
+        return $query->select(['jobs.name as name', 'jobs.id', 'geo_locations.lat', 'geo_locations.lng', 'companies.name as company_name',
             'companies.id as company_id', 'contract_types.name as contractType', 'geo_locations.formatted_address as formatted_address',
             'occupations.name as occupation'
         ]);

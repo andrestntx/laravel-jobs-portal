@@ -42,7 +42,8 @@ class UserService extends ResourceService
      * @param array $data
      * @return mixed
      */
-    public function register(array $data){
+    public function register(array $data)
+    {
 
         $user = $this->repository->create($data);
 
@@ -51,5 +52,21 @@ class UserService extends ResourceService
         }
 
         return $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdmins()
+    {
+        return $this->repository->admins();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegisters()
+    {
+        return $this->repository->getRegisters();
     }
 }

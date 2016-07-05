@@ -45,6 +45,8 @@
                     {!! Field::file('resume_file', ['data-input' => 'false', 'data-buttonText' => 'Subir Hoja de Vida', 'data-buttonName' => 'btn-primary', 'data-iconName' => 'glyphicon glyphicon-file', 'required', 'accept' => 'application/pdf']) !!}
                 @endif
 
+                {!! Field::number('experience', ['ph' => 'Años de experiencia']) !!}
+
                 {!! Field::text('vaccines', ['ph' => 'Describa sus vacunas vigentes', 'label' => 'Vacunas vigentes']) !!}
                 {!! Field::file('vaccines_file', ['ph' => 'Certificación de vacunas en PDF', 'label' => 'Certificación de vacunas', 'accept' => 'application/pdf', 'data-buttonText' => 'Subir certificado']) !!}
 
@@ -59,8 +61,10 @@
                 {!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90', 'required']) !!}
                 @include('includes.google-maps.map')
                 {!! Field::text('study_title', ['placeholder' => 'Título Profesional']) !!}
-                {!! Field::select('occupation_id', $occupations, ['empty' => 'Seleccione la ocupación principal', 'required']) !!}
-                {!! Field::textarea('profile', ['ph' => 'Introducción', 'class' => 'editor-html', 'required']) !!}
+                {!! Field::select('occupation_id', $occupations, ['empty' => '', 'required', 'class' => 'ajax-select']) !!}
+                {!! Field::textarea('profile', ['ph' => 'Introducción', 'class' => 'editor-html', 'required', 'label' => 'Descripción del perfil']) !!}
+                {!! Field::select('profile_id', $profiles, ['empty' => 'Seleccione un perfil laboral', 'required', 'class' => 'select-search', 'label' => 'Perfil laboral']) !!}
+                {!! Field::text('skills', ['ph' => 'Habilidades', 'data-role' => 'tagsinput']) !!}
 
                 <div class="form-group">
                     <label>Educación<span>(Opcional)</span>
@@ -147,13 +151,16 @@
 
 @section('extra-js')
     <script src="/js/services/searchLocation.js"></script>
+    <script src="/js/services/searchOccupations.js"></script>
     <script>
         searchLocation.init();
+        searchOccupations.init();
 
         $(".select2").select2({
             placeholder: "Seleccione las Habilidades",
             tags: true
         });
+
     </script>
     <script src="/js/services/deleteService.js"></script>
     <script src="/js/validations/resumeValidation.js" type="text/javascript"></script>

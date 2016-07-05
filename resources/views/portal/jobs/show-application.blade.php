@@ -168,10 +168,8 @@
                     },
                     success: function (data) {
                         if (data['success']) {
-                            console.log('contratado');
                         }
                         else {
-                            console.log('No se eliminó');
                         }
                     },
                     error: function () {
@@ -179,7 +177,6 @@
                     }
                 });
             }
-            console.log();
         });
     </script>
 

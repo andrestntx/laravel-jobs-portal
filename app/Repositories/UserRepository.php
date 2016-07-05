@@ -33,9 +33,20 @@ class UserRepository extends BaseRepository
     {
         return $user->companies()->create($data);
     }
-    
+
+    /**
+     * @return mixed
+     */
     public function admins()
     {
         return $this->model->whereRole('admin')->get();
-    } 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegisters()
+    {
+        return $this->model->whereRole('employer')->orWhere('role', '=', 'jobseeker')->orderBy('activated_at', 'asc')->paginate(15);
+    }
 }

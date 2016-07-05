@@ -24,7 +24,8 @@ class CreateCompaniesTable extends Migration
             $table->string('cel')->nullable();
             $table->string('tel')->nullable();
             $table->boolean('active')->default(false);
-            $table->boolean('email_new_job')->default(false);
+            $table->boolean('email_new_job')->default(true);
+            $table->boolean('show_data')->default(true);
             
             $table->timestamps();
 

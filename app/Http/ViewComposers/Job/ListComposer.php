@@ -6,14 +6,14 @@ use App\Repositories\ContractTypeRepository;
 use App\Repositories\Files\CompanyFileRepository;
 use App\Repositories\GeoLocationRepository;
 use App\Repositories\JobRepository;
-use App\Repositories\OccupationRepository;
+use App\Repositories\ProfileRepository;
 use Illuminate\Contracts\View\View;
 
 use App\Http\ViewComposers\BaseComposer;
 
 class ListComposer extends BaseComposer
 {
-    protected $occupationRepository;
+    protected $profileRepository;
     protected $companyFileRepository;
     protected $geoLocationRepository;
     protected $contractTypeRepository;
@@ -21,17 +21,17 @@ class ListComposer extends BaseComposer
     /**
      * ListComposer constructor.
      * @param JobRepository $repository
-     * @param OccupationRepository $occupationRepository
+     * @param ProfileRepository $profileRepository
      * @param CompanyFileRepository $companyFileRepository
      * @param GeoLocationRepository $geoLocationRepository
      * @param ContractTypeRepository $contractTypeRepository
      */
-    function __construct(JobRepository $repository, OccupationRepository $occupationRepository,
+    function __construct(JobRepository $repository, ProfileRepository $profileRepository,
                          CompanyFileRepository $companyFileRepository, GeoLocationRepository $geoLocationRepository,
                          ContractTypeRepository $contractTypeRepository)
     {
         $this->repository = $repository;
-        $this->occupationRepository = $occupationRepository;
+        $this->profileRepository = $profileRepository;
         $this->companyFileRepository = $companyFileRepository;
         $this->geoLocationRepository = $geoLocationRepository;
         $this->contractTypeRepository = $contractTypeRepository;
@@ -44,7 +44,7 @@ class ListComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $occupations        = $this->occupationRepository->listsSelect();
+        $profiles        = $this->profileRepository->listsSelect();
         $salaryRange        = $this->repository->getSalaryRange();
         $experienceRange    = $this->repository->getExperienceRange();
         $logos              = $this->companyFileRepository;
@@ -52,7 +52,7 @@ class ListComposer extends BaseComposer
         $types              = $this->contractTypeRepository->listsSelect();
 
         $args = array_merge([
-            'occupations'   => $occupations,
+            'profiles'      => $profiles,
             'logos'         => $logos,
             'locations'     => $locations,
             'types'         => $types

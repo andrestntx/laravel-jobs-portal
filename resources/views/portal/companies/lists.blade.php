@@ -102,10 +102,8 @@
                     method: 'POST',
                     success: function (data) {
                         if (data['success']) {
-                            console.log('activada');
                         }
                         else {
-                            console.log('No se eliminó');
                         }
                     },
                     error: function () {

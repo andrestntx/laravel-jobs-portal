@@ -81,11 +81,14 @@ class ResumesController extends ResourceController
      */
     public function index(Request $request)
     {
-        $result = $this->facade->searchResumes($request->get('location'), $request->get('search'));
+        $result = $this->facade->searchResumes($request->get('occupation'), $request->get('profile'),
+            $request->get('experience', 0), $request->get('search'));
 
         $defaultVars = [
-            'location' => $request->get('location'),
-            'search' => $request->get('search')
+            'occupation'    => $request->get('occupation'),
+            'profile'       => $request->get('profile'),
+            'search'        => $request->get('search'),
+            'experience'    => $request->get('experience')
         ];
 
         return $this->view('lists')->with(array_merge($result, $defaultVars));
@@ -102,6 +105,7 @@ class ResumesController extends ResourceController
         return $this->view('form', [
             'resume'                => $this->service->newModel(),
             'jobseekerResume'       => $this->service->getModelsForm(new Resume()),
+            'occupations'           => [],
             'formData'              => $this->getFormDataStore(true)
         ]);
     }
@@ -147,6 +151,7 @@ class ResumesController extends ResourceController
         return $this->view('form', [
             'resume'            => $resume,
             'jobseekerResume'   => $this->service->getModelsForm($resume),
+            'occupations'       => $resume->occupation_array,
             'formData'          => $this->getFormDataUpdate($resume->jobseeker_id, true)
         ]);
     }
@@ -178,6 +183,10 @@ class ResumesController extends ResourceController
         $this->service->deleteModel($resume);
     }
 
+    /**
+     * @param Resume $resume
+     * @return \Illuminate\Auth\Access\Response|\Illuminate\Http\RedirectResponse
+     */
     public function applications(Resume $resume)
     {
         if(\Gate::allows('edit', $resume)) {

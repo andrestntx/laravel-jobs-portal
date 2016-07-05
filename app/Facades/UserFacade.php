@@ -33,9 +33,20 @@ class UserFacade
         $this->statsService = $statsService;
     }
 
+    /**
+     * @return array
+     */
     public function getStats()
     {
         return $this->statsService->getStats();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegisters()
+    {
+        return $this->userService->getRegisters();
     }
 
     /**
@@ -67,7 +78,9 @@ class UserFacade
     public function register(array $data)
     {
         $user = $this->userService->register($data);
+        $admins = $this->userService->getAdmins();
         $this->emailService->welcomeUser($user);
+        $this->emailService->notifyNewUser($user, $admins);
 
         return $user;
     }

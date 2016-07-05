@@ -84,19 +84,18 @@ class EmployerFacade
         return $this->jobService->updateModel($data, $job);
     }
 
+
     /**
      * @param null $occupationId
-     * @param null $companyId
      * @param null $contractTypeId
-     * @param null $locationId
+     * @param null $location
      * @param null $search
      * @param int $experience
      * @param null $salaryRange
-     * @return mixed
+     * @return array
      */
-    public function searchJobs($occupationId = null, $companyId = null, $contractTypeId = null, $locationId = null, $search = null, $experience = 0, $salaryRange = null)
+    public function searchJobs($occupationId = null, $contractTypeId = null, $location = null, $search = null, $experience = 0, $salaryRange = null)
     {
-        $geoLocation = $this->geoLocationService->getModel($locationId);
-        return $this->jobService->getSearchJobs($occupationId, $companyId, $contractTypeId, $geoLocation, $search, $experience, $salaryRange);
+        return $this->jobService->getSearchJobs($occupationId, $contractTypeId, $location, $search, $experience, $salaryRange);
     }
 }
