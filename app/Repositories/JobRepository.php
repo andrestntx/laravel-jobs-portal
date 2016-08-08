@@ -179,5 +179,20 @@ class JobRepository extends BaseRepository
 
         return ['experienceMin' => $min, 'experienceMax' => $max];
     }
+
+    /**
+     * @return mixed
+     */
+    public function getJobsApplications()
+    {
+        return $this->model->whereHas('applications', function($query) {
+                $query->where('preselected', 0);
+            })
+            ->with(['applications' => function($query){
+                $query->where('preselected', 0);
+            }, 'company'])
+            ->orderBy('company_id', 'asc')
+            ->paginate(12);
+    }
 }
 

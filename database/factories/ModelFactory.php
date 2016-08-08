@@ -91,6 +91,12 @@ $factory->define(App\Entities\Skill::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Entities\Activity::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName
+    ];
+});
+
 $factory->define(App\Entities\Occupation::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name
@@ -153,5 +159,15 @@ $factory->define(App\Entities\GeoLocation::class, function (Faker\Generator $fak
         'lng'           => $faker->randomFloat(5,-76,-69),
         'formatted_address' => $faker->streetAddress,
         'id'            => $faker->unique()->uuid
+    ];
+});
+
+$factory->define(App\Entities\Application::class, function (Faker\Generator $faker) {
+    return [
+        'job_id'        => $faker->numberBetween(1, 50),
+        'resume_id'     => $faker->numberBetween(1, 30),
+        'intro'         => $faker->realText(),
+        'preselected'   => $faker->boolean,
+        'accepted'   => $faker->boolean
     ];
 });

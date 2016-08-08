@@ -27,4 +27,12 @@ class JobseekerRepository extends BaseRepository
     public function saveResume(Jobseeker $jobseeker, Resume $newResume) {
         return $jobseeker->resumes()->save($newResume);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getJobseekerAssists()
+    {
+        return $this->model->with(['activities'])->get();
+    }
 }

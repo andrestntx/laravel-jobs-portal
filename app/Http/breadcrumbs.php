@@ -137,6 +137,30 @@ Breadcrumbs::register('registers', function ($breadcrumbs) {
     $breadcrumbs->push('Registros', route('admin.registers'));
 });
 
+// Home > admin > applications
+Breadcrumbs::register('applications', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Solicitudes', route('admin.applications.index'));
+});
+
+// Home > admin > applications > job
+Breadcrumbs::register('applications.show', function ($breadcrumbs, $job) {
+    $breadcrumbs->parent('applications');
+    $breadcrumbs->push($job->name, route('admin.applications.show', $job));
+});
+
+// Home > admin > assists
+Breadcrumbs::register('assists', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Asistencias', route('admin.assists.index'));
+});
+
+// Home > admin > assists > job
+Breadcrumbs::register('assists.show', function ($breadcrumbs, $jobseeker) {
+    $breadcrumbs->parent('assists');
+    $breadcrumbs->push($jobseeker->full_name, route('admin.assists.show', $jobseeker));
+});
+
 // Home > admin > admins
 Breadcrumbs::register('admins', function ($breadcrumbs) {
     $breadcrumbs->parent('admin');

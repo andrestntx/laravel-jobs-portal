@@ -239,10 +239,10 @@ class JobseekerFacade
 
     public function applyJob(Job $job, array $data)
     {
-        $resume = $this->resumeService->getAuthResume();
-        $application = $this->applicationService->applyJob($resume, $job, $data);
-        $pathResume = $this->resumeService->getResumeFile($resume);
-        $this->emailService->sendResume($resume, $job, $application, $pathResume);
+        $resume         = $this->resumeService->getAuthResume();
+        $application    = $this->applicationService->applyJob($resume, $job, $data);
+        //$pathResume     = $this->resumeService->getResumeFile($resume);
+        //$this->emailService->sendResume($resume, $job, $application, $pathResume);
 
         return $application;
     }

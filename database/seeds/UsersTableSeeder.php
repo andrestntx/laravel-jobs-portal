@@ -46,5 +46,8 @@ class UsersTableSeeder extends Seeder
                         $job->geoLocation()->associate(factory(\App\Entities\GeoLocation::class)->create())->save();
                     });
             });
+
+        factory(\App\Entities\Application::class, 30)->create();
+        
     }
 }

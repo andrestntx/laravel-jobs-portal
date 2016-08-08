@@ -184,6 +184,16 @@ class CategoriesSeeder extends Seeder
         ['name' => 'prueba 7']
     ];
 
+    protected $activities = [
+        ['name' => 'Remisión Gestión Empleo'],
+        ['name' => 'Remisión Entrevista Orientación'],
+        ['name' => 'Remisión talleres orientación'],
+        ['name' => 'Remisión Formación'],
+        ['name' => 'Remisión talleres de Emprendimiento'],
+        ['name' => 'Remisión servicios complementarios'],
+        ['name' => 'PQRS']
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -202,6 +212,10 @@ class CategoriesSeeder extends Seeder
 
         foreach ($this->occupations as $occupation) {
             factory(\App\Entities\Occupation::class)->create($occupation);
+        }
+
+        foreach ($this->activities as $activity) {
+            factory(\App\Entities\Activity::class)->create($activity);
         }
 
         factory(\App\Entities\GeoLocation::class, 5)->create([

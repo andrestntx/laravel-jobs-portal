@@ -1,7 +1,7 @@
 @extends('layouts.portal')
 
 @section('content')
-<div class="mj_pagetitle2">
+<div class="mj_pagetitle2" data-url="{{ route('companies.jobs.accept-application', [$job->company, $job]) }}" id="url-post">
     <div class="mj_pagetitleimg">
         <img src="/images/background-job.jpg" alt="">
         <div class="mj_mainheading_overlay"></div>
@@ -69,8 +69,12 @@
                                      </tr>
                                     @foreach($applications as $application)
                                         <tr>
-                                            <td class="text-center"> 
-                                                @if($application->accepted) Si @else No @endif
+                                            <td class="text-center">
+                                                @if($application->accepeted)
+                                                    {!! Form::select('contratado', ['1' => 'Si', '0' => 'No'], '1', ['id' => 'application' . $application->id, 'class' => 'select-application', 'data-application' => $application->id])!!}
+                                                @else
+                                                    {!! Form::select('contratado', ['1' => 'Si', '0' => 'No'], '0', ['id' => 'application' . $application->id, 'class' => 'select-application', 'data-application' => $application->id])!!}
+                                                @endif
                                             </td>
                                             <td>
                                                 <a href="{{ route('companies.jobs.applications.show', [$job->company, $job, $application]) }}"><img src="{{ $photos->getPhotoUrl($application->resume->jobseeker) }}" class="img-responsive" alt="">
@@ -87,9 +91,6 @@
                                         </tr>
                                     @endforeach
                                 </table>
-                                <div class="mj_paginations">
-                                      {!! $applications->render() !!}
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,4 +100,19 @@
     </div>
 </div>
 
+@endsection
+
+@section('extra-js')
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $(".select-application").change(function(){
+                console.log($(this).data('application'));
+                $.post( $("#url-post").data("url"), {application: $(this).data('application')}, function( ) {
+                    console.log('contratado');
+                }); 
+            });
+        });
+
+        
+    </script>
 @endsection

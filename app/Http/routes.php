@@ -41,12 +41,20 @@ Route::group(['middleware' => 'web'], function () {
 		Route::resource('skills', 'SkillsController');
 		Route::resource('admins', 'AdminsController');
 		Route::resource('parameters', 'ParametersController');
+
 		Route::get('registers', ['as' => 'admin.registers', 'uses' => 'RegistersController@index']);
-		Route::post('registers/{users}/active', ['as' 	=> 'registers.active', 'uses' 	=> 'RegistersController@active'
-		]);
+		Route::post('registers/{users}/active', ['as' 	=> 'registers.active', 'uses' 	=> 'RegistersController@active']);
 
+		Route::get('applications', ['as' => 'admin.applications.index', 'uses' => 'ApplicationsController@index']);
+		Route::get('applications/{jobs}', ['as' => 'admin.applications.show', 'uses' => 'ApplicationsController@show']);
+		Route::post('applications/{jobs}/select', ['as' => 'admin.applications.select', 'uses' => 'ApplicationsController@select']);
 
-		Route::controller('stats', 'StatsController');
+		Route::get('assists', ['as' => 'admin.assists.index', 'uses' => 'AssistsController@index']);
+		Route::get('assists/{jobseekers}', ['as' => 'admin.assists.show', 'uses' => 'AssistsController@show']);
+		Route::post('assists/{jobseekers}', ['as' => 'admin.assists.store', 'uses' => 'AssistsController@store']);
+		Route::post('assists/{jobseekers}/activities/{activities}', ['as' => 'admin.assists.update', 'uses' => 'AssistsController@update']);
+		Route::post('assists/{jobseekers}/activities/{activities}/delete', ['as' => 'admin.assists.delete', 'uses' => 'AssistsController@delete']);
+
 		Route::resource('companies', 'CompaniesController', ['only' => ['index']]);
 		Route::post('companies/{companies}/active', [
 			'as' 	=> 'companies.active',
@@ -60,6 +68,16 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('stats', [
 			'as'	=> 'stats',
 			'uses'  => 'StatsController@index'
+		]);
+
+		Route::get('stats/jobseekers', [
+			'as'	=> 'stats.jobseekers',
+			'uses'  => 'StatsController@jobseekers'
+		]);
+
+		Route::get('stats/companies', [
+			'as'	=> 'stats.companies',
+			'uses'  => 'StatsController@companies'
 		]);
 
 		// Route::resource('jobs', 'JobsController', ['only' => ['index', 'show']]);

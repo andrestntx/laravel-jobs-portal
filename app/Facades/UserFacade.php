@@ -34,11 +34,13 @@ class UserFacade
     }
 
     /**
+     * @param null $start
+     * @param null $end
      * @return array
      */
-    public function getStats()
+    public function getStats($start = null, $end = null)
     {
-        return $this->statsService->getStats();
+        return $this->statsService->getStats($start, $end);
     }
 
     /**

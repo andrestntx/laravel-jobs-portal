@@ -5,7 +5,7 @@
                 @if(array_key_exists('img', $item))  
                     @if($item['img'] == 'user')
                         @if(auth()->user()->isEmployer())
-                            <img src="{{ $logos->getLogoUrlId(auth()->user()->companies->first()->id) }}" style="max-width: 45px;" /> 
+                            <img src="{{ $logos->getLogoUrl(auth()->user()->companies->first()) }}" style="max-width: 45px;" /> 
                         @else
                             <img src="{{ $photos->getPhotoUrlId(auth()->user()->id) }}" style="max-width: 45px;" /> 
                         @endif

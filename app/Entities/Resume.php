@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Repositories\Files\ResumeFileRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class Resume extends Model
@@ -227,5 +228,14 @@ class Resume extends Model
     public function getSkillsArrayAttribute()
     {
         return explode(',', $this->skills);
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrlFileAttribute()
+    {
+        $fileRepository = new ResumeFileRepository();
+        return $fileRepository->getResumeFileUrl($this);
     }
 }

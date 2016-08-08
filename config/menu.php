@@ -9,9 +9,11 @@
 return [
     'main' => [
         //'companies'  => array('title' => 'Empresas', 'url' => 'companies'),
-        'jobs'  => ['title' => 'Ofertas de empleo', 'url' => 'jobs'],
-        'resumes'  => ['title' => 'Hojas de vida', 'url' => 'resumes'],
-        ['url' => 'admin/registers', 'title' => 'Registros', 'roles' => 'admin']
+        'jobs'          => ['title' => 'Ofertas de empleo', 'url' => 'jobs'],
+        'resumes'       => ['title' => 'Hojas de vida', 'url' => 'resumes'],
+        'registers'     => ['url' => 'admin/registers', 'title' => 'Registros', 'roles' => 'admin'],
+        'applications'  => ['url' => 'admin/applications', 'title' => 'Solicitudes', 'roles' => 'admin'],
+        'assists'       => ['url' => 'admin/assists', 'title' => 'Asistencias', 'roles' => 'admin']
     ],
     'right' => [
         //'search'	=> ['title' => 'Buscar', 'i' => 'fa fa-search', 'class' => 'mj_searchbtn', 'include' => 'includes.search'],

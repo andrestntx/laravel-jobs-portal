@@ -57,4 +57,12 @@ class JobseekerService extends ResourceService
     {
         return $this->fileRepository->getPhotoUrl($jobseeker);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getJobseekerAssists()
+    {
+        return $this->repository->getJobseekerAssists();
+    }
 }

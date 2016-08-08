@@ -18,7 +18,7 @@ class Jobseeker extends Model
      *
      * @var array
      */
-    protected $appends = ['address'];
+    protected $appends = [];
 
     /**
      * The primary key for the model.
@@ -57,6 +57,15 @@ class Jobseeker extends Model
     public function resumes()
     {
         return $this->hasMany('App\Entities\Resume', 'jobseeker_id', 'user_id');
+    }
+
+    /**
+     *
+     */
+    public function activities()
+    {
+        return $this->belongsToMany('App\Entities\Activity', 'assists')
+            ->withPivot('assist_at');
     }
 
     /**

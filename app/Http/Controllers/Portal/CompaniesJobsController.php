@@ -196,7 +196,9 @@ class CompaniesJobsController extends ResourceController
     {
         $this->authorize('edit', $company);
         $logoUrl    = $this->facade->getCompanyLogo($company);
-        $jobs =     $company->jobs()->with(['applications.resume.jobseeker.geoLocation'])->paginate();
+        $jobs =     $company->jobs()->with(['applications' => function($query) {
+            $query->where('preselected', 1);
+        }, 'applications.resume.jobseeker.geoLocation'])->get();
 
         return $this->view('applications', [
             'logoUrl'   => $logoUrl,
@@ -216,7 +218,7 @@ class CompaniesJobsController extends ResourceController
         $this->authorize('edit', $job);
         $logos      = new JobseekerFileRepository();
         $logoUrl   = $this->facade->getCompanyLogo($company);
-        $applications = $job->applications()->with(['resume.jobseeker.geoLocation'])->paginate();
+        $applications = $job->applications()->where('preselected', 1)->with(['resume.jobseeker.geoLocation'])->paginate();
 
         return $this->view('show-applications', [
             'job' => $job,
@@ -253,10 +255,14 @@ class CompaniesJobsController extends ResourceController
     {
         $application = $job->applications()->findOrFail($request->get('application'));
 
+        \Log::info($application);
+
         if($application->accepted) {
+            \Log::info('chao');
             $application->accepted = 0;
         }
         else {
+            \Log::info('hola');
             $application->accepted = 1;
         }
 

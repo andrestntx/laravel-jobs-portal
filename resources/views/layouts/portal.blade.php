@@ -25,6 +25,8 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 
+	<link href="/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
 	@yield('extra-css')
 </head>
 <body>
@@ -192,6 +194,8 @@
     <script src="/js/plugins/ajax-select/ajax-bootstrap-select.min.js"></script>
 
     <script src="/js/plugins/tags/bootstrap-tagsinput.js"></script>
+
+    <script src="/js/plugins/sweetalert/sweetalert.min.js"></script>
 
 	<script type="text/javascript">
 		$( document ).ready(function() {

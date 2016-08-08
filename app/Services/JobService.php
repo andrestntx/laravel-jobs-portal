@@ -65,4 +65,9 @@ class JobService extends ResourceService {
     {
         return $this->repository->getCompanyJobs($company);
     }
+
+    public function getJobsApplications()
+    {
+        return $this->repository->getJobsApplications();
+    }
 }

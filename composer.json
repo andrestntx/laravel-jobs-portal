@@ -12,7 +12,8 @@
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "styde/html": "~1.1",
         "nesbot/carbon": "~1.14",
-        "guzzlehttp/guzzle": "~5.3|~6.0"
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "league/csv": "^8.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

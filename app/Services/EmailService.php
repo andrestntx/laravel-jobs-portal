@@ -9,6 +9,7 @@
 namespace App\Services;
 
 use App\Entities\Application;
+use App\Entities\Company;
 use App\Entities\Job;
 use App\Entities\Resume;
 use App\Entities\User;
@@ -113,6 +114,23 @@ class EmailService
                 $m->to($admin->email, $admin->name)
                     ->subject('Nuevo usuario registrado: ' . $user->name);
             }
+        });
+    }
+
+    /**
+     * @param Job $job
+     * @param $count
+     */
+    public function notifyPreselect(Job $job, $count)
+    {
+        $fromEmail = $this->fromEmail;
+        $fromName = $this->fromName;
+
+        Mail::send('emails.notify-preselect', ['job' => $job, 'count' => $count], function ($m) use ($job, $fromEmail, $fromName) {
+            $m->from($fromEmail, $fromName)
+                ->to($job->email, $job->name)
+                ->cc('andres@dondepauto.co', 'Andrés')
+                ->subject('Preselección finalizada de ' . $job->name);
         });
     }
 }

@@ -29,6 +29,7 @@ class ComposerServiceProvider extends ServiceProvider
             'App\Http\ViewComposers\Resume\FormComposer' => 'portal.resumes.form',
             'App\Http\ViewComposers\Resume\ListComposer' => 'portal.resumes.lists',
             'App\Http\ViewComposers\Resume\FileComposer' => '*',
+            'App\Http\ViewComposers\Activity\ListComposer' => 'admin.jobseekers.assists',
         ]);
     }
 

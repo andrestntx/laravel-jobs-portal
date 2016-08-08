@@ -339,5 +339,10 @@ abstract class  BaseRepository {
         ]);
     }
 
+    public function getModel()
+    {
+        return $this->model;
+    }
+
 
 }
