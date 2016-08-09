@@ -11,7 +11,7 @@ return [
         //'companies'  => array('title' => 'Empresas', 'url' => 'companies'),
         'jobs'          => ['title' => 'Ofertas de empleo', 'url' => 'jobs'],
         'resumes'       => ['title' => 'Hojas de vida', 'url' => 'resumes'],
-        'registers'     => ['url' => 'admin/registers', 'title' => 'Registros', 'roles' => 'admin'],
+        //'registers'     => ['url' => 'admin/registers', 'title' => 'Activaciones', 'roles' => 'admin'],
         'applications'  => ['url' => 'admin/applications', 'title' => 'Solicitudes', 'roles' => 'admin'],
         'assists'       => ['url' => 'admin/assists', 'title' => 'Asistencias', 'roles' => 'admin']
     ],
@@ -28,7 +28,7 @@ return [
         // Admin user
         'company-categories'    => ['url' => 'admin/company-categories', 'title' => 'Categorías de empresa', 'i' => 'fa fa-building', 'roles' => 'admin'],
         //'job-categories'        => array('url' => 'admin/job-categories', 'title' => 'Categorías de trabajo', 'i' => 'fa fa-mortar-board', 'roles' => 'admin'),
-        'companies'             => ['url' => 'admin/companies', 'title' => 'Empresas', 'i' => 'fa fa-building-o', 'roles' => 'admin'],
+        'companies'             => ['url' => 'admin/companies', 'title' => 'Empresas (Demandantes)', 'i' => 'fa fa-building-o', 'roles' => 'admin'],
         'contract-types'        => ['url' => 'admin/contract-types', 'title' => 'Tipos de contrato', 'i' => 'fa fa-briefcase', 'roles' => 'admin'],
         //'jobs'                  => array('url' => 'admin/jobs', 'title' => 'Trabajos', 'i' => 'fa fa-location-arrow', 'roles' => 'admin'),
         'occupations'           => ['url' => 'admin/occupations', 'title' => 'Ocupaciones y Oficios', 'i' => 'fa fa-user-secret', 'roles' => 'admin'],

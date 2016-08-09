@@ -165,11 +165,13 @@
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                     <div class="mj_detaildiv">
                                         <ul class="mj_selected_content">
-                                            @foreach($job->skills_array as $skill)
-                                                <li>
-                                                    <a href="#"> <i class="fa fa-check"></i> {{ $skill }}</a>
-                                                </li>
-                                            @endforeach
+                                            @if(count($job->skills_array) > 0 && ! empty($job->skills_array[0]))
+                                                @foreach($job->skills_array as $skill)
+                                                    <li>
+                                                        <a href="#"> <i class="fa fa-check"></i> {{ $skill }}</a>
+                                                    </li>
+                                                @endforeach
+                                            @endif
                                         </ul>
                                     </div>
                                 </div>

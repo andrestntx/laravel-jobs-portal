@@ -2,7 +2,6 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="MobileOptimized" content="320">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	@yield('extra-head')
@@ -131,10 +130,10 @@
 						<a href="index.html"><img src="{{ $portalLogo }}" class="img-responsive" alt="" style="max-height: 50px;">
 						</a>
 						<p>{!! $portalDescription !!}</p>
-					</div>
+					</div> 
 					<div class="mj_copyright">
-						<p>&copy; {{ date('Y') }} <a href="http://gestacol.net">Ges<span class="mj_yellow_text">tacol</span></a> Software.
-							<br> Licencia de uso exclusivo para <a href="{{ $companyWeb }}">{{ $companyName }}</a> &nbsp; / &nbsp; Todos los derechos de uso y reproducción reservados a <a href="http://gestacol.net">Gestacol Software</a>
+						<p>&copy; {{ date('Y') }} <a href="http://gestacol.net">Gestacol <span class="mj_yellow_text">Software</span></a>
+							<br> Licencia de uso exclusivo para <a href="{{ filter_var($companyWeb, FILTER_SANITIZE_URL) }}">{{ $companyName }}</a> &nbsp; / &nbsp; Todos los derechos de uso y reproducción reservados a <a href="http://gestacol.net">Gestacol Software</a>
 						</p>
 						<p> <a href="http://comunidad.serviciodeempleo.gov.co" target="_blank">Comunidad de servicio publico de empleo</a> </p>
 						<span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>

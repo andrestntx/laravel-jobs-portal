@@ -112,11 +112,13 @@
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                     <div class="mj_detaildiv">
                                         <ul class="mj_selected_content">
-                                            @foreach($resume->skills_array as $skill)
-                                                <li>
-                                                    <a href="#"> <i class="fa fa-check"></i> {{ $skill }}</a>
-                                                </li>
-                                            @endforeach 
+                                            @if(count($resume->skills_array) > 0 && ! empty($resume->skills_array[0]))
+                                                @foreach($resume->skills_array as $skill)
+                                                    <li>
+                                                        <a href="#"> <i class="fa fa-check"></i> {{ $skill }}</a>
+                                                    </li>
+                                                @endforeach 
+                                            @endif
                                         </ul>
                                     </div>
                                 </div>

@@ -86,7 +86,6 @@
                             <th class="text-center">Foto</th>
                             <th>Nombre</th>
                             <th>Dirección</th>
-                            <th>Habilidades</th>
                         </tr>
                         @foreach($resumes as $resume)
                             <tr>
@@ -100,11 +99,6 @@
                                 </td>
                                 <td><i class="fa fa-map-marker"></i>
                                     <P>{{ $resume->formatted_address }}</P>
-                                </td>
-                                <td>
-                                    <ul>
-                                        {{ $resume->skills }}
-                                    </ul>
                                 </td>
                             </tr>
                         @endforeach

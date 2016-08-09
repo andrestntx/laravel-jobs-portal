@@ -33,6 +33,7 @@ class UserFileRepository extends BaseFileRepostory
 
     public function getPhotoUrlId($id)
     {
+        \Log::info($id);
         return $this->getFileOrDefault($this->getPathUser($id). "/photo.jpg", $this->defaultPhoto);
     }
 }
