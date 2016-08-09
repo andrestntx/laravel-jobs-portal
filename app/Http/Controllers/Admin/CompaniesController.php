@@ -60,14 +60,19 @@ class CompaniesController extends ResourceController
      */
     public function active(Company $company)
     {
+        $user = $company->user;
+
         if($company->active){
             $company->active = 0;
+            $user->activated_at = null;
         }
         else {
             $company->active = 1;
+            $user->activated_at = Carbon::now()->toDateTimeString();
         }
 
         $company->save();
+        $user->save();
 
         return ['success' => true];
     }

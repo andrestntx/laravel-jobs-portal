@@ -6,8 +6,10 @@
                     @if($item['img'] == 'user')
                         @if(auth()->user()->isEmployer())
                             <img src="{{ $logos->getLogoUrl(auth()->user()->companies->first()) }}" style="max-width: 45px;" /> 
-                        @else
+                        @elseif(auth()->user()->isJobseeker())
                             <img src="{{ $photos->getPhotoUrlId(auth()->user()->id) }}" style="max-width: 45px;" /> 
+                        @else
+
                         @endif
                     @else
                         <img src="{{ $item['img'] }}"/> 
