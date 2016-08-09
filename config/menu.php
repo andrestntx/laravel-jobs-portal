@@ -11,7 +11,7 @@ return [
         //'companies'  => array('title' => 'Empresas', 'url' => 'companies'),
         'jobs'          => ['title' => 'Ofertas de empleo', 'url' => 'jobs'],
         'resumes'       => ['title' => 'Hojas de vida', 'url' => 'resumes'],
-        //'registers'     => ['url' => 'admin/registers', 'title' => 'Activaciones', 'roles' => 'admin'],
+        'registers'     => ['url' => 'admin/registers', 'title' => 'Activaciones', 'roles' => 'admin'],
         'applications'  => ['url' => 'admin/applications', 'title' => 'Solicitudes', 'roles' => 'admin'],
         'assists'       => ['url' => 'admin/assists', 'title' => 'Asistencias', 'roles' => 'admin']
     ],
