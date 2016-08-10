@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use App\Repositories\Files\CompanyFileRepository;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
@@ -54,7 +55,7 @@ class Company extends Model
      */
     public function getNameAttribute($value)
     {
-        if(\Gate::allows('show_data', $this)) {
+        if(\Gate::allows('showData', $this)) {
             return $value;
         }
 
@@ -124,5 +125,23 @@ class Company extends Model
     public function getWebsiteLinkAttribute(){
         return 'http://' . $this->website;
     }
+
+    /**
+     * @return bool
+     */
+    public function getIsActiveAttribute()
+    {
+        if($this->active && !is_null($this->user->activated_at)) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    /*public function getCreatedAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d ')
+    }*/
 
 }

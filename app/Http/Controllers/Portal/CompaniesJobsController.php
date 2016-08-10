@@ -83,6 +83,8 @@ class CompaniesJobsController extends ResourceController
      */
     public function create(CreateRequest $request, Company $company)
     {
+        $this->authorize('createJobs', $company);
+
         return $this->defaultCreate([
             'company'   => $company
             ], $company->id
@@ -129,6 +131,8 @@ class CompaniesJobsController extends ResourceController
      */
     public function edit(EditRequest $request, Company $company, Job $job)
     {
+        $this->authorize('createJobs', $company);
+
         return $this->view('form', [
             'company'   => $company,
             'job'       => $job,
@@ -194,7 +198,8 @@ class CompaniesJobsController extends ResourceController
      */
     public function applications(Request $request, Company $company)
     {
-        $this->authorize('edit', $company);
+        $this->authorize('createJobs', $company);
+
         $logoUrl    = $this->facade->getCompanyLogo($company);
         $jobs =     $company->jobs()->with(['applications' => function($query) {
             $query->where('preselected', 1);

@@ -80,7 +80,7 @@
                                     @endforeach
                                 </table>
                                 <div class="mj_paginations">
-                                      {!! $jobs->render() !!}
+
                                 </div>
                             </div>
                         </div>

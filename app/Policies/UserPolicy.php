@@ -39,4 +39,17 @@ class UserPolicy
             return true;
         }
     }
+
+    /**
+     * @param User $user
+     * @param User $model
+     * @return bool
+     */
+    public function isJobseeker(User $user, User $model)
+    {
+        if($user->id == $model->id && $user->jobseeker && ! is_null($user->activated_at)) {
+            return true;
+        }
+    }
+
 }

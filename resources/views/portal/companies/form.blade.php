@@ -13,6 +13,7 @@
 @endsection
 
 @section('article')
+	
 	{!! Form::model($company, $formData + ['id' => 'form-company']) !!}
 		<div class="mj_postdiv mj_shadow_blue mj_postpage mj_toppadder50 mj_bottompadder50">
 	        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">

@@ -70,6 +70,7 @@ class ResumesController extends ResourceController
      */
     public function myApplications()
     {
+        $this->authorize('isJobseeker', auth()->user());
         return $this->redirect('applications', $this->service->getAuthResume()->jobseeker_id);
     }
 
@@ -189,6 +190,8 @@ class ResumesController extends ResourceController
      */
     public function applications(Resume $resume)
     {
+        $this->authorize('isJobseeker', auth()->user());
+
         if(\Gate::allows('edit', $resume)) {
             $photoUrl   = $this->facade->getPhoto($resume->jobseeker);
             $logos      = new CompanyFileRepository();

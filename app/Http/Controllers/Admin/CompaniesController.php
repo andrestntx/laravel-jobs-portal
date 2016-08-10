@@ -63,7 +63,7 @@ class CompaniesController extends ResourceController
     {
         $user = $company->user;
 
-        if($company->active){
+        if($company->is_active) {
             $company->active = 0;
             $user->activated_at = null;
         }

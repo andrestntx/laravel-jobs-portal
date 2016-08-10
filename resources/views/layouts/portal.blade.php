@@ -72,15 +72,20 @@
 							{!! Menu::make('menu.right', 'nav navbar-nav navbar-right mj_right_menu mj_login_menu')
 							->render('themes.bootstrap.menus.main') !!}
 
-							<div class="mj_profilediv" id="my_profile_div">
+							<div class="mj_profilediv" id="my_profile_div" style="width: 300px;">
 								<p style="text-align: left; margin-bottom: 0; font-size: 1em; margin-left: 20px;">
 									<strong>{{ auth()->user()->name }}</strong>
 								</p>
 								<p style="text-align: left; margin-bottom: 0; font-size: 0.9em; margin-left: 20px;">
 									{{ auth()->user()->role_name }}
 								</p>
+
 								{!! Menu::make('menu.account')
-									->setParam('username', Auth::user()->username)
+									->setParams([
+										'username' 	=> Auth::user()->username,
+										'company' 	=> Auth::user()->getCompany(),
+										'user'		=> Auth::user()
+									])
 									->render('themes.bootstrap.menus.main') 
 								!!}
 							</div>

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Entities\Experience;
+use App\Entities\Jobseeker;
 use App\Entities\Resume;
 use App\Entities\Company;
 use App\Entities\Job;
@@ -14,6 +15,7 @@ use App\Policies\CompanyPolicy;
 use App\Policies\JobPolicy;
 use App\Policies\StudyPolicy;
 use App\Policies\UserPolicy;
+
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

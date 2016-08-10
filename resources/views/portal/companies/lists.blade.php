@@ -16,11 +16,11 @@
                     <th class="text-center">Borrar</th>
 					<th class="text-center">Activar</th>
 					<th class="text-center">Editar</th>
+                    <th class="text-center">Fecha_Registro</th>
 					<th>Nombre</th>	
                     <th>Ofertas</th> 
 					<th>Usuario</th>
 					<th>Categoría</th>	
-					<th>Descripción</th>	
 				</tr>
 			</thead>
 			@foreach($companies as $company)
@@ -31,13 +31,16 @@
 	            	<td> 
                         <div class="mj_checkbox" style="float: none; margin: auto;">
                             <input type="checkbox" value="1" data-company="{{ $company->id }}" onchange="changeActive({{ $company->id }})"
-                            id="company-{{ $company->id }}" @if($company->active) checked @endif>
+                            id="company-{{ $company->id }}" @if($company->is_active) checked @endif>
                             <label for="company-{{ $company->id }}" style="border: 1px solid gray;"></label>
                         </div>
                     </td>
 	            	<td class="text-center">
 	            		<a href="{{ route('companies.edit', $company) }}" title="Editar" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
 	            	</td>
+                    <td class="text-center">
+                        {{ $company->created_at->toDateString() }}
+                    </td>
 	                <td>
 	                    <a href="{{ route('companies.show', $company) }}" title="Editar" target="_blank"> 
 							{{ $company->name }}
@@ -51,9 +54,6 @@
 	                </td>
 	                <td>
 	                    {{ $company->category_name }}
-	                </td>
-	                <td>
-	                    {{ $company->description }}
 	                </td>
 	            </tr>
 	        @endforeach

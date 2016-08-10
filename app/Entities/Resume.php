@@ -238,4 +238,16 @@ class Resume extends Model
         $fileRepository = new ResumeFileRepository();
         return $fileRepository->getResumeFileUrl($this);
     }
+
+    /**
+     * @return bool
+     */
+    public function getIsActiveAttribute()
+    {
+        if(is_null($this->jobseeker->user->activated_at)) {
+            return false;
+        }
+
+        return true;
+    }
 }

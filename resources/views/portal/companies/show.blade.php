@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        @can('edit', $company)
+        @can('createJobs', $company)
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4">
             <div class="mj_updatecart mj_toppadder10 mj_bottompadder10" style="text-align: center; float:none;">
                 <a href="{{ route('companies.jobs.create', $company) }}" class="mj_mainbtn mj_btnyellow" data-text="Nueva Oferta"><span>Nueva Oferta</span></a>

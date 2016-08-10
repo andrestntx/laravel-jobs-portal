@@ -40,11 +40,26 @@ return [
 
         // Jobseeker user
         'resume'        => ['title' => 'Hoja de vida', 'url' => 'my-resume', 'i' => 'fa fa-mortar-board', 'roles' => 'jobseeker'],
-        'applications'  => ['title' => 'Mis solicitudes', 'url' => 'my-applications', 'i' => 'fa fa-flash', 'roles' => 'jobseeker'],
+        'applications'  => [
+            'title' => 'Mis solicitudes', 
+            'url' => 'my-applications', 
+            'i' => 'fa fa-flash', 
+            'allows' => [
+                'isJobseeker', ':user'
+            ]
+        ],
 
         // Employer user
         'company'       => ['title' => 'Mi Empresa', 'url' => 'my-company', 'i' => 'fa fa-building', 'roles' => 'employer'],
-        'employer-jobs' => ['title' => 'Mis ofertas', 'url' => 'my-jobs', 'i' => 'fa fa-star', 'roles' => 'employer'],
-        'logout'        => ['title' => 'Cerrar sesión', 'url' => 'logout', 'logged' => true]
+
+        'employer-jobs' => [
+            'title' => 'Mis ofertas', 
+            'url' => 'my-jobs', 
+            'i' => 'fa fa-star', 
+            'allows' => [
+                'createJobs', ':company'
+            ]
+        ],
+        'logout'        => ['title' => 'Cerrar sesión', 'url' => 'logout', 'logged' => true],
     ]
 ];

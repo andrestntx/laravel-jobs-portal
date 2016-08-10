@@ -48,11 +48,13 @@ class CompaniesController extends ResourceController
      */
     public function myCompany()
     {
-        if($category = $this->service->getAuthCompany()->category) {
-            return $this->redirect('show', $this->service->getAuthCompany()->id);    
+        $company = $this->service->getAuthCompany();
+
+        if( \Gate::allows('adminJobs', $company) ) {
+            return $this->redirect('show', $company->id);
         }
-        
-        return $this->redirect('edit', $this->service->getAuthCompany()->id);
+
+        return $this->redirect('edit', $company->id);
     }
 
     /**
@@ -61,11 +63,13 @@ class CompaniesController extends ResourceController
      */
     public function myJobs()
     {
-        if($category = $this->service->getAuthCompany()->category) {
-            return $this->redirect('applications', $this->service->getAuthCompany()->id);
-        }
+        $company = $this->service->getAuthCompany();
 
-        return $this->redirect('edit', $this->service->getAuthCompany()->id);
+        //if( \Gate::allows('adminJobs', $company) ) {
+            return $this->redirect('applications', $company->id);
+        //}
+
+        //return $this->redirect('edit', $company->id);
     }
 
     /**

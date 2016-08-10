@@ -40,11 +40,24 @@ class User extends Authenticatable
     }
 
     /**
+     * @return mixed
+     */
+    public function getCompany()
+    {
+        return $this->companies->first();
+    }
+
+    /**
      * Get the resumes for the user.
      */
     public function jobseeker()
     {
         return $this->hasOne('App\Entities\Jobseeker');
+    }
+
+    public function getUser()
+    {
+        return $this;
     }
 
     /**
