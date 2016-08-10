@@ -46,7 +46,14 @@ Route::group(['middleware' => 'web'], function () {
 		Route::resource('parameters', 'ParametersController');
 
 		Route::get('registers', ['as' => 'admin.registers', 'uses' => 'RegistersController@index']);
+		Route::delete('registers/{resumes}', [
+			'as' 	=> 'registers.destroy',
+			'uses' 	=> 'RegistersController@destroy'
+		]);
+
 		Route::post('registers/{users}/active', ['as' 	=> 'registers.active', 'uses' 	=> 'RegistersController@active']);
+
+
 
 		Route::get('applications', ['as' => 'admin.applications.index', 'uses' => 'ApplicationsController@index']);
 		Route::get('applications/{jobs}', ['as' => 'admin.applications.show', 'uses' => 'ApplicationsController@show']);

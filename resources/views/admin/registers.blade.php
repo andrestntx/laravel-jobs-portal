@@ -23,7 +23,7 @@
 				</tr>
 			</thead>
 			@foreach($resumes as $resume)
-	            <tr id="resume_{{ $resume->id }}">
+	            <tr id="resume_{{ $resume->jobseeker_id }}">
                     <td style="text-align: center;">
                         <button class="btn btn-danger" title="Borrar"  onClick = "deleteService.deleteResume({{ $resume->id }});"><i class="fa fa-trash-o"></i></button>
                     </td>

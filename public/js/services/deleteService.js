@@ -71,6 +71,9 @@ var deleteService = function() {
         deleteCompany: function(id) {
             postDelete('/admin/companies/', id, 'company');
         },
+        deleteResume: function(id) {
+            postDelete('/admin/registers/', id, 'resume');
+        },
         deleteContractTypes: function(id) {
             postDelete('/admin/contract-types/', id, 'type');
         },
