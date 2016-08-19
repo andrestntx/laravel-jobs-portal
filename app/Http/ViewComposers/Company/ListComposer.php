@@ -21,7 +21,7 @@ class ListComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $companies = $this->repository->all();
+        $companies = $this->repository->model->with(['jobs', 'user', 'category'])->get();
 
         $view->with([
             'companies' => $companies,

@@ -96,7 +96,9 @@ class JobRepository extends BaseRepository
      */
     protected function defaultSearchJobs($occupationId = null, $contractTypeIds = null, $location = null, $search = null, $experience = 0, $salaryMin = 0, $salaryMax = null)
     {
-        $query = $this->model->frequentJoins($occupationId, null, $contractTypeIds, $experience, $salaryMin, $location);
+        $query = $this->model
+            ->with(['company'])
+            ->frequentJoins($occupationId, null, $contractTypeIds, $experience, $salaryMin, $location);
 
         if(! is_null($salaryMax)){
             $query->where('salary', '<=', $salaryMax);

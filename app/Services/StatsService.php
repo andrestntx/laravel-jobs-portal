@@ -73,6 +73,7 @@ class StatsService
 
         $applications = $this->applicationRepository
             ->getModel()
+            ->with(['resume.jobseeker'])
             ->where('created_at', '>=', $start)
             ->where('created_at', '<=', $end)
             ->get();

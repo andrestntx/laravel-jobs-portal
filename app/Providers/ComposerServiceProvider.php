@@ -13,7 +13,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composers([
-            'App\Http\ViewComposers\GlobalComposer' => '*',
+            'App\Http\ViewComposers\GlobalComposer' => ['portal.*', 'admin.*', 'account.*'],
             'App\Http\ViewComposers\CompanyCategory\ListComposer' => 'admin.company-categories.lists',
             'App\Http\ViewComposers\JobCategory\ListComposer' => 'admin.job-categories.lists',
             'App\Http\ViewComposers\ContractType\ListComposer' => ['admin.contract-types.lists'],

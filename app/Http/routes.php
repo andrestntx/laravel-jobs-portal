@@ -53,8 +53,6 @@ Route::group(['middleware' => 'web'], function () {
 
 		Route::post('registers/{users}/active', ['as' 	=> 'registers.active', 'uses' 	=> 'RegistersController@active']);
 
-
-
 		Route::get('applications', ['as' => 'admin.applications.index', 'uses' => 'ApplicationsController@index']);
 		Route::get('applications/{jobs}', ['as' => 'admin.applications.show', 'uses' => 'ApplicationsController@show']);
 		Route::post('applications/{jobs}/select', ['as' => 'admin.applications.select', 'uses' => 'ApplicationsController@select']);

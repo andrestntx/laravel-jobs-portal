@@ -44,7 +44,7 @@ class ListComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $profiles        = $this->profileRepository->listsSelect();
+        $profiles           = $this->profileRepository->listsSelect();
         $salaryRange        = $this->repository->getSalaryRange();
         $experienceRange    = $this->repository->getExperienceRange();
         $logos              = $this->companyFileRepository;
