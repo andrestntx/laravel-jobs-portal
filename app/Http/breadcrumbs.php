@@ -114,6 +114,23 @@ Breadcrumbs::register('profiles.profile', function ($breadcrumbs, $profile) {
     }
 });
 
+// Home > admin > activities
+Breadcrumbs::register('activities', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Actividades', route('admin.activities.index'));
+});
+
+// Home > admin > profiles > {{ $profile }}
+Breadcrumbs::register('activities.activity', function ($breadcrumbs, $activity) {
+    $breadcrumbs->parent('activities');
+
+    if ($activity->exists) {
+        $breadcrumbs->push($activity->name, route('admin.activities.show', $activity));
+    } else {
+        $breadcrumbs->push('Nueva', route('admin.activities.create'));
+    }
+});
+
 // Home > admin > parameters
 Breadcrumbs::register('parameters', function ($breadcrumbs) {
     $breadcrumbs->parent('admin');

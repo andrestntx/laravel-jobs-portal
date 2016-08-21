@@ -137,8 +137,10 @@
 						<p>{!! $portalDescription !!}</p>
 					</div> 
 					<div class="mj_copyright">
-						<p>&copy; {{ date('Y') }} <a href="http://gestacol.net">Gestacol <span class="mj_yellow_text">Software</span></a>
-							<br> Licencia de uso exclusivo para <a href="{{ filter_var($companyWeb, FILTER_SANITIZE_URL) }}">{{ $companyName }}</a> &nbsp; / &nbsp; Todos los derechos de uso y reproducción reservados a <a href="http://gestacol.net">Gestacol Software</a>
+
+						<p style="color:white; display: inline-block; margin-left: 10px; font-size: 1.15em; vertical-align: middle;margin-bottom: 10px;">{{ $portalFirstName }}<span class="mj_yellow_text">{{ $portalLastName }}</span></p>
+						<p>&copy; {{ date('Y') }} <a href="http://gestacol.net">Gestacol Software</span></a>
+							<br> Licencia de uso exclusivo para <a href="{{ $companyWeb }}" target="_blank">{{ $companyName }}</a> &nbsp; / &nbsp; Todos los derechos de uso y reproducción reservados a <a href="http://gestacol.net">Gestacol Software</a>
 						</p>
 						<p> <a href="http://comunidad.serviciodeempleo.gov.co" target="_blank">Comunidad de servicio publico de empleo</a> </p>
 						<span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>

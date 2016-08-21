@@ -8,6 +8,7 @@ use App\Facades\EmployerFacade;
 use App\Http\Controllers\ResourceController;
 use App\Http\Requests\Company\UpdateRequest;
 use App\Services\CompanyService;
+use App\Services\EmailService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -32,14 +33,18 @@ class CompaniesController extends ResourceController
      */
     protected  $facade;
 
+    protected $emailService;
+
     /**
      * CompaniesController constructor.
      * @param CompanyService $service
      * @param EmployerFacade $facade
+     * @param EmailService $emailService
      */
-    function __construct(CompanyService $service, EmployerFacade $facade)
+    function __construct(CompanyService $service, EmployerFacade $facade, EmailService $emailService)
     {
         $this->service = $service;
+        $this->emailService = $emailService;
         $this->facade = $facade;
     }
 
@@ -70,6 +75,7 @@ class CompaniesController extends ResourceController
         else {
             $company->active = 1;
             $user->activated_at = Carbon::now()->toDateTimeString();
+            $this->emailService->notifyActiveUser($user);
         }
 
         $company->save();

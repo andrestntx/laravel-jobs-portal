@@ -100,6 +100,22 @@ class EmailService
 
     /**
      * @param User $user
+     */
+    public function notifyActiveUser(User $user)
+    {
+        $fromEmail = $this->fromEmail;
+        $fromName = $this->fromName;
+
+        Mail::send('emails.notify-active-user', ['user' => $user], function ($m) use ($user, $fromEmail, $fromName) {
+            $m->from($fromEmail, $fromName);
+            $m->to($user->email, $user->name)
+                ->subject('Su cuenta ha sido activada')
+                ->cc(self::$cc);
+        });
+    }
+
+    /**
+     * @param User $user
      * @param Collection $admins
      */
     public function notifyNewUser(User $user, Collection $admins)

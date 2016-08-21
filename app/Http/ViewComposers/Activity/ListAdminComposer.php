@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\ViewComposers\Profile;
+namespace App\Http\ViewComposers\Activity;
 
-
-use App\Repositories\ProfileRepository;
+use App\Repositories\ActivityRepository;
 use Illuminate\Contracts\View\View;
 
 use App\Http\ViewComposers\BaseComposer;
 
-class ListComposer extends BaseComposer
+class ListAdminComposer extends BaseComposer
 {
-    function __construct(ProfileRepository $repository)
+    function __construct(ActivityRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -22,10 +21,10 @@ class ListComposer extends BaseComposer
      */
     public function compose(View $view)
     {
-        $profiles = $this->repository->all();
+        $activities = $this->repository->all();
 
         $view->with([
-            'profiles' => $profiles,
+            'activities' => $activities,
         ]);
     }
 }

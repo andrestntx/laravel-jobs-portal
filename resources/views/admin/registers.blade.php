@@ -29,13 +29,14 @@
                     </td>
 	            	<td> 
                         <div class="mj_checkbox" style="float: none; margin: auto;">
-                            <input type="checkbox" value="1" data-resume="{{ $resume->id }}" onchange="changeActive({{ $resume->jobseeker->user->id }})"
+                            <input type="checkbox" value="1" data-resume="{{ $resume->id }}" onchange="changeActive({{ $resume->jobseeker->user->id }}, this)"
                             id="resume-{{ $resume->id }}" @if($resume->is_active) checked @endif>
                             <label for="resume-{{ $resume->id }}" style="border: 1px solid gray;"></label>
                         </div>
                     </td>
 	            	<td class="text-center">
-	            		<a href="{{ route('resumes.edit', $resume) }}" title="Editar" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+	            		<a href="{{ route('users.edit', $resume->jobseeker->user_id) }}" title="Editar Cuenta" class="btn btn-warning"><i class="fa fa-user"></i></a>
+                        <a href="{{ route('resumes.edit', $resume) }}" title="Editar Hoja de vida" class="btn btn-info"><i class="fa fa-file-text-o"></i></a>
 	            	</td>
                     <td class="text-center">
                         {{ $resume->created_at->toDateString() }}
@@ -59,27 +60,6 @@
 
 @section('extra-js')
 	<script src="/js/services/deleteService.js"></script>
-	<script type="text/javascript">
-		function changeActive(register_id) {
-
-            if (confirm('¿Está seguro?')) {
-                $.ajax({
-                    url: '/admin/registers/' + register_id + '/active',
-                    dataType: 'json',
-                    method: 'POST',
-                    success: function (data) {
-                        if (data['success']) {
-                        }
-                        else {
-                        }
-                    },
-                    error: function () {
-                        alert('fallo la conexión');
-                    }
-                });
-            }
-        }
-	</script>
 
 	<script type="text/javascript">
 		$('.datatable').DataTable({
@@ -109,5 +89,57 @@
                 }
             }
 		});
+
+        var manual = false;
+
+        function changeActive(register_id, input) {
+
+            if(! manual) {
+                swal({
+                    title: '¿Está seguro?',
+                    text: 'La empresa será modificada',
+                    type: "warning",
+                    confirmButtonText: "Confirmar",
+                    confirmButtonColor: "#ec971f",
+                    cancelButtonText: "Cancelar",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                    html: true
+                }, function(isConfirm) {
+                    if (isConfirm) { 
+                        $.ajax({
+                            url: '/admin/registers/' + register_id + '/active',
+                            dataType: 'json',
+                            method: 'POST',
+                            success: function (data) {
+                                if (data['success']) {
+
+                                }
+                                else {
+
+                                }
+                            },
+                            error: function () {
+                                alert('fallo la conexión');
+                            }
+                        });
+                    } 
+                    else {
+                        manual = true;
+                        var back = ! $(input).prop('checked');
+
+                        if(back == true) {
+                            $(input).prop('checked', true);
+                        }
+                        else {
+                            $(input).removeAttr('checked');    
+                        }
+                        manual = false;
+                    }
+
+                });
+            }
+        }
 	</script>
 @endsection

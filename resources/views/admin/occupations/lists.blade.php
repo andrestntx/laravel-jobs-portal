@@ -13,14 +13,14 @@
 @endsection
 
 @section('article')
-	<div class="mj_postdiv mj_postpage mj_shadow_blue mj_toppadder20">
-		<table class="table table-striped">
+	<div class="mj_postdiv mj_postpage mj_shadow_blue mj_toppadder20" style="padding:30px;">
+		<table class="table table-striped datatable">
 			<thead>
 			<tr>
-				<th colspan="" rowspan="" headers="" scope="" class="text-center">Borrar</th>
-				<th colspan="" rowspan="" headers="" scope="" class="text-center">Editar</th>
-				<th colspan="1" rowspan="" headers="" scope="">Nombre</th>
-				<th colspan="3" rowspan="" headers="" scope="">Descripción</th>
+				<th class="text-center">Borrar</th>
+				<th class="text-center">Editar</th>
+				<th>Nombre</th>	
+				<th>Descripción</th>	
 			</tr>
 			</thead>
 			@foreach($occupations as $occupation)
@@ -41,11 +41,41 @@
 					</td>
 				</tr>
 			@endforeach
-			{!! $occupations->render() !!}
 		</table>
 	</div>
 @endsection
 
 @section('extra-js')
 	<script src="/js/services/deleteService.js"></script>
+
+	<script type="text/javascript">
+		$('.datatable').DataTable({
+			"order": [[2, "asc"]],
+			"columnDefs": [
+                {
+                    "targets": [0,1],
+                    "visible": true,
+                    "searchable": false,
+                    "orderable": false
+                },
+            ],
+			"language": {
+                "lengthMenu": "Ver _MENU_ por página",
+                "zeroRecords": "Lo siento, no se enontraron empresas",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay empresas",
+                "infoFiltered": "(Filtrado de _MAX_ asignados)",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "paginate": {
+                    "first": "Primera",
+                    "last": "Última",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+		});
+	</script>
+	
 @endsection

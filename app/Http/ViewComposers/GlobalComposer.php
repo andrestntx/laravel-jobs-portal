@@ -18,6 +18,13 @@ class GlobalComposer extends BaseComposer
         $this->parameterFileRepository = $parameterFileRepository;
     }
 
+    private function addHttp($url) {
+        if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+            $url = "http://" . $url;
+        }
+        return $url;
+    }
+
     /**
      * Bind data to the view.
      *
@@ -30,7 +37,7 @@ class GlobalComposer extends BaseComposer
         $portalLastName = substr($portalName, strlen($portalName) / 2, strlen($portalName));
         $portalDescription = $this->repository->getValue('portal_descripcion');
         $companyName = $this->repository->getValue('empresa_nombre');
-        $companyWeb = $this->repository->getValue('empresa_web');
+        $companyWeb = $this->addHttp($this->repository->getValue('empresa_web'));
 
         $view->with([
             'portalName'       => $portalName,

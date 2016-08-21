@@ -30,13 +30,14 @@
                     </td>
 	            	<td> 
                         <div class="mj_checkbox" style="float: none; margin: auto;">
-                            <input type="checkbox" value="1" data-company="{{ $company->id }}" onchange="changeActive({{ $company->id }})"
+                            <input type="checkbox" value="1" data-company="{{ $company->id }}" onchange="changeActive({{ $company->id }}, this)"
                             id="company-{{ $company->id }}" @if($company->is_active) checked @endif>
                             <label for="company-{{ $company->id }}" style="border: 1px solid gray;"></label>
                         </div>
                     </td>
-	            	<td class="text-center">
-	            		<a href="{{ route('companies.edit', $company) }}" title="Editar" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+	            	<td class="text-center" style="min-width: 100px;">
+	            		<a href="{{ route('users.edit', $company->user_id) }}" title="Editar Cuenta" class="btn btn-warning"><i class="fa fa-user"></i></a>
+                        <a href="{{ route('companies.edit', $company) }}" title="Editar Empresa" class="btn btn-success"><i class="fa fa-building-o"></i></a>
 	            	</td>
                     <td class="text-center">
                         {{ $company->created_at->toDateString() }}
@@ -93,25 +94,76 @@
             }
 		});
 
-        function changeActive(company_id) {
+        var manual = false;
 
-            if (confirm('¿Está seguro?')) {
-                $.ajax({
-                    url: '/admin/companies/' + company_id + '/active',
-                    dataType: 'json',
-                    method: 'POST',
-                    success: function (data) {
-                        if (data['success']) {
+        function changeActive(company_id, input) {
+
+            if(! manual) {
+                swal({
+                    title: '¿Está seguro?',
+                    text: 'La empresa será modificada',
+                    type: "warning",
+                    confirmButtonText: "Confirmar",
+                    confirmButtonColor: "#ec971f",
+                    cancelButtonText: "Cancelar",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                    html: true
+                }, function(isConfirm) {
+                    if (isConfirm) { 
+                        $.ajax({
+                            url: '/admin/companies/' + company_id + '/active',
+                            dataType: 'json',
+                            method: 'POST',
+                            success: function (data) {
+                                if (data['success']) {
+                                    swal("Empresa modificada", "", "success");
+                                }
+                                else {
+                                    swal("Hubo un error", "", "danger");
+                                    manual = true;
+                                    var back = ! $(input).prop('checked');
+
+                                    if(back == true) {
+                                        $(input).prop('checked', true);
+                                    }
+                                    else {
+                                        $(input).removeAttr('checked');    
+                                    }
+                                    manual = false;
+                                }
+                            },
+                            error: function () {
+                                swal("Hubo un error", "", "danger");
+                                manual = true;
+                                var back = ! $(input).prop('checked');
+
+                                if(back == true) {
+                                    $(input).prop('checked', true);
+                                }
+                                else {
+                                    $(input).removeAttr('checked');    
+                                }
+                                manual = false;
+                            }
+                        });
+                    } 
+                    else {
+                        manual = true;
+                        var back = ! $(input).prop('checked');
+
+                        if(back == true) {
+                            $(input).prop('checked', true);
                         }
                         else {
+                            $(input).removeAttr('checked');    
                         }
-                    },
-                    error: function () {
-                        alert('fallo la conexión');
+                        manual = false;
                     }
+
                 });
             }
         }
-
 	</script>
 @endsection

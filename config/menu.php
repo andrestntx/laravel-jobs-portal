@@ -27,6 +27,7 @@ return [
 
         // Admin user
         'company-categories'    => ['url' => 'admin/company-categories', 'title' => 'Categorías de empresa', 'i' => 'fa fa-building', 'roles' => 'admin'],
+        'activities'            => ['url' => 'admin/activities', 'title' => 'Actividades', 'i' => 'fa fa-tasks', 'roles' => 'admin'],
         //'job-categories'        => array('url' => 'admin/job-categories', 'title' => 'Categorías de trabajo', 'i' => 'fa fa-mortar-board', 'roles' => 'admin'),
         'companies'             => ['url' => 'admin/companies', 'title' => 'Empresas (Demandantes)', 'i' => 'fa fa-building-o', 'roles' => 'admin'],
         'rsumes'                => ['url' => 'admin/registers', 'title' => 'Trabajadores (Oferentes)', 'i' => 'fa fa-user', 'roles' => 'admin'],

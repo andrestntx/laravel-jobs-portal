@@ -42,6 +42,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::resource('profiles', 'ProfilesController');
 		Route::resource('geo-locations', 'GeoLocationsController', ['only' => ['index', 'store', 'edit']]);
 		Route::resource('skills', 'SkillsController');
+		Route::resource('activities', 'ActivitiesController');
 		Route::resource('admins', 'AdminsController');
 		Route::resource('parameters', 'ParametersController');
 
@@ -89,6 +90,16 @@ Route::group(['middleware' => 'web'], function () {
 		]);
 
 		// Route::resource('jobs', 'JobsController', ['only' => ['index', 'show']]);
+
+		Route::get('users/{users}/edit', [
+			'as' => 'users.edit',
+			'uses' => 'AdminController@editAccount'
+		]);
+
+		Route::post('users/{users}', [
+			'as' => 'users.update',
+			'uses' => 'AdminController@postEditAccount'
+		]);
 	});
 
 	Route::group(['namespace' => 'Portal'], function () {

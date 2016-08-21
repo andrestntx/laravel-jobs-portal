@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('breadcrumbs')
-	{!! Breadcrumbs::render('profiles') !!}
+	{!! Breadcrumbs::render('activities') !!}
 @endsection
 
 @section('title')
-	<span>Perfiles</span>
+	<span>Actividades</span>
 @endsection
 
 @section('pre-article')
-	<a href="{{ route('admin.profiles.create') }}" class="btn btn-lg mj_btnblue" data-text="Nuevo Perfil"><span>Nuevo Perfil</span></a>
+	<a href="{{ route('admin.activities.create') }}" class="btn btn-lg mj_btnblue" data-text="Nueva Actividad"><span>Nueva Actividad</span></a>
 @endsection
 
 @section('article')
@@ -20,24 +20,20 @@
 				<th class="text-center">Borrar</th>
 				<th class="text-center">Editar</th>
 				<th>Nombre</th>	
-				<th>Descripción</th>	
 			</tr>
 			</thead>
-			@foreach($profiles as $profile)
-				<tr id="profile_{{ $profile->id }}">
+			@foreach($activities as $activity)
+				<tr id="activity_{{ $activity->id }}">
 	            	<td style="text-align: center;">
-	            		<button class="btn btn-danger" title="Borrar"  onClick = "deleteService.deleteProfile({{ $profile->id }});"><i class="fa fa-trash-o"></i></button>
+	            		<button class="btn btn-danger" title="Borrar"  onClick = "deleteService.deleteActivity({{ $activity->id }});"><i class="fa fa-trash-o"></i></button>
 	            	</td>
 					<td style="text-align: center;">
-						<a href="{{ route('admin.profiles.edit', $profile) }}" title="Editar" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+						<a href="{{ route('admin.activities.edit', $activity) }}" title="Editar" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
 					</td>
 					<td>
-						<a href="{{ route('admin.profiles.edit', $profile) }}" title="Editar">
-							{{ $profile->name }}
+						<a href="{{ route('admin.activities.edit', $activity) }}" title="Editar">
+							{{ $activity->name }}
 						</a>
-					</td>
-					<td>
-						{{ $profile->description }}
 					</td>
 				</tr>
 			@endforeach
@@ -77,4 +73,5 @@
             }
 		});
 	</script>
+	
 @endsection

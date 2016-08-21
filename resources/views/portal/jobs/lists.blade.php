@@ -81,7 +81,6 @@
                     <div class="mj_tabcontent mj_bottompadder80">
                         <table class="table table-striped">
                             <tr>
-                               <th>Aplicar</th>
                                <th>Empresa</th>
                                <th>Empleo</th>
                                <th>Ocupación</th>
@@ -91,15 +90,11 @@
                             @foreach($jobs as $job)
                                 <tr>
                                     <td>
-                                        <div class="mj_liks"><a href="{{ route('companies.jobs.apply', [$job->company_id, $job]) }}"><i style="font-size: 25px;" class="fa fa-envelope-o"></i></a><span>Aplicar</span>
-                                        </div>
-                                    </td>
-                                    <td>
                                         <a href="{{ route('companies.jobs.show', [$job->company_id, $job->id]) }}"><img src="{{ $logos->getLogoUrl($job->company) }}" class="img-responsive" alt="">
                                         </a>
                                     </td>
                                     <td>
-                                        <h4><a href="{{ route('companies.jobs.show', [$job->company_id, $job->id]) }}">{{ $job->name }}</a></h4>
+                                        <h4><a style="float: none;" href="{{ route('companies.jobs.show', [$job->company_id, $job->id]) }}">{{ $job->name }}</a></h4>
                                         <p>{{ $job->company->name }}</p>
                                     </td>
                                     <td>{{ $job->occupation }}</td>

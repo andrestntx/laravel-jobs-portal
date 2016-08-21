@@ -49,4 +49,6 @@ class HomeController extends Controller
         $this->userFacade->updateUser($request->all(), $user);
         return redirect()->to('account');
     }
+
+
 }

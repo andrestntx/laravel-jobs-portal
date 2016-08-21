@@ -68,7 +68,7 @@
                                     <li><a href="{{ route('companies.jobs.apply', [$job->company, $job]) }}" class="mj_mainbtn mj_btnyellow" data-text="Aplicar"><span>Aplicar</span></a></li>
                                 @elseif(auth()->user() && auth()->user()->isJobseeker())
                                     @if(auth()->user()->jobseeker)
-                                        <li style="margin-bottom: 30px;"><a href="#">Ya aplicó a este empleo</a></li>
+                                        <li style="margin-bottom: 30px; font-size: 1.3em;">Ya aplicó a este empleo</li>
                                     @else
                                         <li style="margin-bottom: 30px;"><a href="/my-resume">Debe completar su hoja de vida para aplicar a empleos</a></li>
                                     @endif
