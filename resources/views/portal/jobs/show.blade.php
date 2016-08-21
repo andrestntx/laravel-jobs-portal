@@ -114,6 +114,18 @@
                                 </div>
 
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <label>Tipo de contrato</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                    <div class="mj_detaildiv">
+                                        {!! $job->contractType->name !!}
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
+                                    <div class="mj_divider"></div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <label>Finalización</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
@@ -149,6 +161,18 @@
                                 </div>
 
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <label>Experiencia</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                    <div class="mj_detaildiv">
+                                        {!! $job->experience !!} años
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
+                                    <div class="mj_divider"></div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <label>Quíen debería aplicar</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
@@ -159,6 +183,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
                                     <div class="mj_divider"></div>
                                 </div>
+
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                     <label>Habilidades</label>
                                 </div>
