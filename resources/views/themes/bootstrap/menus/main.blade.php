@@ -4,13 +4,7 @@
             <a href="{{ $item['url'] }}">
                 @if(array_key_exists('img', $item))  
                     @if($item['img'] == 'user')
-                        @if(auth()->user()->isEmployer())
-                            <img src="{{ $logos->getLogoUrl(auth()->user()->companies->first()) }}" style="max-width: 45px;" /> 
-                        @elseif(auth()->user()->isJobseeker())
-                            <img src="{{ $photos->getPhotoUrlId(auth()->user()->id) }}" style="max-width: 45px;" /> 
-                        @else
-
-                        @endif
+                        <img src="{{ auth()->user()->photo }}" style="max-width: 45px;" /> 
                     @else
                         <img src="{{ $item['img'] }}"/> 
                     @endif

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,6 +17,8 @@ class Company extends Model
     protected $fillable = ['nit', 'name', 'description', 'website', 'facebook', 'twitter', 'active', 'user_id',
         'geo_location_id', 'company_category_id', 'email','email_new_job', 'tel', 'cel', 'show_data'
     ];
+
+    protected $fileRepository;
 	
     /**
      * Get the user that owns the company.
@@ -47,6 +50,18 @@ class Company extends Model
     public function category()
     {
         return $this->belongsTo('App\Entities\CompanyCategory', 'company_category_id', 'id');
+    }
+
+    /**
+     * @return CompanyFileRepository
+     */
+    public function getFileRepository()
+    {
+        if(is_null($this->fileRepository)) {
+            $this->fileRepository = new CompanyFileRepository();
+        }
+
+        return $this->fileRepository;
     }
 
 
@@ -136,7 +151,14 @@ class Company extends Model
         }
 
         return false;
+    }
 
+    /**
+     * @return string
+     */
+    public function getLogoAttribute()
+    {
+        return $this->getFileRepository()->getLogoUrl($this);
     }
 
     /*public function getCreatedAttribute()

@@ -40,6 +40,6 @@ class CompanyFileRepository extends BaseFileRepostory
      */
     public function getLogoUrl(Company $company)
     {
-        return $this->getFileOrDefault($this->getPathCompany($company->id). "/logo.jpg", $this->defaultLogo, \Gate::allows('show_data', $company));
+        return $this->getFileOrDefault($this->getPathCompany($company->id). "/logo.jpg", $this->defaultLogo, \Gate::allows('showData', $company));
     }
 }

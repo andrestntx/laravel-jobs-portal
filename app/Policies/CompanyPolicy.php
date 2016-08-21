@@ -41,6 +41,7 @@ class CompanyPolicy
      */
     public function showData(User $user, Company $company)
     {
+        \Log::info('encunetra');
         if($user->id == $company->user_id || $company->show_data) {
             return true;
         }

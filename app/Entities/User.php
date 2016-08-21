@@ -2,6 +2,9 @@
 
 namespace App\Entities;
 
+use App\Repositories\Files\JobseekerFileRepository;
+use App\Repositories\Files\UserFileRepository;
+use App\Repositories\JobseekerRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,6 +18,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'username', 'role'
     ];
+
+    protected $fileRepository;
+    protected $userFileRepository;
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -128,5 +134,37 @@ class User extends Authenticatable
     public function getRoleNameAttribute()
     {
         return $this->roles[$this->role];
+    }
+
+    /**
+     * @return JobseekerFileRepository
+     */
+    public function getFileRepository()
+    {
+        if(is_null($this->fileRepository)) {
+            $this->fileRepository = new JobseekerFileRepository();
+        }
+
+        return $this->fileRepository;
+    }
+
+    /**
+     * @return UserFileRepository
+     */
+    public function getUserFileRepository()
+    {
+        if(is_null($this->userFileRepository)) {
+            $this->userFileRepository = new UserFileRepository();
+        }
+
+        return $this->userFileRepository;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhotoAttribute()
+    {
+        return $this->getUserFileRepository()->getPhotoUrl($this);
     }
 }
