@@ -117,6 +117,7 @@ $factory->define(App\Entities\Jobseeker::class, function (Faker\Generator $faker
         'email' => $faker->unique()->email,
         'phone' => $faker->unique()->phoneNumber,
         'sex'   => $faker->randomElement(['M', 'F']),
+        'disability' => $faker->text(50)
     ];
 });
 

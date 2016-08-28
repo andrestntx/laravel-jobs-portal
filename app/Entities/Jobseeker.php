@@ -40,7 +40,7 @@ class Jobseeker extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'phone', 'cel', 'user_id', 'doc', 'doc_type', 'geo_location_id', 'sex'
+        'first_name', 'last_name', 'email', 'phone', 'cel', 'user_id', 'doc', 'doc_type', 'geo_location_id', 'sex', 'disability'
     ];
 
     /**

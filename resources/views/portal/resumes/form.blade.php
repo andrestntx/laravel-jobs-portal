@@ -24,6 +24,8 @@
                 {!! Field::text('first_name', ['ph' => 'Nombres', 'required']) !!}
                 {!! Field::text('last_name', ['ph' => 'Apellidos', 'required']) !!}
                 {!! Field::select('sex', $sex, ['empty' => 'Seleccione el Género', 'required']) !!}
+                {!! Field::text('disability', ['ph' => 'Discapacidad', 'label' => 'Discapacidad']) !!}
+                
 
                 <div class="form-group">
                     <label for="photo" class="control-label" style="width: 100%;">Foto</label>
