@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="utf-8" lang="es"> 
 	<meta name="MobileOptimized" content="320">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	@yield('extra-head')
