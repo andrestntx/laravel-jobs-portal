@@ -84,7 +84,13 @@ class ResumeRepository extends BaseRepository
             $query->where(function($query) use ($search) {
                 $query->where('jobseekers.first_name', 'like', '%'.$search.'%')
                     ->orWhere('jobseekers.last_name', 'like', '%'.$search.'%')
-                    ->orWhere('resumes.profile', 'like', '%'.$search.'%');
+                    ->orWhere(\DB::raw('CONCAT(jobseekers.first_name," ",jobseekers.last_name)'), 'like', '%'.$search.'%')
+                    ->orWhere('resumes.profile', 'like', '%'.$search.'%')
+                    ->orWhere('resumes.skills', 'like', '%'.$search.'%')
+                    ->orWhere('resumes.study_title', 'like', '%'.$search.'%')
+                    ->orWhere('resumes.vaccines', 'like', '%'.$search.'%')
+                    ->Orwhere('geo_locations.name', 'like', '%'.$search.'%')
+                    ->Orwhere('geo_locations.formatted_address', 'like', '%'.$search.'%');
             });
         }
 
