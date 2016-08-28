@@ -117,8 +117,13 @@ class ResumeRepository extends BaseRepository
      */
     public function getExperienceRange()
     {
-        $min = $this->model->select('experience')->orderBy('experience', 'asc')->take(1)->first()->experience;
-        $max = $this->model->select('experience')->orderBy('experience', 'desc')->take(1)->first()->experience;
+        $min = 0;
+        $max = 0;
+
+        if($this->model->count() > 0) {
+            $min = $this->model->select('experience')->orderBy('experience', 'asc')->take(1)->first()->experience;
+            $max = $this->model->select('experience')->orderBy('experience', 'desc')->take(1)->first()->experience;
+        }
 
         return ['experienceMin' => $min, 'experienceMax' => $max];
     }

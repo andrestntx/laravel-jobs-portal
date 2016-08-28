@@ -171,8 +171,13 @@ class JobRepository extends BaseRepository
      */
     public function getSalaryRange()
     {
-        $min = money_format('%.2n', $this->model->select('salary')->orderBy('salary', 'asc')->take(1)->first()->salary);
-        $max = money_format('%.2n', $this->model->select('salary')->orderBy('salary', 'desc')->take(1)->first()->salary);
+        $min = 0;
+        $max = 0;
+
+        if($this->model->count() > 0) {
+            $min = money_format('%.2n', $this->model->select('salary')->orderBy('salary', 'asc')->take(1)->first()->salary);
+            $max = money_format('%.2n', $this->model->select('salary')->orderBy('salary', 'desc')->take(1)->first()->salary);
+        }
 
         return ['salaryMin' => $min, 'salaryMax' => $max];
     }
@@ -182,8 +187,13 @@ class JobRepository extends BaseRepository
      */
     public function getExperienceRange()
     {
-        $min = $this->model->select('experience')->orderBy('experience', 'asc')->take(1)->first()->experience;
-        $max = $this->model->select('experience')->orderBy('experience', 'desc')->take(1)->first()->experience;
+        $min = 0;
+        $max = 0;
+
+        if($this->model->count() > 0) {
+            $min = $this->model->select('experience')->orderBy('experience', 'asc')->take(1)->first()->experience;
+            $max = $this->model->select('experience')->orderBy('experience', 'desc')->take(1)->first()->experience;
+        }
 
         return ['experienceMin' => $min, 'experienceMax' => $max];
     }
