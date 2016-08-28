@@ -23,14 +23,8 @@ class JobRepository extends BaseRepository
         return 'App\Entities\Job';
     }
 
-    /**
-     * @param array $data
-     * @return mixed
-     */
-    public function newModel(array $data = array())
+    protected function cleanData(array &$data)
     {
-        $model = $this->model->getModel();
-
         if(! array_key_exists('google', $data)){
             $data['google'] = 0;
         }
@@ -38,6 +32,16 @@ class JobRepository extends BaseRepository
         if(! array_key_exists('email_new_application', $data)) {
             $data['email_new_application'] = 0;
         }
+    }
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    public function newModel(array $data = array())
+    {
+        $model = $this->model->getModel();
+        $this->cleanData($data);
 
         $model->fill($data);
 
@@ -51,13 +55,7 @@ class JobRepository extends BaseRepository
      */
     public function update(array $data, $entity)
     {
-        if(! array_key_exists('google', $data)){
-            $data['google'] = 0;
-        }
-
-        if(! array_key_exists('email_new_application', $data)) {
-            $data['email_new_application'] = 0;
-        }
+        $this->cleanData($data);
 
         if(! array_key_exists('inactive', $data)) {
             $data['inactive'] = 0;
@@ -107,7 +105,15 @@ class JobRepository extends BaseRepository
         if(! is_null($search) && ! empty($search)) {
             $query->where(function($query) use ($search) {
                 $query->where('jobs.name', 'like', '%'.$search.'%')
-                    ->Orwhere('jobs.description', 'like', '%'.$search.'%');
+                    ->Orwhere('jobs.description', 'like', '%'.$search.'%')
+                    ->Orwhere('jobs.who_apply', 'like', '%'.$search.'%')
+                    ->Orwhere('jobs.skills', 'like', '%'.$search.'%')
+                    ->Orwhere('geo_locations.name', 'like', '%'.$search.'%')
+                    ->Orwhere('geo_locations.formatted_address', 'like', '%'.$search.'%')
+                    ->Orwhere('occupations.name', 'like', '%'.$search.'%')
+                    ->Orwhere('contract_types.name', 'like', '%'.$search.'%');
+
+
             });
         }
 
