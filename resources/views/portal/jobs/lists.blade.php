@@ -119,7 +119,7 @@
 @endsection
 
 @section('extra-js')
-    <script src="/js/gmaps.js"></script>
+    <script src="{{ asset('/js/gmaps.js') }}"></script>
     <script>
         jQuery(document).ready(function($) {
             // map marker js

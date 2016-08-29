@@ -6,3 +6,5 @@ Homestead.json
 .env
 jobs.sublime-project
 jobs.sublime-workspace
+
+composer.lock
