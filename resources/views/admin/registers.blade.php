@@ -59,7 +59,7 @@
 @endsection
 
 @section('extra-js')
-	<script src="/js/services/deleteService.js"></script>
+	<script src="{{ asset('/js/services/deleteService.js') }}"></script>
 
 	<script type="text/javascript">
 		$('.datatable').DataTable({
