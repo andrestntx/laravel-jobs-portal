@@ -97,7 +97,7 @@
             if(! manual) {
                 swal({
                     title: '¿Está seguro?',
-                    text: 'La empresa será modificada',
+                    text: 'La oferente será modificado',
                     type: "warning",
                     confirmButtonText: "Confirmar",
                     confirmButtonColor: "#ec971f",
@@ -109,19 +109,39 @@
                 }, function(isConfirm) {
                     if (isConfirm) { 
                         $.ajax({
-                            url: '/admin/registers/' + register_id + '/active',
+                            url: '{{ asset("/admin/registers") }}' + '/' + register_id + '/active',
                             dataType: 'json',
                             method: 'POST',
                             success: function (data) {
                                 if (data['success']) {
-
+                                    swal("Oferente modificado", "", "success");
                                 }
                                 else {
+                                    swal("Hubo un error", "", "danger");
+                                    manual = true;
+                                    var back = ! $(input).prop('checked');
 
+                                    if(back == true) {
+                                        $(input).prop('checked', true);
+                                    }
+                                    else {
+                                        $(input).removeAttr('checked');    
+                                    }
+                                    manual = false;
                                 }
                             },
                             error: function () {
-                                alert('fallo la conexión');
+                                swal("Hubo un error", "", "danger");
+                                manual = true;
+                                var back = ! $(input).prop('checked');
+
+                                if(back == true) {
+                                    $(input).prop('checked', true);
+                                }
+                                else {
+                                    $(input).removeAttr('checked');    
+                                }
+                                manual = false;
                             }
                         });
                     } 
