@@ -37,7 +37,7 @@
             {!! Field::select('occupation_id', $occupations, ['required', 'class' => 'select2']) !!}
             {!! Field::select('contract_type_id', $contractTypes, ['required', 'class' => 'select2']) !!}
             {!! Field::text('skills', ['ph' => 'Habilidades requeridas para el empleo', 'data-role' => 'tagsinput']) !!}
-            {!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90']) !!}
+            {!! Field::text('address', ['placeholder' => 'Dirección', 'size' => '90', 'required']) !!}
             @include('includes.google-maps.map')
             {!! Field::textarea('description', ['ph' => 'Descripción del empleo', 'class' => 'editor-html', 'required']) !!}
             {!! Field::textarea('who_apply', ['ph' => '¿Quien puede aplicar?', 'class' => 'editor-html']) !!}

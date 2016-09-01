@@ -90,7 +90,7 @@
                             @foreach($jobs as $job)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('companies.jobs.show', [$job->company_id, $job->id]) }}"><img src="{{ $logos->getLogoUrl($job->company) }}" class="img-responsive" alt="">
+                                        <a href="{{ route('companies.jobs.show', [$job->company_id, $job->id]) }}"><img src="{{ asset($logos->getLogoUrl($job->company)) }}" class="img-responsive" alt="">
                                         </a>
                                     </td>
                                     <td>
