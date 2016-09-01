@@ -240,6 +240,15 @@ class Resume extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getUrlVaccineFileAttribute()
+    {
+        $fileRepository = new ResumeFileRepository();
+        return $fileRepository->getVaccineFileUrl($this);
+    }
+
+    /**
      * @return bool
      */
     public function getIsActiveAttribute()

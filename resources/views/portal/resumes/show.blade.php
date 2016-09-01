@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                     <div class="mj_detaildiv">
-                                        {{ $resume->vaccines }}
+                                        <a href="{{ asset($resume->urlVaccineFile) }}" title="Vacunas" target="_blank">{{ $resume->vaccines }}</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mj_toppadder30 mj_bottompadder30">
