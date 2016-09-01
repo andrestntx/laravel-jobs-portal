@@ -29,6 +29,7 @@ class StoreRequest extends CreateRequest
         return [
             'name'              => 'required',
             'description'       => 'required',
+            'address'           => 'required',
             'closing_date'      => 'date',
             'salary'            => 'numeric',
             'experience'        => 'numeric|max:15',
