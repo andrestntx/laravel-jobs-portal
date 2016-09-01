@@ -99,7 +99,7 @@
     <script src="{{ asset('/js/validations/auth/employerValidation.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/js/validations/auth/jobseekerValidation.js') }}" type="text/javascript"></script>
     <script>
-        EmployerValidation.init();
-        JobseekerValidation.init();
+        EmployerValidation.init("{{ asset('') }}");
+        JobseekerValidation.init("{{ asset('') }}");
     </script>
 @endsection

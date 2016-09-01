@@ -73,7 +73,7 @@
 								Condiciones de Uso
 							</h2>
 							<p>
-								Apreciado Usuario: el sitio web del -PORTAL DE EMPLEO con sede en Bogotá, Colombia.- www.portal-de-empelo.com (en adelante el Sitio Web) tiene como función principal proveer información y servicios así como divulgar y promover normas y directrices del - PORTAL DE EMPLEO- (en adelante PORTAL DE EMPLEO).
+								Apreciado Usuario: el sitio web del -PORTAL DE EMPLEO con sede en Bogotá, Colombia.- www.portal-de-empleo.com (en adelante el Sitio Web) tiene como función principal proveer información y servicios así como divulgar y promover normas y directrices del - PORTAL DE EMPLEO- (en adelante PORTAL DE EMPLEO).
 							</p>
 							<p>
 								Por medio del Sitio Web, PORTAL DE EMPLEO publica, entre otros, los temas y actividades que tienen que ver con su misión, su visión, objetivos y las funciones que le corresponden. Adicionalmente, por este medio la entidad da a conocer información sobre Políticas, planes, programas y proyectos institucionales, Trámites; Servicios; Indicadores de Gestión; Planes y Programas; Publicaciones; Normas; Convocatorias; Información presupuestal y de contratación; páginas recomendadas, y, en general, información relacionada con el gobierno y la entidad o del los programas que desarrollan las entidades si es el caso. Adicionalmente, permite la opción de solicitar trámites en línea y ofrece herramientas de interacción para los usuarios del sitio.

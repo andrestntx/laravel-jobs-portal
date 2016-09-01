@@ -31,7 +31,7 @@
                     <label for="photo" class="control-label" style="width: 100%;">Foto</label>
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                       <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="{{ $photos->getPhotoUrlId($resume->user_id) }}" alt="img">
+                        <img src="{{ asset($photos->getPhotoUrlId($resume->user_id)) }}" alt="img">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                       <div>
@@ -152,11 +152,11 @@
 @endsection
 
 @section('extra-js')
-    <script src="/js/services/searchLocation.js"></script>
-    <script src="/js/services/searchOccupations.js"></script>
+    <script src="{{ asset('/js/services/searchLocation.js') }}"></script>
+    <script src="{{ asset('/js/services/searchOccupations.js') }}"></script>
     <script>
         searchLocation.init();
-        searchOccupations.init();
+        searchOccupations.init("{{ asset('') }}");
 
         $(".select2").select2({
             placeholder: "Seleccione las Habilidades",
@@ -164,8 +164,8 @@
         });
 
     </script>
-    <script src="/js/services/deleteService.js"></script>
-    <script src="/js/validations/resumeValidation.js" type="text/javascript"></script>
+    <script src="{{ asset('/js/services/deleteService.js') }}"></script>
+    <script src="{{ asset('/js/validations/resumeValidation.js') }}" type="text/javascript"></script>
     <script>
         ResumeValidation.init();
     </script>

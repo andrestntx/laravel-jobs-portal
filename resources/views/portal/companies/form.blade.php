@@ -26,7 +26,7 @@
                     <label for="logo" class="control-label" style="width: 100%;">Logo</label>
 					<div class="fileinput fileinput-new" data-provides="fileinput">
 					  <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="{{ $logos->getLogoUrl($company) }}" alt="img">
+                        <img src="{{ asset($logos->getLogoUrl($company)) }}" alt="img">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
 					  <div>
@@ -111,8 +111,8 @@
 @endsection
 
 @section('extra-js')
-	<script src="/js/services/searchLocation.js"></script>
-	<script src="/js/validations/companyValidation.js" type="text/javascript"></script>
+	<script src="{{ asset('/js/services/searchLocation.js') }}"></script>
+	<script src="{{ asset('/js/validations/companyValidation.js') }}" type="text/javascript"></script>
 	<script> 
 		searchLocation.init(); 
 		CompanyValidation.init();

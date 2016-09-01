@@ -11,7 +11,7 @@
                 <h3><span> {{ $company->name }}</span></h3>
                 <div class="col-sm-offset-4 col-sm-4 col-xs-10 col-xs-offset-1">
                     <div class="mj_joblogo company-datail">
-                        <img src="{{ $logoUrl }}" class="img-responsive" alt="">
+                        <img src="{{ asset($logoUrl) }}" class="img-responsive" alt="">
                     </div>
                 </div>
                 <div class="col-xs-12">
@@ -93,7 +93,7 @@
 @endsection
 
 @section('extra-js')
-    <script src="/js/services/searchLocation.js"></script>
+    <script src="{{ asset('/js/services/searchLocation.js') }}"></script>
     <script> 
         searchLocation.initShowLocation(); 
     </script>

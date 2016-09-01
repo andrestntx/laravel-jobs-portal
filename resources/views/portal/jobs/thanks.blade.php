@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mj_pagetitle">
-        <img src="/images/background-city.jpg" alt="">
+        <img src="{{ asset('/images/background-city.jpg') }}" alt="">
         <div class="mj_mainheading_overlay"></div>
         <div class="mj_pagetitle_inner">
 

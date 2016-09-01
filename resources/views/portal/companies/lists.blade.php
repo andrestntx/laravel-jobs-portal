@@ -113,7 +113,7 @@
                 }, function(isConfirm) {
                     if (isConfirm) { 
                         $.ajax({
-                            url: '/admin/companies/' + company_id + '/active',
+                            url: '{{ asset("/admin/companies") }}/' + company_id + '/active',
                             dataType: 'json',
                             method: 'POST',
                             success: function (data) {

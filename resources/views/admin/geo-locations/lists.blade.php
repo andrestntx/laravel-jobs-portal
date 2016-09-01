@@ -49,6 +49,6 @@
 
 
 @section('extra-js')
-	<script src="/js/services/searchLocation.js"></script>
+	<script src="{{ asset('/js/services/searchLocation.js') }}"></script>
 	<script> searchLocation.init(); </script>
 @endsection

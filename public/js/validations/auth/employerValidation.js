@@ -7,11 +7,11 @@
 var EmployerValidation = function() {
 
     return {
-        init: function() {
+        init: function(urlpath) {
             /*
              *  Jquery Validation, Check out more examples and documentation at https://github.com/jzaefferer/jquery-validation
              */
-
+             
             /* Initialize Form Validation */
             $('#form-employer').validate({
                 errorClass: 'help-block animation-pullUp col-xs-12', // You can change the animation class for a different entrance animation - check animations page
@@ -37,7 +37,7 @@ var EmployerValidation = function() {
                         required: true,
                         email: true,
                         remote: {
-                            url: "/validations/register",
+                            url: urlpath + "/validations/register",                            
                             type: "post",
                             data: {
                                 validate: function() {
@@ -49,7 +49,7 @@ var EmployerValidation = function() {
                     'nit': {
                         required: true,
                         remote: {
-                            url: "/validations/register",
+                            url: urlpath + "/validations/register",
                             type: "post",
                             data: {
                                 validate: function() {
@@ -61,7 +61,7 @@ var EmployerValidation = function() {
                     'company': {
                         required: true,
                         remote: {
-                            url: "/validations/register",
+                            url: urlpath + "/validations/register",
                             type: "post",
                             data: {
                                 validate: function() {

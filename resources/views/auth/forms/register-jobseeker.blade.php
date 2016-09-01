@@ -19,7 +19,7 @@
                                     <button type="submit" name="register-jobseeker">Iniciar ahora!</button>
                                 </div>
                             {!! Form::close() !!}
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="images/close.png" alt="">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="{{ asset('images/close.png') }}" alt="">
                             </button>
                         </div>
                     </div>

@@ -213,7 +213,7 @@ Breadcrumbs::register('companies.company', function ($breadcrumbs, $company) {
 // Home > companies > {{ $company }} > jobs
 Breadcrumbs::register('companies.company.jobs', function ($breadcrumbs, $company) {
     $breadcrumbs->parent('companies.company', $company);
-    $breadcrumbs->push('Ofertas de empelo', route('companies.jobs.index', $company));
+    $breadcrumbs->push('Ofertas de empleo', route('companies.jobs.index', $company));
 });
 
 // Home > companies > {{ $company }} > jobs > {{ $job }}
@@ -230,7 +230,7 @@ Breadcrumbs::register('companies.company.jobs.job', function ($breadcrumbs, $com
 // Home > jobs
 Breadcrumbs::register('jobs', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Ofertas de empelo', route('jobs.index'));
+    $breadcrumbs->push('Ofertas de empleo', route('jobs.index'));
 });
 
 // Home > jobs > {{ $job }}

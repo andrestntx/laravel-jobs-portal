@@ -3,7 +3,7 @@
 @section('content')
 <div class="mj_pagetitle2" data-url="{{ route('companies.jobs.accept-application', [$job->company, $job]) }}" id="url-post">
     <div class="mj_pagetitleimg">
-        <img src="/images/background-job.jpg" alt="">
+        <img src="{{ asset('/images/background-job.jpg') }}" alt="">
         <div class="mj_mainheading_overlay"></div>
     </div>
     <div class="mj_pagetitle_inner">
@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                 <div class="mj_joblogo">
-                                    <img src="{{ $logoUrl }}" class="img-responsive" alt="">
+                                    <img src="{{ asset($logoUrl) }}" class="img-responsive" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
@@ -77,7 +77,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('companies.jobs.applications.show', [$job->company, $job, $application]) }}"><img src="{{ $photos->getPhotoUrl($application->resume->jobseeker) }}" class="img-responsive" alt="">
+                                                <a href="{{ route('companies.jobs.applications.show', [$job->company, $job, $application]) }}"><img src="{{ asset($photos->getPhotoUrl($application->resume->jobseeker)) }}" class="img-responsive" alt="">
                                                 </a>
                                             </td>
                                             <td> 

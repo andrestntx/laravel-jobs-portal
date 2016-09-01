@@ -145,7 +145,7 @@
 
         });
 
-        searchOccupations.init();
+        searchOccupations.init("{{ asset('') }}");
 
     </script>
     

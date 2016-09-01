@@ -170,7 +170,7 @@ return array(
     'observation'   => 'Observaciones',
     'title'         => 'titulo',
 	'who_apply'     => 'quíen debería aplicar',
-	'offer'			=> 'beneficios del empelo',
+	'offer'			=> 'beneficios del empleo',
 	'salary'        => 'salario',
 	'wage_aspiration' => 'aspiración salarial',
 	'closing_date'  => 'fecha de finalización de la oferta',

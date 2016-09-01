@@ -4,13 +4,13 @@
 
 var searchOccupations = function() {
 
-    function initSearch(argument) {
+    function initSearch(urlpath) {
         $("#occupation_id").selectpicker({
             liveSearch: true
         })
         .ajaxSelectPicker({
             ajax: {
-                url: '/ajax/occupations',
+                url: urlpath + '/ajax/occupations',
                 type: 'GET',
                 dataType: 'json',
                 data: {
@@ -42,8 +42,8 @@ var searchOccupations = function() {
     }
 
     return {
-        init: function() {
-            initSearch();
+        init: function(urlpath) {
+            initSearch(urlpath);
         }
     };
 
