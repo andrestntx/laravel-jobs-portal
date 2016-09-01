@@ -63,7 +63,7 @@
 @endsection
 
 @section('extra-js')
-    <script src="/js/services/deleteService.js"></script>
+    <script src="{{ asset('/js/services/deleteService.js') }}"></script>
 
 	<script type="text/javascript">
 		$('.datatable').DataTable({
@@ -113,7 +113,7 @@
                 }, function(isConfirm) {
                     if (isConfirm) { 
                         $.ajax({
-                            url: '/admin/companies/' + company_id + '/active',
+                            url: '{{ asset("/admin/companies") }}/' + company_id + '/active',
                             dataType: 'json',
                             method: 'POST',
                             success: function (data) {

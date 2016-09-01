@@ -90,7 +90,7 @@
                         @foreach($resumes as $resume)
                             <tr>
                                 <td>
-                                    <a href="#"><img src="{{ $photos->getPhotoUrlId($resume->user_id) }}" class="img-responsive" alt="">
+                                    <a href="#"><img src="{{ asset($photos->getPhotoUrlId($resume->user_id)) }}" class="img-responsive" alt="">
                                     </a>
                                 </td>
                                 <td>
@@ -115,8 +115,8 @@
 @endsection
 
 @section('extra-js')
-    <script src="/js/gmaps.js"></script>
-    <script src="/js/services/searchOccupations.js"></script>
+    <script src="{{ asset('/js/gmaps.js') }}"></script>
+    <script src="{{ asset('/js/services/searchOccupations.js') }}"></script>
 
     <script>
         jQuery(document).ready(function($) {
@@ -145,7 +145,7 @@
 
         });
 
-        searchOccupations.init();
+        searchOccupations.init("{{ asset('') }}");
 
     </script>
     

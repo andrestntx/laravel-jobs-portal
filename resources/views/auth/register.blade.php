@@ -15,7 +15,7 @@
                                 <a href="#" class="mj_mainbtn mj_btnblack" data-text="empresa" data-toggle="modal" data-target="#myModal"><span>empresa</span></a>
                             </div>
                             <div class="mj_signup_section_img">
-                                <img src="images/signup_bg1.png" class="img-responsive" alt="contratar">
+                                <img src="{{ asset('images/signup_bg1.png') }}" class="img-responsive" alt="contratar">
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                                 <a href="#" class="mj_mainbtn mj_btnblack" data-text="trabajador" data-toggle="modal" data-target="#myModal1"><span>trabajador</span></a>
                             </div>
                             <div class="mj_signup_section_img">
-                                <img src="images/signup_bg2.png" class="img-responsive" alt="job">
+                                <img src="{{ asset('images/signup_bg2.png') }}" class="img-responsive" alt="job">
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                         <a href="#">login Now</a>
                                     </div>
                                 </form>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="images/close.png" alt="">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="{{ asset('images/close.png') }}" alt="">
                                 </button>
                             </div>
                         </div>
@@ -96,10 +96,10 @@
 
 
 @section('extra-js')
-    <script src="/js/validations/auth/employerValidation.js" type="text/javascript"></script>
-    <script src="/js/validations/auth/jobseekerValidation.js" type="text/javascript"></script>
+    <script src="{{ asset('/js/validations/auth/employerValidation.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/validations/auth/jobseekerValidation.js') }}" type="text/javascript"></script>
     <script>
-        EmployerValidation.init();
-        JobseekerValidation.init();
+        EmployerValidation.init("{{ asset('') }}");
+        JobseekerValidation.init("{{ asset('') }}");
     </script>
 @endsection

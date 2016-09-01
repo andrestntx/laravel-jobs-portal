@@ -3,7 +3,7 @@
 @section('content')
     <div class="mj_pagetitle2">
         <div class="mj_pagetitleimg">
-            <img src="/images/background-job.jpg" alt="">
+            <img src="{{ asset('/images/background-job.jpg') }}" alt="">
             <div class="mj_mainheading_overlay"></div>
         </div>
         <div class="mj_pagetitle_inner">
@@ -14,7 +14,7 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <div class="mj_joblogo">
-                                        <img src="{{ $photoUrl }}" class="img-responsive" alt="">
+                                        <img src="{{ asset($photoUrl) }}" class="img-responsive" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
@@ -60,7 +60,7 @@
                                 </div>
                                     <span>Contratado</span>
                             </li>
-                            <li style="margin-top:10px;"><a target="_blank" href="{{ $resumeFileUrl }}"><i class="fa fa-2x fa-download"></i> Descargar Hoja de Vida</a></li>
+                            <li style="margin-top:10px;"><a target="_blank" href="{{ asset($resumeFileUrl) }}"><i class="fa fa-2x fa-download"></i> Descargar Hoja de Vida</a></li>
                             <li>
                                 <a href="{{ route('companies.jobs.applications', [$application->job->company, $application->job]) }}" class="mj_mainbtn mj_bluebtn" data-text="Volver a solicitudes">
                                     <span> <i class="fa fa-arrow-circle-left"></i> Volver a solicitudes</span>

@@ -101,7 +101,7 @@
 @endsection
 
 @section('extra-js')
-    <script src="/js/services/searchLocation.js"></script>
+    <script src="{{ asset('/js/services/searchLocation.js') }}"></script>
     <script>
         searchLocation.init();
         $(".select2").select2({

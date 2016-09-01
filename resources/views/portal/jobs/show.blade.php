@@ -10,7 +10,7 @@
 @section('content')
     <div class="mj_pagetitle2">
         <div class="mj_pagetitleimg">
-            <img src="/images/background-job.jpg" alt="">
+            <img src="{{ asset('/images/background-job.jpg') }}" alt="">
             <div class="mj_mainheading_overlay"></div>
         </div>
         <div class="mj_pagetitle_inner">
@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <div class="mj_joblogo">
-                                        <img src="{{ $logoUrl }}" class="img-responsive" alt="">
+                                        <img src="{{ asset($logoUrl) }}" class="img-responsive" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
@@ -255,6 +255,6 @@
 @endsection
 
 @section('extra-js')
-    <script src="/js/services/searchLocation.js"></script>
+    <script src="{{ asset('/js/services/searchLocation.js') }}"></script>
     <script> searchLocation.initShowLocation(); </script>
 @endsection

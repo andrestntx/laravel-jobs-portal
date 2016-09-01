@@ -4,9 +4,9 @@
             <a href="{{ $item['url'] }}">
                 @if(array_key_exists('img', $item))  
                     @if($item['img'] == 'user')
-                        <img src="{{ auth()->user()->photo }}" style="max-width: 45px;" /> 
+                        <img src="{{ asset(auth()->user()->photo) }}" style="max-width: 45px;" /> 
                     @else
-                        <img src="{{ $item['img'] }}"/> 
+                        <img src="{{ asset($item['img']) }}"/> 
                     @endif
                 @endif
                 @if(array_key_exists('i', $item))  <i class="{{ $item['i'] }}"></i> @endif

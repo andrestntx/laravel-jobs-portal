@@ -7,7 +7,7 @@
 var JobseekerValidation = function() {
 
     return {
-        init: function() {
+        init: function(urlpath) {
             /*
              *  Jquery Validation, Check out more examples and documentation at https://github.com/jzaefferer/jquery-validation
              */
@@ -37,7 +37,7 @@ var JobseekerValidation = function() {
                         required: true,
                         email: true,
                         remote: {
-                            url: "/validations/register",
+                            url: urlpath + "/validations/register",
                             type: "post",
                             data: {
                                 validate: function() {
