@@ -103,11 +103,14 @@ class ResumesController extends ResourceController
      */
     public function create(CreateRequest $request)
     {
+        $photoUrl = $this->facade->getPhoto(auth()->user()->jobseeker);
+
         return $this->view('form', [
             'resume'                => $this->service->newModel(),
             'jobseekerResume'       => $this->service->getModelsForm(new Resume()),
             'occupations'           => [],
-            'formData'              => $this->getFormDataStore(true)
+            'formData'              => $this->getFormDataStore(true),
+            'photoUrl'              => $photoUrl
         ]);
     }
 
@@ -149,11 +152,14 @@ class ResumesController extends ResourceController
      */
     public function edit(EditRequest $request, Resume $resume)
     {
+        $photoUrl = $this->facade->getPhoto($resume->jobseeker);
+
         return $this->view('form', [
             'resume'            => $resume,
             'jobseekerResume'   => $this->service->getModelsForm($resume),
             'occupations'       => $resume->occupation_array,
-            'formData'          => $this->getFormDataUpdate($resume->jobseeker_id, true)
+            'formData'          => $this->getFormDataUpdate($resume->jobseeker_id, true),
+            'photoUrl'          => $photoUrl
         ]);
     }
 

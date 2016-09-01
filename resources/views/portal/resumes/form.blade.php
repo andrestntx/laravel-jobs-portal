@@ -31,7 +31,8 @@
                     <label for="photo" class="control-label" style="width: 100%;">Foto</label>
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                       <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="{{ asset($photos->getPhotoUrlId($resume->user_id)) }}" alt="img">
+                        
+                        <img src="{{ asset($photoUrl) }}" alt="img">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                       <div>
