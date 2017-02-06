@@ -180,7 +180,7 @@
 	<script src="{{ asset('/js/plugins/isotop/isotope.pkgd.js') }}"></script>
 	<script src="{{ asset('/js/plugins/ckeditor/ckeditor.js') }}"></script>
 	<script src="{{ asset('/js/plugins/ckeditor/adapters/jquery.js') }}"></script>
-	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyC6sKlTXpgXNAWqCUF5K8CV2S_vM1yhJ04"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyC6sKlTXpgXNAWqCUF5K8CV2S_vM1yhJ04"></script>
 	<script src="{{ asset('/js/plugins/maps/jquery.geocomplete.js') }}"></script>
 	<script src="{{ asset('/js/plugins/logger.js') }}"></script>
 	<script src="{{ asset('/js/plugins/form-validation/validation.min.js') }}"></script>

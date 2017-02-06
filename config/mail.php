@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'admin@portalempleo.com', 'name' => 'Portal de empleo'],
+    'from' => ['address' => 'noreplay@empleoenplanas.com', 'name' => 'Portal de Empleo ASOTRAPLANAS'],
 
     /*
     |--------------------------------------------------------------------------
