@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'noreplay@empleoenplanas.com', 'name' => 'Portal de Empleo ASOTRAPLANAS'],
+    'from' => ['address' => env('MAIL_FROM', 'noreplay@empleoenplanas.com'), 'name' => env('MAIL_NAME', 'Portal de Empleo ASOTRAPLANAS')],
 
     /*
     |--------------------------------------------------------------------------

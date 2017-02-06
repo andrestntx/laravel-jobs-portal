@@ -1,2 +1,2 @@
-{!! Field::text('name', ['ph' => 'Nombre', 'tpl' => 'themes.bootstrap.forms.login', 'required']) !!}
+{!! Field::text('name', ['ph' => 'Su nombre completo', 'tpl' => 'themes.bootstrap.forms.login', 'required']) !!}
 {!! Field::email('email', ['ph' => 'Correo electrónico', 'tpl' => 'themes.bootstrap.forms.login', 'required']) !!}
