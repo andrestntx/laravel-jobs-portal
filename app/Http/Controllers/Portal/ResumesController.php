@@ -103,7 +103,8 @@ class ResumesController extends ResourceController
      */
     public function create(CreateRequest $request)
     {
-        $photoUrl = $this->facade->getPhoto(auth()->user()->jobseeker);
+        //$photoUrl = $this->facade->getPhoto(auth()->user()->jobseeker);
+        $photoUrl = "images/user_type.png";
 
         return $this->view('form', [
             'resume'                => $this->service->newModel(),

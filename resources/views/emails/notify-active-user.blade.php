@@ -5,6 +5,6 @@
 </head>
 <body>
 	<h2>Enhorabuena</h2>
-	<p style="font-size: 16px;">Su cuenta ha sido activda</p>
+	<p style="font-size: 16px;">Su cuenta ha sido activada</p>
 </body>
 </html>

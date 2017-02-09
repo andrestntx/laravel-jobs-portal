@@ -27,7 +27,7 @@
                         <div class="mj_mainheading mj_toppadder80 mj_bottompadder50">
                             <h2>H<span>a aplicado satisfactoriamente</span></h2>
                             <h4>La empresa ha sido notificada</h2><br>
-                            <a href="/" class="mj_mainbtn mj_btnyellow text-center" data-text="Volver a la página principal"><span>Volver a la página principal</span></a>
+                            <a href="{{ asset('/') }}" class="mj_mainbtn mj_btnyellow text-center" data-text="Volver a la página principal"><span>Volver a la página principal</span></a>
                         </div>
                     </div>
                 </div>

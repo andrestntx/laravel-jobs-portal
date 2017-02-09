@@ -37,7 +37,7 @@
 						{{ $application->resume->jobseeker->full_name }}
 					</td>
 					<td class="text-center">
-						<a href="{{ route('resumes.show', $application->resume->url_file) }}" target="_blank" title="Descargar" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Descargar</a>
+						<a href="{{ asset($application->resume->url_file) }}" target="_blank" title="Descargar" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Descargar</a>
 					</td>
 					<td class="text-center">
 						<a href="{{ route('resumes.show', $application->resume)}}" title="Ver perfil" class="btn btn-success" target="_blank"> <i class="fa fa-user"></i> Ver perfil</a>
