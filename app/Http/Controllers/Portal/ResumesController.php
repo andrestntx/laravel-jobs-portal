@@ -87,7 +87,7 @@ class ResumesController extends ResourceController
 
         $defaultVars = [
             'occupation'    => $request->get('occupation'),
-            'profile'       => $request->get('profile'),
+            'profile'       => $request->get('profile'),            
             'search'        => $request->get('search'),
             'experience'    => $request->get('experience')
         ];

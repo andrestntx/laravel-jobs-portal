@@ -11,7 +11,7 @@
 @section('article')
 	<div class="mj_postdiv mj_postpage mj_shadow_blue mj_toppadder20" style="padding: 25px 20px 0 20px">
 		<div class="col-md-12" style="margin-bottom: 20px;">
-			<button class="btn btn-info" id="new-activity">Nueva actividad</button>	
+			<button class="btn btn-info" id="new-activity">Nueva asistencia</button>	
 		</div>
 		<table class="table table-striped">
 			<thead>
@@ -47,7 +47,7 @@
 	    <div class="modal-dialog" role="document">
 	        <div class="modal-content">
 	            <div class="modal-header">
-	                <h4 class="modal-title" id="myModalLabel1"> Nueva actividad</h4>
+	                <h4 class="modal-title" id="myModalLabel1"> Nueva asistencia</h4>
 	            </div>
 	            <div class="modal-body">
 	                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
@@ -67,10 +67,10 @@
 	                                    </div>
 	                                </div>
 	                                <div class="mj_pricing_footer">
-	                                    <button type="submit" name="register-jobseeker">Crear actividad</button>
+	                                    <button type="submit" name="register-jobseeker">Crear asistencia</button>
 	                                </div>
 	                            {!! Form::close() !!}
-	                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="/images/close.png" alt="">
+	                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="{{ asset('/images/close.png') }}" alt="">
 	                            </button>
 	                        </div>
 	                    </div>

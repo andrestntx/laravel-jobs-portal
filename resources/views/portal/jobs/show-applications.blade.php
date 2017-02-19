@@ -77,11 +77,11 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('companies.jobs.applications.show', [$job->company, $job, $application]) }}"><img src="{{ asset($photos->getPhotoUrl($application->resume->jobseeker)) }}" class="img-responsive" alt="">
+                                                <a target="_blank" href="{{ route('companies.jobs.applications.show', [$job->company, $job, $application]) }}"><img src="{{ asset($photos->getPhotoUrl($application->resume->jobseeker)) }}" class="img-responsive" alt="">
                                                 </a>
                                             </td>
                                             <td> 
-                                                <a href="{{ route('companies.jobs.applications.show', [$job->company, $job, $application]) }}">
+                                                <a target="_blank" href="{{ route('companies.jobs.applications.show', [$job->company, $job, $application]) }}">
                                                     {{ $application->resume->jobseeker->full_name }} 
                                                 </a>
                                             </td>

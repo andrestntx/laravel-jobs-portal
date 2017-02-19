@@ -15,7 +15,8 @@ class CreateParametersTable extends Migration
         Schema::create('parameters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('value');
+            $table->string('alias');
+            $table->text('value');
             $table->boolean('file')->default(false);
             $table->boolean('textarea')->default(false);
             $table->string('extension')->default('png');

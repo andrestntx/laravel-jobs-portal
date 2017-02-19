@@ -51,7 +51,7 @@ class GeoLocation extends Model
      */
     public function getAddressAttribute()
     {
-        return substr($this->formatted_address,0,40);
+        return substr($this->formatted_address,0,90);
     }
 
 

@@ -25,7 +25,7 @@
 					</td>
 					<td>
 						<a href="{{ route('admin.parameters.edit', $parameter) }}" title="Editar">
-							{{ $parameter->name }}
+							{{ $parameter->alias }}
 						</a>
 					</td>
 					<td>

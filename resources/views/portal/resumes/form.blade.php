@@ -65,8 +65,8 @@
                 @include('includes.google-maps.map')
                 {!! Field::text('study_title', ['placeholder' => 'Título Profesional']) !!}
                 {!! Field::select('occupation_id', $occupations, ['empty' => '', 'required', 'class' => 'ajax-select']) !!}
-                {!! Field::textarea('profile', ['ph' => 'Introducción', 'class' => 'editor-html', 'required', 'label' => 'Descripción del perfil']) !!}
-                {!! Field::select('profile_id', $profiles, ['empty' => 'Seleccione un perfil laboral', 'required', 'class' => 'select-search', 'label' => 'Perfil laboral']) !!}
+                {!! Field::textarea('profile', ['ph' => 'Introducción', 'class' => 'editor-html', 'required', 'label' => 'Descripción del perfíl']) !!}
+                {!! Field::select('profile_id', $profiles, ['empty' => 'Seleccione un perfíl laboral', 'required', 'class' => 'select-search', 'label' => 'Perfíl laboral']) !!}
                 {!! Field::text('skills', ['ph' => 'Habilidades', 'data-role' => 'tagsinput']) !!}
 
                 <div class="form-group">
@@ -94,7 +94,7 @@
                                         </div>
 
                                         {!! Field::textarea('studies[' . $study->id .'][notes]', $study->notes, ['ph' => 'Escriba aquí lo que considere importante', 'rows' => '5', 'tpl' => 'themes.bootstrap.fields.inline']) !!}
-                                        <a href="javascript:deleteService.deleteStudy({{ $study->id }})" class="mj_removefile"><i class="fa fa-times"></i> remove</a>
+                                        <a href="javascript:deleteService.deleteStudy({{ $study->id }})" class="mj_removefile"><i class="fa fa-times"></i> Eliminar</a>
                                     </div>
                                 @endforeach
                             @endif
@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Experiencia<span>(opcional)</span>
+                    <label>Experiencia <span>(opcional)</span>
                         <a href="javascript:void(0)" class="btn btn-sm btn-info mj_add_experience">
                             <i class="fa fa-plus"></i> Agregar
                         </a>
@@ -127,7 +127,7 @@
                                         </div>
 
                                         {!! Field::textarea('experiences[' . $experience->id .'][notes]', $experience->notes, ['ph' => 'Notas', 'rows' => '5', 'tpl' => 'themes.bootstrap.fields.inline']) !!}
-                                        <a href="javascript:deleteService.deleteExperience({{ $experience->id }})" class="mj_removefile"><i class="fa fa-times"></i> remove</a>
+                                        <a href="javascript:deleteService.deleteExperience({{ $experience->id }})" class="mj_removefile"><i class="fa fa-times"></i> Eliminar</a>
                                     </div>
                                 @endforeach
                             @endif

@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	<span>{{ $parameter->name }}</span>
+	<span>{{ $parameter->alias }}</span>
 @endsection
 
 @section('description')

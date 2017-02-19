@@ -20,4 +20,12 @@ class Profile extends Model
     {
         return $this->hasMany('App\Entities\Job');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function resumes()
+    {
+        return $this->hasMany('App\Entities\Resume');
+    }
 }

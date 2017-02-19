@@ -130,7 +130,7 @@
 	<div class="mj_footer mj_toppadder80 mj_bottompadder80">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
+				<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
 					<div class="mj_weight mj_bottompadder20">
 						<a href="{{ asset('/') }}"><img src="{{ asset($portalLogo) }}" class="img-responsive" alt="" style="max-height: 50px;">
 						</a>
