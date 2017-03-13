@@ -179,7 +179,7 @@ Route::group(['middleware' => 'web'], function () {
 			]);
 		});
 
-		Route::group(['middleware' => ['auth', 'role:employer;admin']], function () {
+		Route::group(['middleware' => ['auth', 'role:jobseeker;admin']], function () {
 			Route::resource('jobs', 'JobsController', ['only' => ['index', 'show']]);
 			Route::get('search/jobs', [
 				'as' 	=> 'jobs.search',
