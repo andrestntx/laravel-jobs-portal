@@ -170,16 +170,22 @@ Route::group(['middleware' => 'web'], function () {
 		});
 
 		//All Users
-		Route::resource('resumes', 'ResumesController', ['only' => ['index', 'show']]);
-		Route::post('search/resumes', [
-			'as' 	=> 'resumes.search',
-			'uses' 	=> 'ResumesController@search'
-		]);
-		Route::resource('jobs', 'JobsController', ['only' => ['index', 'show']]);
-		Route::get('search/jobs', [
-			'as' 	=> 'jobs.search',
-			'uses' 	=> 'JobsController@search'
-		]);
+	
+		Route::group(['middleware' => ['auth', 'role:employer;admin']], function () {
+			Route::resource('resumes', 'ResumesController', ['only' => ['index', 'show']]);
+			Route::post('search/resumes', [
+				'as' 	=> 'resumes.search',
+				'uses' 	=> 'ResumesController@search'
+			]);
+		});
+
+		Route::group(['middleware' => ['auth', 'role:employer;admin']], function () {
+			Route::resource('jobs', 'JobsController', ['only' => ['index', 'show']]);
+			Route::get('search/jobs', [
+				'as' 	=> 'jobs.search',
+				'uses' 	=> 'JobsController@search'
+			]);
+		});
 
 		Route::resource('companies', 'CompaniesController', ['only' => ['show']]);
 
