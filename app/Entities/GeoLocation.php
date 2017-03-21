@@ -25,7 +25,7 @@ class GeoLocation extends Model
      *
      * @var array
      */
-    protected $fillable = ["name", "point_of_interest", "lat", "lng", "location", "locatio", "formatted_address",
+    protected $fillable = ["name", "point_of_interest", "lat", "lng", "location", "formatted_address",
         "bounds", "viewport", "route", "street_number", "postal_code", "locality", "sublocality", "country",
         "country_short", "administrative_area_level_1", "place_id", "id", "reference", "url", "website"
     ];
